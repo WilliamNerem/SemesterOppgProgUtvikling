@@ -29,6 +29,9 @@ public class AdminIndexController {
     private TextField txtSearchComponent;
 
     @FXML
+    private TextField txtType;
+
+    @FXML
     void add(ActionEvent event) {
 
     }
