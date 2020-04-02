@@ -60,11 +60,12 @@ public class AdminIndexController {
 
         Component newComponent = new Component(inType, inName, inPrice);
         cr.addComponent(newComponent);
+        System.out.println("Type: " + newComponent.getType() + "\nNavn: "
+                + newComponent.getName() + "\nPris: " + newComponent.getPrize());
         confirmMsg.setText("Komponent lagt til");
         cbType.setValue("");
         txtNewComponent.setText("");
         txtNewPrice.setText("");
-        System.out.println(cr.getComponents());
 
     }
 

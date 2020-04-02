@@ -56,10 +56,13 @@
 
          <items>
             <FXCollections fx:factory="observableArrayList">
-               <String fx:id="test" fx:value="test" />
-               <String fx:id="test1" fx:value="test1" />
-               <String fx:id="mip" fx:value="mip" />
-               <String fx:id="yeet" fx:value="yeet" />
+               <String fx:id="skjermkort" fx:value="Skjermkort" />
+               <String fx:id="harddisk" fx:value="Harddisk" />
+               <String fx:id="mus" fx:value="Mus" />
+               <String fx:id="tastatur" fx:value="Tastatur" />
+               <String fx:id="minne" fx:value="Minne" />
+               <String fx:id="motherboard" fx:value="Motherboard" />
+               <String fx:id="monitor" fx:value="Monitor" />
             </FXCollections>
          </items>
 
