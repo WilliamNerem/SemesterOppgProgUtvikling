@@ -34,7 +34,7 @@ public class HandlekurvController {
 
 
     @FXML
-    void switchToUserIndex(ActionEvent event) throws IOException {
+    void switchToUserIndex() throws IOException {
         App.setRoot("userIndex");
     }
 }
