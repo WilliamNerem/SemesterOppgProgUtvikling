@@ -13,8 +13,8 @@ public class PrimaryController {
     }
 
     @FXML
-    void switchToThird(ActionEvent event) throws IOException {
-        App.setRoot("Third");
+    private void switchToThird() throws IOException {
+        App.setRoot("adminIndex");
     }
 
 }
