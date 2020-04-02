@@ -16,11 +16,20 @@ import java.util.ResourceBundle;
 
 public class UserIndexController implements Initializable {
 
-    @FXML
-    private ComboBox<?> cmbSkjermkort;
+    Component test1 = new Component("ingen","Ingen",1999);
+    Component test2 = new Component("Mus","Wrtt",1999);
+    Component test3 = new Component("Skjermkort", "Yeeeey", 1479);
+    Component test4 = new Component("Harddisk", "jhsfgdjhf", 1479);
+    ObservableList<Component> yeetskrt = FXCollections.observableArrayList(test1, test2, test3, test4);
+    ObservableList<Component> skjermKort123 = FXCollections.observableArrayList();
+    ObservableList<Component> harddisk123 = FXCollections.observableArrayList();
+    ObservableList<Component> mus123 = FXCollections.observableArrayList();
 
     @FXML
-    private ComboBox<?> cmbHarddisk;
+    private ComboBox<Component> cmbSkjermkort;
+
+    @FXML
+    private ComboBox<Component> cmbHarddisk;
 
     @FXML
     private TextField txtAntallHarddisk;
@@ -29,7 +38,7 @@ public class UserIndexController implements Initializable {
     private TextField txtAntallSkjermkort;
 
     @FXML
-    private ComboBox<?> cmbMus;
+    private ComboBox<Component>cmbMus;
 
     @FXML
     private ComboBox<?> cmbTastatur;
@@ -150,6 +159,24 @@ public class UserIndexController implements Initializable {
     @FXML
     void switchToHandlevogn() throws IOException {
         App.setRoot("handlekurv");
+    }
+
+    @FXML
+    private void initialize(){
+        for(Component c : yeetskrt) {
+            if(c.getType().equals("Mus")||c.getType().equals("ingen")) {
+                mus123.add(c);
+                cmbMus.setItems(mus123);
+            }
+            if(c.getType().equals("Skjermkort")||c.getType().equals("ingen")) {
+                skjermKort123.add(c);
+                cmbSkjermkort.setItems(skjermKort123);
+            }
+            if(c.getType().equals("Harddisk")||c.getType().equals("ingen")) {
+                harddisk123.add(c);
+                cmbHarddisk.setItems(harddisk123);
+            }
+        }
     }
 
 }

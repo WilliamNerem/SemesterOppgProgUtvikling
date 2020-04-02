@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 public class HandlekurvController {
 
@@ -13,14 +14,19 @@ public class HandlekurvController {
     private Button secondaryButton;
 
     @FXML
-    private TableView<?> tableviewHandlekurv;
+    private TableView<Component> tableviewHandlekurv;
 
     @FXML
     private Button tilbakeTilUserIndex;
 
+    @FXML
+    private TableView<Component> tableviewPrishistorikk;
 
     @FXML
     private Button btnKjop;
+
+    @FXML
+    private TextField searchHistory;
 
     @FXML
     void kjop(ActionEvent event) {
