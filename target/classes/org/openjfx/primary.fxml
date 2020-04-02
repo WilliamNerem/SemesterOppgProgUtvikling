@@ -5,7 +5,32 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.PrimaryController">
    <children>
+<<<<<<< HEAD
       <Button fx:id="primaryButton" layoutX="178.0" layoutY="168.0" mnemonicParsing="false" onAction="#switchToUserIndex" text="Bruker" />
       <Button fx:id="primary3Button" layoutX="347.0" layoutY="168.0" mnemonicParsing="false" onAction="#switchToThird" text="Administrator" />
+=======
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+      <Accordion>
+        <panes>
+          <TitledPane animated="false" text="Tesztdsadsafsda">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="untitled 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="untitled 3">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+      <Label text="Primary View" />
+      <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Switch to Secondary View" />
+>>>>>>> Maren
    </children>
 </AnchorPane>
