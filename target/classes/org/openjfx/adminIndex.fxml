@@ -64,5 +64,6 @@
          </items>
 
       </ComboBox>
+      <Label fx:id="confirmMsg" layoutX="257.0" layoutY="183.0" textFill="#00cf00" />
    </children>
 </AnchorPane>

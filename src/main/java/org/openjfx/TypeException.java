@@ -7,7 +7,7 @@ public class TypeException extends Exception{
     }
 
     public static String checkType(String inType) throws InvalidTypeException {
-        if (inType == null) {
+        if (inType == null || inType.isEmpty()) {
             throw new InvalidTypeException("Du må velge type!");
         }
         return inType;

@@ -16,6 +16,11 @@ public class Component implements Serializable {
         this.prize = new SimpleIntegerProperty(prize);
     }
 
+    @Override
+    public String toString(){
+        return "Type: " + this.getType() + "\nNavn: " + this.getName() + "\n Pris: " + this.getPrize() + "\n";
+    }
+
     public String getType() { return type.get(); }
 
     public String getName() { return name.get(); }

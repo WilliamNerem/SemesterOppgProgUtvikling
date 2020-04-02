@@ -34,7 +34,12 @@ public class AdminIndexController {
     private Label errorMsg;
 
     @FXML
+    private Label confirmMsg;
+
+    @FXML
     void add(ActionEvent event) {
+        confirmMsg.setText("");
+        errorMsg.setText("");
         String inType = cbType.getValue();
         String inName = txtNewComponent.getText();
         int inPrice = 0;
@@ -50,11 +55,16 @@ public class AdminIndexController {
             return;
         }catch (NameException.InvalidNameException e){
             errorMsg.setText(e.getMessage());
+            return;
         }
 
         Component newComponent = new Component(inType, inName, inPrice);
         cr.addComponent(newComponent);
-        System.out.println(inType + " " + inName + " " + inPrice);
+        confirmMsg.setText("Komponent lagt til");
+        cbType.setValue("");
+        txtNewComponent.setText("");
+        txtNewPrice.setText("");
+        System.out.println(cr.getComponents());
 
     }
 
