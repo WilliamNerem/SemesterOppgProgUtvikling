@@ -2,6 +2,7 @@ package org.openjfx;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Button;
 
 import java.io.Serializable;
 
@@ -16,6 +17,10 @@ public class Component implements Serializable {
         this.prize = new SimpleIntegerProperty(prize);
     }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
     public String getType() { return type.get(); }
 
     public String getName() { return name.get(); }
