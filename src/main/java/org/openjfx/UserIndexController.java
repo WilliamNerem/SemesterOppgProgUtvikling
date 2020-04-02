@@ -119,12 +119,12 @@ public class UserIndexController {
     }
 
     @FXML
-    void switchToPrimary(ActionEvent event) throws IOException {
+    void switchToPrimary() throws IOException {
         App.setRoot("primary");
     }
 
     @FXML
-    void switchToHandlevogn(ActionEvent event) throws IOException {
+    void switchToHandlevogn() throws IOException {
         App.setRoot("handlekurv");
     }
 
