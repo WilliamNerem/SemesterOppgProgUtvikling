@@ -1,15 +1,20 @@
 package org.openjfx;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class UserIndexController {
+public class UserIndexController implements Initializable {
 
     @FXML
     private ComboBox<?> cmbSkjermkort;
@@ -84,6 +89,23 @@ public class UserIndexController {
     private Label lblWrongNumber;
 
     @FXML
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        actualRegister.addComponent(oneComponent);
+        actualRegister.addComponent(twoComponent);
+        ObservableList<Component> components = FXCollections.observableArrayList();
+        components.add(oneComponent);
+        components.add(twoComponent);
+        cmbSkjermkort.valueProperty();
+        componentcmb.setItems(components);
+        cmbSkjermkort.setItems();
+    }
+
+    ComboBox<Component> componentcmb = new ComboBox<>();
+    ComponentRegister actualRegister = new ComponentRegister();
+    Component oneComponent = new Component("Skjermkort","ASUS ROG",1900);
+    Component twoComponent = new Component("Skjermkort","GEFORCE GTX 1080", 3500);
+
+    @FXML
     void chooseHarddisk(ActionEvent event) {
 
     }
@@ -110,7 +132,9 @@ public class UserIndexController {
 
     @FXML
     void chooseSkjermkort(ActionEvent event) {
-
+        if(CountException.check(txtAntallSkjermkort.getText()).equals("")) {
+            lblSkjermkort.setText(CalculatePrice.calcComponent(oneComponent.getPrize(), Integer.parseInt(txtAntallSkjermkort.getText())));
+        }
     }
 
     @FXML

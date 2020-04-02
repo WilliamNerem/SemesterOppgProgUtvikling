@@ -26,7 +26,6 @@ public class HandlekurvController {
     void kjop(ActionEvent event) {
 
     }
-
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
