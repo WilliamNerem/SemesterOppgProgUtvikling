@@ -1,7 +1,13 @@
-module-info.class
-org\openjfx\UserIndexController.class
-org\openjfx\CalculatePrice.class
+<<<<<<< Updated upstream
 org\openjfx\PrimaryController.class
 org\openjfx\SecondaryController.class
+module-info.class
+=======
+org\openjfx\UserIndexController.class
+org\openjfx\PrimaryController.class
 org\openjfx\CountException.class
+module-info.class
+org\openjfx\CalculatePrice.class
+org\openjfx\SecondaryController.class
+>>>>>>> Stashed changes
 org\openjfx\App.class
