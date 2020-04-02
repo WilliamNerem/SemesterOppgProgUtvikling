@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -43,11 +46,24 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtType" layoutX="257.0" layoutY="69.0" />
       <Label layoutX="118.0" layoutY="72.0" text="Type">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Label fx:id="errorMsg" layoutX="257.0" layoutY="183.0" textFill="RED" />
+      <ComboBox fx:id="cbType" layoutX="257.0" layoutY="69.0" prefWidth="150.0" promptText="Velg type...">
+
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:id="test" fx:value="test" />
+               <String fx:id="test1" fx:value="test1" />
+               <String fx:id="mip" fx:value="mip" />
+               <String fx:id="yeet" fx:value="yeet" />
+            </FXCollections>
+         </items>
+
+      </ComboBox>
+      <Label fx:id="confirmMsg" layoutX="257.0" layoutY="183.0" textFill="#00cf00" />
    </children>
 </AnchorPane>
