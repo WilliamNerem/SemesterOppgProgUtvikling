@@ -1,4 +1,7 @@
+module-info.class
+org\openjfx\UserIndexController.class
+org\openjfx\CalculatePrice.class
 org\openjfx\PrimaryController.class
 org\openjfx\SecondaryController.class
-module-info.class
+org\openjfx\CountException.class
 org\openjfx\App.class
