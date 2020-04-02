@@ -3,6 +3,7 @@ package org.openjfx;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -11,10 +12,28 @@ import java.io.IOException;
 public class UserIndexController {
 
     @FXML
+    private ComboBox<?> cmbSkjermkort;
+
+    @FXML
+    private ComboBox<?> cmbHarddisk;
+
+    @FXML
     private TextField txtAntallHarddisk;
 
     @FXML
     private TextField txtAntallSkjermkort;
+
+    @FXML
+    private ComboBox<?> cmbMus;
+
+    @FXML
+    private ComboBox<?> cmbTastatur;
+
+    @FXML
+    private ComboBox<?> cmbMinne;
+
+    @FXML
+    private ComboBox<?> cmbMotherboard;
 
     @FXML
     private TextField txtAntallMotherboard;
@@ -27,6 +46,9 @@ public class UserIndexController {
 
     @FXML
     private TextField txtAntallMus;
+
+    @FXML
+    private ComboBox<?> cmbMonitor;
 
     @FXML
     private TextField txtAntallMonitor;
@@ -53,14 +75,56 @@ public class UserIndexController {
     private Label lblHarddisk;
 
     @FXML
+    private Button handlevognKnapp;
+
+    @FXML
     private Button userIndex;
 
     @FXML
-    void switchToPrimary(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+    private Label lblWrongNumber;
+
+    @FXML
+    void chooseHarddisk(ActionEvent event) {
+
     }
+
+    @FXML
+    void chooseMinne(ActionEvent event) {
+
+    }
+
+    @FXML
+    void chooseMonitor(ActionEvent event) {
+
+    }
+
+    @FXML
+    void chooseMotherboard(ActionEvent event) {
+
+    }
+
+    @FXML
+    void chooseMus(ActionEvent event) {
+
+    }
+
+    @FXML
+    void chooseSkjermkort(ActionEvent event) {
+
+    }
+
+    @FXML
+    void chooseTastatur(ActionEvent event) {
+
+    }
+
     @FXML
     void switchToHandlevogn(ActionEvent event) throws IOException {
+        App.setRoot("primary");
+    }
+
+    @FXML
+    void switchToPrimary(ActionEvent event) throws IOException {
         App.setRoot("secondary");
     }
 
