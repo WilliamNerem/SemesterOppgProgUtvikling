@@ -1,4 +1,5 @@
-org\openjfx\PrimaryController.class
-org\openjfx\SecondaryController.class
 module-info.class
+org\openjfx\HandlekurvController.class
+org\openjfx\UserIndexController.class
+org\openjfx\PrimaryController.class
 org\openjfx\App.class

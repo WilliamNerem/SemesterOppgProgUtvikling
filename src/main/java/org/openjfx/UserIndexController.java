@@ -61,7 +61,7 @@ public class UserIndexController {
     }
     @FXML
     void switchToHandlevogn(ActionEvent event) throws IOException {
-        App.setRoot("secondary");
+        App.setRoot("handlekurv");
     }
 
 }
