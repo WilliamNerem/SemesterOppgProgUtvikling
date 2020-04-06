@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.IntegerStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -124,15 +123,17 @@ public class AdminIndexController implements Initializable {
     @FXML
     private void priceEdited(TableColumn.CellEditEvent<Component, Integer> event) {
         changeError.setText("");
-        if(intStrConverter)
-        try {
-            PriceException.checkPrice(event.getNewValue());
-            event.getRowValue().setPrice(event.getNewValue());
-            tableviewAdminIndex.refresh();
-        }catch (PriceException.InvalidPriceException e){
-            changeError.setText(e.getMessage());
-            tableviewAdminIndex.refresh();
+        if(intStrConverter.isConversionSuccessful()) {
+            try {
+                PriceException.checkPrice(event.getNewValue());
+                event.getRowValue().setPrice(event.getNewValue());
+                tableviewAdminIndex.refresh();
+            } catch (PriceException.InvalidPriceException e) {
+                changeError.setText(e.getMessage());
+                tableviewAdminIndex.refresh();
+            }
         }
+        tableviewAdminIndex.refresh();
     }
 
     @FXML
