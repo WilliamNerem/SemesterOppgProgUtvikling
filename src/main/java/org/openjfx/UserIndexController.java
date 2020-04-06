@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+<<<<<<< HEAD
 public class UserIndexController implements Initializable {
 
     Component test1 = new Component("ingen","Ingen",1999);
@@ -25,6 +26,7 @@ public class UserIndexController implements Initializable {
     ObservableList<Component> skjermKort123 = FXCollections.observableArrayList();
     ObservableList<Component> harddisk123 = FXCollections.observableArrayList();
     ObservableList<Component> mus123 = FXCollections.observableArrayList();
+=======
 public class UserIndexController {
     ObservableList<Component> skjermkortChoose = FXCollections.observableArrayList();
     ObservableList<Component> harddiskChoose = FXCollections.observableArrayList();
@@ -34,6 +36,7 @@ public class UserIndexController {
     ObservableList<Component> motherboardChoose = FXCollections.observableArrayList();
     ObservableList<Component> monitorChoose = FXCollections.observableArrayList();
     ObservableList<Component> componentsBought = FXCollections.observableArrayList();
+>>>>>>> master
 
     @FXML
     public ComboBox<Component> cmbSkjermkort;
