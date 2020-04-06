@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 
 public class HandlekurvController {
     ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
+    UserIndexController handlekurvArray = new UserIndexController();
 
     @FXML
     private Button secondaryButton;
@@ -47,12 +48,13 @@ public class HandlekurvController {
     }
 
     @FXML
-    void save(ActionEvent event) {
+    void save(ActionEvent event) throws IOException {
         FileChooser fc = new FileChooser();
         fc.setTitle("Lagre kjøpshistorikk");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("text files","*.txt"));
         File aFile = fc.showSaveDialog(null);
-        //Files.write(FormatHandlekurvArray.formatComponent(handlekurvArrayet), aFile.toPath());
+
+        //Files.write(aFile.toPath(), FormatHandlekurvArray.formatComponents(handlekurvArray.componentsBought).getBytes());
     }
 
     @FXML
