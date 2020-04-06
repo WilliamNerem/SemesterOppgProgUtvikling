@@ -12,4 +12,18 @@ public class TypeException extends Exception{
         }
         return inType;
     }
+
+    public static String checkTypeOnchange(String inType) throws InvalidTypeException{
+        if (inType.toLowerCase().equals("skjermkort")
+                || inType.toLowerCase().equals("harddisk")
+                || inType.toLowerCase().equals("mus")
+                || inType.toLowerCase().equals("tastatur")
+                || inType.toLowerCase().equals("minne")
+                || inType.toLowerCase().equals("motherboard")
+                || inType.toLowerCase().equals("monitor")){
+            String validType = inType.substring(0,1).toUpperCase() + inType.substring(1);
+            return validType;
+        }
+        throw new InvalidTypeException("Denne typen finnes ikke");
+    }
 }

@@ -20,4 +20,11 @@ public class PriceException extends Exception {
         return outPrice;
     }
 
+    public static boolean checkPrice(int inPrice) throws InvalidPriceException{
+        if(inPrice <= 0){
+            throw new InvalidPriceException("Pris må være større enn 0!");
+        }
+        return true;
+    }
+
 }
