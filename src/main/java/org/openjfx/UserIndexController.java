@@ -10,13 +10,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class UserIndexController {
 
-    ObservableList<Component> skjermKort123 = FXCollections.observableArrayList();
-    ObservableList<Component> harddisk123 = FXCollections.observableArrayList();
-    ObservableList<Component> mus123 = FXCollections.observableArrayList();
-
+    ObservableList<Component> skjermkortChoose = FXCollections.observableArrayList();
+    ObservableList<Component> harddiskChoose = FXCollections.observableArrayList();
+    ObservableList<Component> musChoose = FXCollections.observableArrayList();
     @FXML
     public ComboBox<Component> cmbSkjermkort;
 
@@ -91,7 +91,12 @@ public class UserIndexController {
 
     @FXML
     void chooseHarddisk(ActionEvent event) {
-
+        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
+        for(Component c : checkArray.checkComponentAll) {
+            if(cmbHarddisk.getValue().equals(c)) {
+                lblHarddisk.setText(Integer.toString(CalculatePrice.calcComponent(c.getPrize(),Integer.parseInt(txtAntallHarddisk.getText()))));
+            }
+        }
     }
 
     @FXML
@@ -135,11 +140,26 @@ public class UserIndexController {
     }
 
     @FXML
+    void addToHandlekurv(ActionEvent event) throws IOException {
+        ObservableList<Component> componentsBought = FXCollections.observableArrayList();
+        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
+        if(lblWrongNumber.getText().equals("")) {
+            for(Component c : checkArray.checkComponentAll) { {
+                    if (c.getName().equals(cmbHarddisk.getValue().toString()) || c.getName().equals((cmbSkjermkort.getValue().toString())) || c.getName().equals(cmbMus.getValue().toString())) {
+                        componentsBought.add(c);
+                    }
+                }
+            }
+        }
+        System.out.print(componentsBought);
+        App.setRoot("handlekurv");
+    }
+    @FXML
     private void initialize(){
-        CheckArrayOfComponents aaa = new CheckArrayOfComponents();
-        cmbMus.setItems(aaa.checkmus());
-        cmbSkjermkort.setItems(aaa.checkSkjermkort());
-        cmbHarddisk.setItems(aaa.checkHarddisk());
+        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
+        cmbMus.setItems(checkArray.checkmus());
+        cmbSkjermkort.setItems(checkArray.checkSkjermkort());
+        cmbHarddisk.setItems(checkArray.checkHarddisk());
     }
 
 }
