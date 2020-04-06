@@ -5,14 +5,14 @@ import java.util.List;
 public class FormatHandlekurvArray {
     public static String DELIMITTER = ";";
 
-    public static String formatPerson(Component c) {
+    public static String formatComponent(Component c) {
         return c.getType() + DELIMITTER +c.getName() + DELIMITTER +c.getPrize();
     }
 
-    public static String formatComponent(List<Component> cList) {
+    public static String formatComponents(List<ComponentAndAntall> cList) {
         StringBuffer str = new StringBuffer();
         for(Component c : cList) {
-            str.append(formatPerson(c));
+            str.append(formatComponent(c));
             str.append("\n");
         }
 
