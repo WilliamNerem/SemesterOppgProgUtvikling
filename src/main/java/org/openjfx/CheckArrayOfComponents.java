@@ -14,13 +14,21 @@ public class CheckArrayOfComponents {
     ObservableList <Component> mus = uic.musChoose;
     ObservableList <Component> skjermkort = uic.skjermkortChoose;
     ObservableList <Component> harddisk = uic.harddiskChoose;
-
+    ObservableList <Component> tastatur = uic.tastaturChoose;
+    ObservableList <Component> minne = uic.minneChoose;
+    ObservableList <Component> monitor = uic.monitorChoose;
+    ObservableList <Component> motherboard = uic.motherboardChoose;
 
     Component test1 = new Component("Ingen","Ingen",0);
     Component test2 = new Component("Mus","EnMus",1999);
     Component test3 = new Component("Skjermkort", "EtSkjermkort", 1479);
     Component test4 = new Component("Harddisk", "EnHarddisk", 1479);
-    ObservableList<Component> checkComponentAll = FXCollections.observableArrayList(test1, test2, test3, test4);
+    Component test5 = new Component("Tastatur", "EtTastatur", 2500);
+    Component test6 = new Component("Minne", "EtMinne", 599);
+    Component test7 = new Component("Monitor", "EnMonitor", 2900);
+    Component test8 = new Component("Motherboard", "EtMotherboard", 1450);
+
+    ObservableList<Component> checkComponentAll = FXCollections.observableArrayList(test1, test2, test3, test4, test5, test6, test7, test8);
 
     /*                                                                              hvis jeg bruker den kommenterte koden fungerer ikke programmet, det blir nullpointer exception
                                                                                     tror det er fordi når "cmbMus1.setItems(mus);" og de andre prøver å legge til en UserIndexController
@@ -72,5 +80,42 @@ public class CheckArrayOfComponents {
         }
         return harddisk;
     }
+
+    public ObservableList<Component> checkTastatur(){
+        for(Component c : checkComponentAll) {
+            if(c.getType().equals("Tastatur")||c.getType().equals("Ingen")) {
+                tastatur.add(c);
+            }
+        }
+        return tastatur;
+    }
+
+    public ObservableList<Component> checkMotherboard(){
+        for(Component c : checkComponentAll) {
+            if(c.getType().equals("Motherboard")||c.getType().equals("Ingen")) {
+                motherboard.add(c);
+            }
+        }
+        return motherboard;
+    }
+
+    public ObservableList<Component> checkMinne(){
+        for(Component c : checkComponentAll) {
+            if(c.getType().equals("Minne")||c.getType().equals("Ingen")) {
+                minne.add(c);
+            }
+        }
+        return minne;
+    }
+
+    public ObservableList<Component> checkMonitor(){
+        for(Component c : checkComponentAll) {
+            if(c.getType().equals("Monitor")||c.getType().equals("Ingen")) {
+                monitor.add(c);
+            }
+        }
+        return monitor;
+    }
+
 
 }
