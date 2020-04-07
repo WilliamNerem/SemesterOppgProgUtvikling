@@ -26,4 +26,5 @@ public class Component implements Serializable {
     public String getName() { return name.get(); }
 
     public int getPrize() { return prize.get(); }
+
 }
