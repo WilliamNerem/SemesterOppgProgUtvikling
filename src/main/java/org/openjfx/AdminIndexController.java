@@ -4,11 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-
+import javafx.scene.control.TableCell;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.util.Callback;
 
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
@@ -33,6 +38,8 @@ public class AdminIndexController implements Initializable {
         typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(intStrConverter));
+
+        addButtonToTable();
     }
 
     @FXML
@@ -46,6 +53,9 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     private TableColumn<Component, Integer> priceColumn;
+
+    @FXML
+    private TableColumn<Component, Void> deleteColumn;
 
     @FXML
     private TextField txtNewComponent;
@@ -85,13 +95,7 @@ public class AdminIndexController implements Initializable {
             inType = TypeException.checkType(inType);
             inName = NameException.checkName(inName);
             inPrice = PriceException.checkPrice(txtNewPrice.getText());
-        }catch (PriceException.InvalidPriceException e){
-            errorMsg.setText(e.getMessage());
-            return;
-        }catch (TypeException.InvalidTypeException e){
-            errorMsg.setText(e.getMessage());
-            return;
-        }catch (NameException.InvalidNameException e){
+        }catch (PriceException.InvalidPriceException | TypeException.InvalidTypeException | NameException.InvalidNameException e){
             errorMsg.setText(e.getMessage());
             return;
         }
@@ -151,7 +155,6 @@ public class AdminIndexController implements Initializable {
     }
 
 
-
     @FXML
     void switchToPrimary(ActionEvent event) throws IOException {
         App.setRoot("primary");
@@ -162,6 +165,37 @@ public class AdminIndexController implements Initializable {
         txtNewComponent.setText("");
         txtNewPrice.setText("");
 
+    }
+
+    private void addButtonToTable() {
+        Callback<TableColumn<Component, Void>, TableCell<Component, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell call(final TableColumn<Component, Void> param) {
+                final TableCell<Component, Void> cell = new TableCell<>() {
+                    final Button btn = new Button("Slett");
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            //onClick event som sletter elementet fra lista
+                            btn.setOnAction(event -> {
+                                int c = getTableRow().getIndex();
+                                cr.deleteComponent(c);
+                                tableviewAdminIndex.refresh();
+                            });
+
+                            setGraphic(btn);
+                            setText(null);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        deleteColumn.setCellFactory(cellFactory);
     }
 
 }

@@ -25,13 +25,14 @@
              <cellValueFactory>
                 <PropertyValueFactory property="name" />
              </cellValueFactory>
+             
           </TableColumn>
             <TableColumn fx:id="priceColumn" onEditCommit="#priceEdited" prefWidth="98.0" text="Pris">
                <cellValueFactory>
                   <PropertyValueFactory property="price" />
                </cellValueFactory>
             </TableColumn>
-            <TableColumn editable="false" prefWidth="67.0" text="Slett" />
+            <TableColumn fx:id="deleteColumn" editable="false" prefWidth="67.0" text="Slett" />
         </columns>
       </TableView>
       <Label layoutX="193.0" layoutY="22.0" text="Legg til eller endre komponenter">
@@ -82,6 +83,11 @@
       </ComboBox>
       <Label fx:id="confirmMsg" layoutX="257.0" layoutY="183.0" textFill="#00cf00" />
       <Label fx:id="changeError" layoutX="66.0" layoutY="250.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="66.0" layoutY="250.0" textFill="#00cf00">
          <font>
             <Font size="11.0" />
          </font>
