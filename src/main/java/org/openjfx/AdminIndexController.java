@@ -1,18 +1,16 @@
 package org.openjfx;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 
 public class AdminIndexController implements Initializable {
@@ -40,6 +38,8 @@ public class AdminIndexController implements Initializable {
         priceColumn.setCellFactory(TextFieldTableCell.forTableColumn(intStrConverter));
 
         addButtonToTable();
+
+        chBox.getSelectionModel().selectFirst();
     }
 
     @FXML
@@ -65,6 +65,9 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     private ComboBox<String> cbType;
+
+    @FXML
+    private ChoiceBox<String> chBox;
 
     @FXML
     private Button btnAddComponent;
@@ -154,6 +157,58 @@ public class AdminIndexController implements Initializable {
 
     }
 
+    @FXML
+    void search(KeyEvent event) {
+        //https://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
+        FilteredList<Component> filteredData = new FilteredList<>(cr.getComponents(), c -> true);
+
+        txtSearchComponent.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(component -> {
+                // If filter text is empty, display all components.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String category = chBox.getValue();
+
+                switch (category){
+                    case "Type":
+                        if (component.getType().toLowerCase().startsWith(lowerCaseFilter)) {
+                            System.out.println("Matcher");
+                            return true;
+                        }
+                        break;
+                    case "Pris":
+                        int IntLCF = 0;
+                        try{
+                            IntLCF = Integer.parseInt(lowerCaseFilter);
+                            errorMsg.setText("");
+                        }
+                        catch (Exception e){
+                            errorMsg.setText("Pris må være tall høyere enn 0");
+                            return false;
+                        }
+                        if(component.getPrice() == IntLCF){
+                            return true;
+                        }
+                        break;
+                    case "Navn":
+                        if (component.getName().toLowerCase().startsWith(lowerCaseFilter)) {
+                            return true;
+                        }
+                        break;
+                }
+                return false; // Does not match.
+            });
+        });
+
+        SortedList<Component> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(tableviewAdminIndex.comparatorProperty());
+
+        tableviewAdminIndex.setItems(sortedData);
+    }
 
     @FXML
     void switchToPrimary(ActionEvent event) throws IOException {
@@ -167,6 +222,7 @@ public class AdminIndexController implements Initializable {
 
     }
 
+    //https://stackoverflow.com/questions/29489366/how-to-add-button-in-javafx-table-view
     private void addButtonToTable() {
         Callback<TableColumn<Component, Void>, TableCell<Component, Void>> cellFactory = new Callback<>() {
             @Override

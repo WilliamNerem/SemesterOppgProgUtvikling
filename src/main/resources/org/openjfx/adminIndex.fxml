@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -40,7 +41,7 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNewComponent" layoutX="257.0" layoutY="109.0" />
+      <TextField fx:id="txtNewComponent" layoutX="257.0" layoutY="109.0" promptText="Navn" />
       <Label layoutX="118.0" layoutY="111.0" text="Komponent(Navn)">
          <font>
             <Font size="14.0" />
@@ -51,15 +52,10 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNewPrice" layoutX="257.0" layoutY="147.0" />
+      <TextField fx:id="txtNewPrice" layoutX="257.0" layoutY="147.0" promptText="0000" />
       <Button fx:id="btnAddComponent" layoutX="429.0" layoutY="147.0" mnemonicParsing="false" onAction="#add" text="Legg til" />
       <Button fx:id="logOut" layoutX="37.0" layoutY="500.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
-      <TextField fx:id="txtSearchComponent" layoutX="449.0" layoutY="225.0" />
-      <Label layoutX="406.0" layoutY="228.0" text="Søk">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <TextField fx:id="txtSearchComponent" layoutX="449.0" layoutY="225.0" onKeyTyped="#search" promptText="Søk..." />
       <Label layoutX="118.0" layoutY="72.0" text="Type">
          <font>
             <Font size="14.0" />
@@ -92,5 +88,14 @@
             <Font size="11.0" />
          </font>
       </Label>
+      <ChoiceBox fx:id="chBox" layoutX="346.0" layoutY="225.0" prefHeight="25.0" prefWidth="95.0">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:id="filterType" fx:value="Type" />
+               <String fx:id="filterName" fx:value="Navn" />
+               <String fx:id="filterPrice" fx:value="Pris" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
    </children>
 </AnchorPane>
