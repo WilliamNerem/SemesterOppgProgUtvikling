@@ -24,6 +24,6 @@ public class ParseKjøpshistorikkArray {
             throw new InvalidComponentFormatException("Ugyldig pris");
         }
 
-        return new ComponentAndAntall(type, name, number, price, price*number);
+        return new ComponentAndAntall(type, name, number, price);
     }
 }

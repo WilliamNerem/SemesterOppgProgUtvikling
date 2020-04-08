@@ -16,7 +16,7 @@ import javafx.stage.FileChooser;
 
 public class HandlekurvController {
     ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
-    ComponentAndAntall abc = new ComponentAndAntall("a","b",3,2, 4);
+    ComponentAndAntall abc = new ComponentAndAntall("a","b",3,2);
 
     @FXML
     private Button secondaryButton;
