@@ -15,9 +15,9 @@
    <children>
       <TableView fx:id="tableviewAdminIndex" layoutX="66.0" layoutY="269.0" prefHeight="200.0" prefWidth="532.0">
         <columns>
-          <TableColumn prefWidth="152.0" text="Type" />
-          <TableColumn prefWidth="214.0" text="Navn" />
-            <TableColumn prefWidth="98.0" text="Pris" />
+          <TableColumn fx:id="col_Type" prefWidth="152.0" text="Type" />
+          <TableColumn fx:id="col_Name" prefWidth="214.0" text="Navn" />
+            <TableColumn fx:id="col_Price" prefWidth="98.0" text="Pris" />
             <TableColumn prefWidth="67.0" text="Slett" />
         </columns>
       </TableView>
@@ -68,5 +68,7 @@
 
       </ComboBox>
       <Label fx:id="confirmMsg" layoutX="257.0" layoutY="183.0" textFill="#00cf00" />
+      <Button fx:id="btnOpen" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#open" text="Åpne" />
+      <Button fx:id="btnSave" layoutX="66.0" layoutY="10.0" mnemonicParsing="false" onAction="#save" text="Lagre" />
    </children>
 </AnchorPane>

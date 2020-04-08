@@ -1,16 +1,36 @@
 package org.openjfx;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class AdminIndexController {
+
+
     ComponentRegister cr = new ComponentRegister();
+    ObservableList<Component> adminArray = FXCollections.observableArrayList();
+    Component a = new Component("a", "b", 1);
 
     @FXML
-    private TableView<?> tableviewAdminIndex;
+    private TableView<Component> tableviewAdminIndex;
+
+    @FXML
+    private TableColumn<Component, String> col_Type;
+
+    @FXML
+    private TableColumn<Component, String> col_Name;
+
+    @FXML
+    private TableColumn<Component, Integer> col_Price;
 
     @FXML
     private TextField txtNewComponent;
@@ -35,6 +55,12 @@ public class AdminIndexController {
 
     @FXML
     private Label confirmMsg;
+
+    @FXML
+    private Button btnOpen;
+
+    @FXML
+    private Button btnSave;
 
     @FXML
     void add(ActionEvent event) {
@@ -70,8 +96,44 @@ public class AdminIndexController {
     }
 
     @FXML
+    void open(ActionEvent event) {
+        adminArray = FXCollections.observableArrayList();
+        OpenAdminTableview.open(adminArray, btnOpen, btnSave);
+        col_Type.setCellValueFactory(new PropertyValueFactory<>("type"));
+        col_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_Price.setCellValueFactory(new PropertyValueFactory<>("prize"));
+        tableviewAdminIndex.setItems(adminArray);
+    }
+
+    @FXML
+    void save(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Lagre Komponenter");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+        File aFile = fc.showSaveDialog(null);
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File(aFile.getPath())));
+            os.writeObject(FormatAdminArray.formatComponents(adminArray));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     void switchToPrimary(ActionEvent event) throws IOException {
         App.setRoot("primary");
     }
+
+    /*
+    @FXML
+    private void initialize(){
+        adminArray.add(a);
+        col_Type.setCellValueFactory(new PropertyValueFactory<>("type"));
+        col_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_Price.setCellValueFactory(new PropertyValueFactory<>("prize"));
+        tableviewAdminIndex.setItems(adminArray);
+    }
+
+     */
 
 }
