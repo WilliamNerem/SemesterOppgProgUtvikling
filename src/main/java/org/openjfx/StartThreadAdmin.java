@@ -18,26 +18,20 @@ public class StartThreadAdmin {
         this.selectedFile = selectedFile;
     }
 
+    void disable(){
+        btnSave.setDisable(true);
+        btnOpen.setDisable(true);
+    }
+
     void open(){
         task = new ThreadAdmin(selectedFile);
         task.setOnSucceeded(this::threadDone);
-        task.setOnFailed(this::threadFailed);
         Thread thread = new Thread(task);
-        btnSave.setDisable(true);
-        btnOpen.setDisable(true);
         thread.start();
     }
-    void threadDone(WorkerStateEvent e) {
-        this.btnOpen.setDisable(false);
-        this.btnSave.setDisable(false);
-    }
 
-    void threadFailed(WorkerStateEvent event) {
+    void threadDone(WorkerStateEvent event) {
         btnOpen.setDisable(false);
         btnSave.setDisable(false);
     }
-
-
-
-
 }

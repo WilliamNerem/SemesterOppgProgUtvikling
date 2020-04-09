@@ -21,14 +21,14 @@ public class OpenAdminTableview {
         return liste;
     }
 
-    static void open(ObservableList<Component> adminArray, Button btnOpen, Button btnSave){
+    static void open(ObservableList<Component> adminArray, Button btnOpen, Button btnSave) throws InterruptedException {
         StartThreadAdmin thread = new StartThreadAdmin(btnOpen, btnSave, selectedFile);
-        thread.open();
+        thread.disable();
         FileChooser fc = new FileChooser();
         fc.setTitle("Åpne lister med komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
         selectedFile = fc.showOpenDialog(null);
-
+        thread.open();
         try (BufferedReader readerJobj = new BufferedReader(new StringReader(readFile(selectedFile)));) {
             String line;
             while ((line = readerJobj.readLine()) != null) {
@@ -40,5 +40,6 @@ public class OpenAdminTableview {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Thread.sleep(2000);
     }
 }

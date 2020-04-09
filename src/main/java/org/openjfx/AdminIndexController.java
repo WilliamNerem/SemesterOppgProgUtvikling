@@ -96,7 +96,7 @@ public class AdminIndexController {
     }
 
     @FXML
-    void open(ActionEvent event) {
+    void open(ActionEvent event) throws InterruptedException {
         adminArray = FXCollections.observableArrayList();
         OpenAdminTableview.open(adminArray, btnOpen, btnSave);
         col_Type.setCellValueFactory(new PropertyValueFactory<>("type"));
