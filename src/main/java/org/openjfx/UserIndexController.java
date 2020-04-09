@@ -99,7 +99,7 @@ public class UserIndexController {
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
         for(Component c : checkArray.checkComponentAll) {
             if(cmbHarddisk.getValue().toString().equals(c.getName())) {
-                lblHarddisk.setText((CalculatePrice.calcComponent(c.getPrize(),Integer.parseInt(txtAntallHarddisk.getText())))+" kr");
+                lblHarddisk.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallHarddisk.getText())))+" kr");
             }
         }
     }
@@ -109,7 +109,7 @@ public class UserIndexController {
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
         for(Component c : checkArray.checkComponentAll) {
             if(cmbMinne.getValue().toString().equals(c.getName())) {
-                lblMinne.setText((CalculatePrice.calcComponent(c.getPrize(),Integer.parseInt(txtAntallMinne.getText())))+" kr");
+                lblMinne.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallMinne.getText())))+" kr");
             }
         }
 
@@ -120,7 +120,7 @@ public class UserIndexController {
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
         for(Component c : checkArray.checkComponentAll) {
             if(cmbMonitor.getValue().toString().equals(c.getName())) {
-                lblMonitor.setText((CalculatePrice.calcComponent(c.getPrize(),Integer.parseInt(txtAntallMonitor.getText())))+" kr");
+                lblMonitor.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallMonitor.getText())))+" kr");
             }
         }
 
@@ -131,7 +131,7 @@ public class UserIndexController {
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
         for(Component c : checkArray.checkComponentAll) {
             if(cmbMotherboard.getValue().toString().equals(c.getName())) {
-                lblMotherboard.setText((CalculatePrice.calcComponent(c.getPrize(),Integer.parseInt(txtAntallMotherboard.getText())))+" kr");
+                lblMotherboard.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallMotherboard.getText())))+" kr");
             }
         }
 
@@ -142,7 +142,7 @@ public class UserIndexController {
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
         for(Component c : checkArray.checkComponentAll) {
             if(cmbMus.getValue().toString().equals(c.getName())) {
-                lblMus.setText((CalculatePrice.calcComponent(c.getPrize(),Integer.parseInt(txtAntallMus.getText())))+" kr");
+                lblMus.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallMus.getText())))+" kr");
             }
         }
     }
@@ -152,7 +152,7 @@ public class UserIndexController {
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
         for(Component c : checkArray.checkComponentAll) {
             if(cmbSkjermkort.getValue().toString().equals(c.getName())) {
-                lblSkjermkort.setText((CalculatePrice.calcComponent(c.getPrize(),Integer.parseInt(txtAntallSkjermkort.getText())))+" kr");
+                lblSkjermkort.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallSkjermkort.getText())))+" kr");
             }
         }
     }
@@ -162,7 +162,7 @@ public class UserIndexController {
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
         for(Component c : checkArray.checkComponentAll) {
             if(cmbTastatur.getValue().toString().equals(c.getName())) {
-                lblTastatur.setText((CalculatePrice.calcComponent(c.getPrize(),Integer.parseInt(txtAntallTastatur.getText())))+" kr");
+                lblTastatur.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallTastatur.getText())))+" kr");
             }
         }
     }
