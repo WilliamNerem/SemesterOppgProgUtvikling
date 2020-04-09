@@ -74,7 +74,7 @@
             <Font size="11.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="chBox" layoutX="346.0" layoutY="225.0" onMouseClicked="#onChange" prefHeight="25.0" prefWidth="95.0">
+      <ChoiceBox fx:id="chBox" layoutX="346.0" layoutY="225.0" prefHeight="25.0" prefWidth="95.0">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:id="filterType" fx:value="Type" />

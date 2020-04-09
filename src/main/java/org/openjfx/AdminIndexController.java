@@ -11,6 +11,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 
@@ -94,6 +96,11 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     private Label changeError;
+
+    @FXML
+    void xD(DragEvent event) {
+        filter();
+    }
 
     @FXML
     void add(ActionEvent event) {
