@@ -195,9 +195,9 @@ public class AdminIndexController implements Initializable {
     void open(ActionEvent event) throws InterruptedException {
         adminArray = FXCollections.observableArrayList();
         OpenAdminTableview.open(adminArray, btnOpen, btnSave);
-        col_Type.setCellValueFactory(new PropertyValueFactory<>("type"));
-        col_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_Price.setCellValueFactory(new PropertyValueFactory<>("prize"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         tableviewAdminIndex.setItems(adminArray);
     }
 

@@ -6,7 +6,7 @@ public class FormatAdminArray {
     public static String DELIMITTER = ";";
 
     public static String formatComponent(Component c) {
-        return c.getType() + DELIMITTER +c.getName() + DELIMITTER + c.getPrize();
+        return c.getType() + DELIMITTER +c.getName() + DELIMITTER + c.getPrice();
     }
 
     public static String formatComponents(List<Component> cList) {
