@@ -17,23 +17,10 @@
    <children>
       <TableView fx:id="tableviewAdminIndex" editable="true" layoutX="66.0" layoutY="269.0" prefHeight="200.0" prefWidth="532.0">
         <columns>
-          <TableColumn fx:id="typeColumn" editable="true" onEditCommit="#typeEdited" prefWidth="152.0" text="Type">
-             <cellValueFactory>
-                <PropertyValueFactory property="type" />
-             </cellValueFactory>
-          </TableColumn>
-          <TableColumn fx:id="nameColumn" onEditCommit="#nameEdited" prefWidth="214.0" text="Navn">
-             <cellValueFactory>
-                <PropertyValueFactory property="name" />
-             </cellValueFactory>
-             
-          </TableColumn>
-            <TableColumn fx:id="priceColumn" onEditCommit="#priceEdited" prefWidth="98.0" text="Pris">
-               <cellValueFactory>
-                  <PropertyValueFactory property="price" />
-               </cellValueFactory>
-            </TableColumn>
-            <TableColumn fx:id="deleteColumn" editable="false" prefWidth="67.0" text="Slett" />
+           <TableColumn fx:id="typeColumn" editable="true" onEditCommit="#typeEdited" prefWidth="152.0" text="Type"></TableColumn>
+           <TableColumn fx:id="nameColumn" onEditCommit="#nameEdited" prefWidth="214.0" text="Navn"></TableColumn>
+           <TableColumn fx:id="priceColumn" onEditCommit="#priceEdited" prefWidth="98.0" text="Pris"></TableColumn>
+           <TableColumn fx:id="deleteColumn" editable="false" prefWidth="67.0" text="Slett" />
         </columns>
       </TableView>
       <Label layoutX="193.0" layoutY="22.0" text="Legg til eller endre komponenter">

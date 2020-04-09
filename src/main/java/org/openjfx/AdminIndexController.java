@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +33,10 @@ public class AdminIndexController implements Initializable {
         cr.addComponent(component3);
         cr.addComponent(component4);
         cr.attachTableView(tableviewAdminIndex);
+
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -172,10 +177,17 @@ public class AdminIndexController implements Initializable {
                 String lowerCaseFilter = newValue.toLowerCase();
                 String category = chBox.getValue();
 
-                switch (category){
+                if(component.getType().toLowerCase().startsWith(lowerCaseFilter)){
+                    return true;
+                }else {
+                    return false;
+                }
+
+                /*switch (category){
                     case "Type":
                         if (component.getType().toLowerCase().startsWith(lowerCaseFilter)) {
                             System.out.println("Matcher");
+                            System.out.println(filteredData);
                             return true;
                         }
                         break;
@@ -198,16 +210,20 @@ public class AdminIndexController implements Initializable {
                             return true;
                         }
                         break;
-                }
-                return false; // Does not match.
+                }*/
+                //return false; // Does not match.
             });
         });
+
+        System.out.println(filteredData);
 
         SortedList<Component> sortedData = new SortedList<>(filteredData);
 
         sortedData.comparatorProperty().bind(tableviewAdminIndex.comparatorProperty());
 
         tableviewAdminIndex.setItems(sortedData);
+
+        tableviewAdminIndex.refresh();
     }
 
     @FXML
