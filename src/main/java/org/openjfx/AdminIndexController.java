@@ -138,6 +138,7 @@ public class AdminIndexController implements Initializable {
         cr.addComponent(newComponent);
         System.out.println("Type: " + newComponent.getType() + "\nNavn: "
                 + newComponent.getName() + "\nPris: " + newComponent.getPrice());
+        errorMsg.setText("");
         confirmMsg.setText("Komponent lagt til");
         resetTextFields();
 
@@ -291,6 +292,7 @@ public class AdminIndexController implements Initializable {
                             errorMsg.setText("");
                         }
                         catch (Exception e){
+                            confirmMsg.setText("");
                             errorMsg.setText("Pris må være tall høyere enn 0");
                             return false;
                         }
