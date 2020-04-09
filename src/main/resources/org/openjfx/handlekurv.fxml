@@ -26,13 +26,14 @@
                            </font>
                         </Label>
                         <Button fx:id="btnKjop" layoutX="712.0" layoutY="517.0" mnemonicParsing="false" onAction="#kjop" prefHeight="38.0" prefWidth="79.0" text="Kjøp" />
-                        <TableView fx:id="tableviewHandlekurv" layoutX="148.0" layoutY="85.0" prefHeight="468.0" prefWidth="510.0">
+                        <TableView fx:id="tableviewHandlekurv" layoutX="99.0" layoutY="87.0" prefHeight="468.0" prefWidth="607.0">
                           <columns>
-                            <TableColumn prefWidth="173.0" text="Komponent" />
-                            <TableColumn text="Antall" />
-                              <TableColumn prefWidth="82.0" text="Pris" />
-                              <TableColumn prefWidth="109.0" text="Totalt" />
-                              <TableColumn prefWidth="65.0" text="Slett" />
+                            <TableColumn prefWidth="137.0" text="Type" />
+                              <TableColumn prefWidth="140.0" text="Navn" />
+                            <TableColumn prefWidth="51.0" text="Antall" />
+                              <TableColumn prefWidth="94.0" text="Pris" />
+                              <TableColumn prefWidth="117.0" text="Totalt" />
+                              <TableColumn prefWidth="68.0" text="Slett" />
                           </columns>
                         </TableView>
                      </children>
@@ -45,12 +46,13 @@
                      <children>
                         <Button fx:id="secondaryButton" layoutX="14.0" layoutY="530.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
                         <Button fx:id="tilbakeTilUserIndex" layoutX="737.0" layoutY="18.0" mnemonicParsing="false" onAction="#switchToUserIndex" text="Tilbake" />
-                        <TableView fx:id="tableviewPrishistorikk" layoutX="148.0" layoutY="85.0" prefHeight="468.0" prefWidth="510.0">
+                        <TableView fx:id="tableviewPrishistorikk" layoutX="100.0" layoutY="87.0" prefHeight="468.0" prefWidth="607.0">
                           <columns>
-                            <TableColumn prefWidth="173.0" text="Komponent" />
-                            <TableColumn text="Antall" />
-                              <TableColumn prefWidth="116.0" text="Pris" />
-                              <TableColumn prefWidth="140.0" text="Totalt" />
+                            <TableColumn fx:id="col_type" prefWidth="151.0" text="Type" />
+                              <TableColumn fx:id="col_Navn" prefWidth="144.0" text="Navn" />
+                            <TableColumn fx:id="col_Antall" prefWidth="60.0" text="Antall" />
+                              <TableColumn fx:id="col_Pris" prefWidth="114.0" text="Pris" />
+                              <TableColumn fx:id="col_Totalt" prefWidth="137.0" text="Totalt" />
                           </columns>
                         </TableView>
                         <Label layoutX="335.0" layoutY="15.0" text="Kjøpshistorikk">
