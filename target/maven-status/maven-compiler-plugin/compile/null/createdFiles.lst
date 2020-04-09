@@ -1,5 +1,5 @@
-org\openjfx\Component.class
 org\openjfx\UserIndexController.class
-org\openjfx\ComponentRegister.class
 org\openjfx\PrimaryController.class
+org\openjfx\ComponentRegister.class
+org\openjfx\Component.class
 org\openjfx\AdminIndexController.class
