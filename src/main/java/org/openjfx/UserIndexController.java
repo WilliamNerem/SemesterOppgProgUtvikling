@@ -202,31 +202,31 @@ public class UserIndexController {
         for (Component c : checkArray.checkComponentAll) {
             if (lblWrong.getText().equals("") && !c.getName().equals("Ingen")) {
                 if (c.getName().equals(cmbHarddisk.getValue().getName())) {
-                    ComponentAndAntall compBoughtHarddisk = new ComponentAndAntall(c.getType(), txtAntallHarddisk.getValue(), c.getName(), c.getPrize());
+                    ComponentAndAntall compBoughtHarddisk = new ComponentAndAntall(c.getType(), c.getName(), txtAntallHarddisk.getValue(), c.getPrize());
                     componentsBought.add(compBoughtHarddisk);
                 }
                 if (c.getName().equals(cmbSkjermkort.getValue().getName())) {
-                    ComponentAndAntall compBoughtSkjermkort = new ComponentAndAntall(c.getType(), txtAntallSkjermkort.getValue(), c.getName(), c.getPrize());
+                    ComponentAndAntall compBoughtSkjermkort = new ComponentAndAntall(c.getType(), c.getName(),txtAntallSkjermkort.getValue(), c.getPrize());
                     componentsBought.add(compBoughtSkjermkort);
                 }
                 if (c.getName().equals(cmbMonitor.getValue().getName())) {
-                    ComponentAndAntall compBoughtMonitor = new ComponentAndAntall(c.getType(), txtAntallMonitor.getValue(), c.getName(), c.getPrize());
+                    ComponentAndAntall compBoughtMonitor = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMonitor.getValue(), c.getPrize());
                     componentsBought.add(compBoughtMonitor);
                 }
                 if (c.getName().equals(cmbMotherboard.getValue().getName())) {
-                    ComponentAndAntall compBoughtMotherboard = new ComponentAndAntall(c.getType(), txtAntallMotherboard.getValue(), c.getName(), c.getPrize());
+                    ComponentAndAntall compBoughtMotherboard = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMotherboard.getValue(), c.getPrize());
                     componentsBought.add(compBoughtMotherboard);
                 }
                 if (c.getName().equals(cmbMus.getValue().getName())) {
-                    ComponentAndAntall compBoughtMus = new ComponentAndAntall(c.getType(), txtAntallMus.getValue(), c.getName(), c.getPrize());
+                    ComponentAndAntall compBoughtMus = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMus.getValue(), c.getPrize());
                     componentsBought.add(compBoughtMus);
                 }
                 if (c.getName().equals(cmbTastatur.getValue().getName())) {
-                    ComponentAndAntall compBoughtTastatur = new ComponentAndAntall(c.getType(), txtAntallTastatur.getValue(), c.getName(), c.getPrize());
+                    ComponentAndAntall compBoughtTastatur = new ComponentAndAntall(c.getType(), c.getName(), txtAntallTastatur.getValue(), c.getPrize());
                     componentsBought.add(compBoughtTastatur);
                 }
                 if (c.getName().equals(cmbMinne.getValue().getName())) {
-                    ComponentAndAntall compBoughtMinne = new ComponentAndAntall(c.getType(), txtAntallMinne.getValue(), c.getName(), c.getPrize());
+                    ComponentAndAntall compBoughtMinne = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMinne.getValue(), c.getPrize());
                     componentsBought.add(compBoughtMinne);
                 }
                 App.setRoot("handlekurv");
