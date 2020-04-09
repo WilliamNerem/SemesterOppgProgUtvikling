@@ -42,7 +42,7 @@
       <TextField fx:id="txtNewPrice" layoutX="257.0" layoutY="147.0" promptText="0000" />
       <Button fx:id="btnAddComponent" layoutX="429.0" layoutY="147.0" mnemonicParsing="false" onAction="#add" text="Legg til" />
       <Button fx:id="logOut" layoutX="37.0" layoutY="500.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
-      <TextField fx:id="txtSearchComponent" layoutX="449.0" layoutY="225.0" onKeyTyped="#search" promptText="Søk..." />
+      <TextField fx:id="txtSearchComponent" layoutX="449.0" layoutY="225.0" promptText="Søk..." />
       <Label layoutX="118.0" layoutY="72.0" text="Type">
          <font>
             <Font size="14.0" />

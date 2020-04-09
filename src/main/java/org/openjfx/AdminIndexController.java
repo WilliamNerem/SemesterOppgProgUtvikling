@@ -45,6 +45,9 @@ public class AdminIndexController implements Initializable {
         addButtonToTable();
 
         chBox.getSelectionModel().selectFirst();
+
+        filter();
+
     }
 
     @FXML
@@ -117,6 +120,8 @@ public class AdminIndexController implements Initializable {
 
         cr.attachTableView(tableviewAdminIndex);
 
+        filter();
+
     }
 
     @FXML
@@ -162,69 +167,6 @@ public class AdminIndexController implements Initializable {
 
     }
 
-    @FXML
-    void search(KeyEvent event) {
-        //https://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
-        FilteredList<Component> filteredData = new FilteredList<>(cr.getComponents(), c -> true);
-
-        txtSearchComponent.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(component -> {
-                // If filter text is empty, display all components.
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-                String category = chBox.getValue();
-
-                if(component.getType().toLowerCase().startsWith(lowerCaseFilter)){
-                    return true;
-                }else {
-                    return false;
-                }
-
-                /*switch (category){
-                    case "Type":
-                        if (component.getType().toLowerCase().startsWith(lowerCaseFilter)) {
-                            System.out.println("Matcher");
-                            System.out.println(filteredData);
-                            return true;
-                        }
-                        break;
-                    case "Pris":
-                        int IntLCF = 0;
-                        try{
-                            IntLCF = Integer.parseInt(lowerCaseFilter);
-                            errorMsg.setText("");
-                        }
-                        catch (Exception e){
-                            errorMsg.setText("Pris må være tall høyere enn 0");
-                            return false;
-                        }
-                        if(component.getPrice() == IntLCF){
-                            return true;
-                        }
-                        break;
-                    case "Navn":
-                        if (component.getName().toLowerCase().startsWith(lowerCaseFilter)) {
-                            return true;
-                        }
-                        break;
-                }*/
-                //return false; // Does not match.
-            });
-        });
-
-        System.out.println(filteredData);
-
-        SortedList<Component> sortedData = new SortedList<>(filteredData);
-
-        sortedData.comparatorProperty().bind(tableviewAdminIndex.comparatorProperty());
-
-        tableviewAdminIndex.setItems(sortedData);
-
-        tableviewAdminIndex.refresh();
-    }
 
     @FXML
     void switchToPrimary(ActionEvent event) throws IOException {
@@ -268,6 +210,64 @@ public class AdminIndexController implements Initializable {
             }
         };
         deleteColumn.setCellFactory(cellFactory);
+    }
+
+    private void filter(){
+
+        //https://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
+        FilteredList<Component> filteredData = new FilteredList<>(cr.getComponents(), c -> true);
+
+        txtSearchComponent.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(component -> {
+                // If filter text is empty, display all components.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String category = chBox.getValue();
+
+                System.out.println(component.getType().toLowerCase().contains(lowerCaseFilter));
+
+                switch (category){
+                    case "Type":
+                        if (component.getType().toLowerCase().startsWith(lowerCaseFilter)) {
+                            System.out.println("Matcher");
+                            System.out.println(filteredData);
+                            return true;
+                        }
+                        break;
+                    case "Pris":
+                        int IntLCF = 0;
+                        try{
+                            IntLCF = Integer.parseInt(lowerCaseFilter);
+                            errorMsg.setText("");
+                        }
+                        catch (Exception e){
+                            errorMsg.setText("Pris må være tall høyere enn 0");
+                            return false;
+                        }
+                        if(component.getPrice() == IntLCF){
+                            return true;
+                        }
+                        break;
+                    case "Navn":
+                        if (component.getName().toLowerCase().startsWith(lowerCaseFilter)) {
+                            return true;
+                        }
+                        break;
+                }
+                return false; // Does not match.
+            });
+        });
+
+        System.out.println(filteredData);
+
+        SortedList<Component> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(tableviewAdminIndex.comparatorProperty());
+
+        tableviewAdminIndex.setItems(sortedData);
     }
 
 }
