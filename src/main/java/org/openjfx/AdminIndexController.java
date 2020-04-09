@@ -2,15 +2,23 @@ package org.openjfx;
 
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.io.ObjectOutputStream;
 
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
@@ -19,6 +27,8 @@ import javafx.util.Callback;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
+    ObservableList<Component> adminArray = FXCollections.observableArrayList();
+    Component a = new Component("a", "b", 1);
 
 
     //testdata:
@@ -103,6 +113,12 @@ public class AdminIndexController implements Initializable {
     }
 
     @FXML
+    private Button btnOpen;
+
+    @FXML
+    private Button btnSave;
+
+    @FXML
     void add(ActionEvent event) {
         confirmMsg.setText("");
         errorMsg.setText("");
@@ -175,6 +191,30 @@ public class AdminIndexController implements Initializable {
 
     }
 
+
+    @FXML
+    void open(ActionEvent event) throws InterruptedException {
+        adminArray = FXCollections.observableArrayList();
+        OpenAdminTableview.open(adminArray, btnOpen, btnSave);
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        tableviewAdminIndex.setItems(adminArray);
+    }
+
+    @FXML
+    void save(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Lagre Komponenter");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+        File aFile = fc.showSaveDialog(null);
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File(aFile.getPath())));
+            os.writeObject(FormatAdminArray.formatComponents(adminArray));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void switchToPrimary(ActionEvent event) throws IOException {
