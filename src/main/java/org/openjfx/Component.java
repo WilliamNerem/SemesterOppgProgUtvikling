@@ -21,6 +21,7 @@ public class Component implements Serializable {
     public String toString() {
         return getName();
     }
+
     public String getType() { return type.get(); }
 
     public String getName() { return name.get(); }
