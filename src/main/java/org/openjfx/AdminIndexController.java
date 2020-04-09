@@ -13,12 +13,10 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
-import java.io.ObjectOutputStream;
 
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
@@ -194,12 +192,10 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void open(ActionEvent event) throws InterruptedException {
-        adminArray = FXCollections.observableArrayList();
-        OpenAdminTableview.open(adminArray, btnOpen, btnSave);
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        tableviewAdminIndex.setItems(adminArray);
+        cr.clearList();
+        OpenAdminTableview.open(cr.getComponents(), btnOpen, btnSave);
+        tableviewAdminIndex.setItems(cr.getComponents());
+        filter();
     }
 
     @FXML
@@ -208,9 +204,11 @@ public class AdminIndexController implements Initializable {
         fc.setTitle("Lagre Komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
         File aFile = fc.showSaveDialog(null);
-        try {
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File(aFile.getPath())));
-            os.writeObject(FormatAdminArray.formatComponents(adminArray));
+        try (OutputStream os = Files.newOutputStream(aFile.toPath());
+             ObjectOutputStream out = new ObjectOutputStream(os)){
+            //ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File(aFile.getPath())));
+            out.writeObject(FormatAdminArray.formatComponents(cr.getComponents()));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
