@@ -11,6 +11,6 @@ public class ComponentAndAntall extends Component {
 
     public int getNumber() { return number.get(); }
     public int getTotal() {
-        int ut = getNumber()*getPrize();
+        int ut = getNumber()*getPrice();
         return ut;}
 }
