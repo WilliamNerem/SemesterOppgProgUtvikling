@@ -19,6 +19,6 @@ public class InputException extends Exception{
         else if(cb.getValue().getName().equals("Ingen") && antall.equals(0)) {
             return "";
         }
-        else return CalculatePrice.calcComponent(cb.getValue().getPrize(),antall)+" kr";
+        else return CalculatePrice.calcComponent(cb.getValue().getPrice(),antall)+" kr";
     }
 }
