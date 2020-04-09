@@ -9,22 +9,28 @@ import java.io.Serializable;
 public class Component implements Serializable {
     private SimpleStringProperty type;
     private SimpleStringProperty name;
-    private SimpleIntegerProperty prize;
+    private SimpleIntegerProperty price;
 
-    public Component(String type, String name, int prize){
+    public Component(String type, String name, int price){
         this.type = new SimpleStringProperty(type);
         this.name = new SimpleStringProperty(name);
-        this.prize = new SimpleIntegerProperty(prize);
+        this.price = new SimpleIntegerProperty(price);
     }
 
     @Override
     public String toString() {
         return getName();
     }
+
     public String getType() { return type.get(); }
 
     public String getName() { return name.get(); }
 
-    public int getPrize() { return prize.get(); }
+    public int getPrice() { return price.get(); }
 
+    public void setType(String type) { this.type.set(type); }
+
+    public void setName(String name) { this.name.set(name); }
+
+    public void setPrice(int price) { this.price.set(price); }
 }

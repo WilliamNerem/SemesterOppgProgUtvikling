@@ -64,7 +64,7 @@ public class HandlekurvController {
         OpenKjøpshistorikkTxt.open(kjøpshistorikkArray);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_Pris.setCellValueFactory(new PropertyValueFactory<>("prize"));
+        col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
@@ -84,7 +84,6 @@ public class HandlekurvController {
     void kjop(ActionEvent event) {
 
     }
-
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
@@ -101,7 +100,7 @@ public class HandlekurvController {
         kjøpshistorikkArray.add(abc);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_Pris.setCellValueFactory(new PropertyValueFactory<>("prize"));
+        col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);

@@ -2,7 +2,8 @@ package org.openjfx;
 
 public class CalculatePrice {
 
-    public static int calcComponent (int compPrice, int number) {
-        return compPrice * number;
+    public static String calcComponent (int compPrice, int number) {
+
+        return Integer.toString(compPrice * number ) ;
     }
 }
