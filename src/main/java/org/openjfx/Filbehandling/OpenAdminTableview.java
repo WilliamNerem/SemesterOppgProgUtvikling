@@ -1,8 +1,10 @@
-package org.openjfx;
+package org.openjfx.Filbehandling;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
+import org.openjfx.Component;
+import org.openjfx.StartThreadAdmin;
 
 import java.io.*;
 
@@ -21,7 +23,7 @@ public class OpenAdminTableview {
         return liste;
     }
 
-    static void open(ObservableList<Component> adminArray, Button btnOpen, Button btnSave) throws InterruptedException {
+    public static void open(ObservableList<Component> adminArray, Button btnOpen, Button btnSave) throws InterruptedException {
         StartThreadAdmin thread = new StartThreadAdmin(btnOpen, btnSave, selectedFile);
         thread.disable();
         FileChooser fc = new FileChooser();

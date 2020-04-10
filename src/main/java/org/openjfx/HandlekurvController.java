@@ -89,7 +89,7 @@ public class HandlekurvController {
     }
     @FXML
     private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
+        App.setRoot("login");
     }
 
 
