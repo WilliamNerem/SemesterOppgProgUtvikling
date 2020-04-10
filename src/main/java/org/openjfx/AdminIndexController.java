@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.util.Callback;
@@ -27,7 +28,6 @@ import org.openjfx.Filbehandling.OpenAdminTableview;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
-    ObservableList<Component> adminArray = FXCollections.observableArrayList();
     Component a = new Component("a", "b", 1);
 
 
@@ -188,27 +188,27 @@ public class AdminIndexController implements Initializable {
 
 
     @FXML
-    void open(ActionEvent event) throws InterruptedException {
-        cr.clearList();
-        OpenAdminTableview.open(cr.getComponents(), btnOpen, btnSave);
+    void open(ActionEvent event) throws InterruptedException, IOException {
+        OpenAdminTableview.open(cr, btnOpen, btnSave);
         tableviewAdminIndex.setItems(cr.getComponents());
         filter();
     }
 
     @FXML
-    void save(ActionEvent event) {
+    void save(ActionEvent event) throws IOException {
         FileChooser fc = new FileChooser();
         fc.setTitle("Lagre Komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
         File aFile = fc.showSaveDialog(null);
-        try (OutputStream os = Files.newOutputStream(aFile.toPath());
-             ObjectOutputStream out = new ObjectOutputStream(os)){
-            //ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File(aFile.getPath())));
-            out.writeObject(FormatAdminArray.formatComponents(cr.getComponents()));
 
+        try (OutputStream os = Files.newOutputStream(aFile.toPath());
+             ObjectOutputStream out = new ObjectOutputStream(os))
+        {
+            out.writeObject(cr);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @FXML
