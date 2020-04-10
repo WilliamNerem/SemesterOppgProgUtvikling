@@ -41,5 +41,6 @@ public class OpenAdminTableview {
             e.printStackTrace();
         }
         Thread.sleep(2000);
+
     }
 }

@@ -17,6 +17,7 @@ public class OpenKjøpshistorikkTxt {
         File selectedFile = fc.showOpenDialog(null);
         try (BufferedReader reader = Files.newBufferedReader(selectedFile.toPath())) {
             String line;
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
                 ComponentAndAntall c = ParseKjøpshistorikkArray.parseComponent(line);
                 kjøpshistorikkArray.add(c);

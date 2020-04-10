@@ -17,6 +17,7 @@ import javafx.stage.FileChooser;
 public class HandlekurvController {
     ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
     ComponentAndAntall abc = new ComponentAndAntall("a","b",3,2);
+    ComponentAndAntall dsf = new ComponentAndAntall("1", "2", 1, 2);
 
     @FXML
     private Button secondaryButton;
@@ -98,6 +99,7 @@ public class HandlekurvController {
     @FXML
     private void initialize(){
         kjøpshistorikkArray.add(abc);
+        kjøpshistorikkArray.add(dsf);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
