@@ -17,7 +17,7 @@ public class ThreadAdmin extends Task<File> {
     @Override
     protected File call() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
 
         }
