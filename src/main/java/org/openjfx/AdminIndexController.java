@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 import java.io.*;
@@ -24,6 +25,7 @@ import org.openjfx.Feilhåndtering.PriceException;
 import org.openjfx.Feilhåndtering.TypeException;
 import org.openjfx.Filbehandling.FormatAdminArray;
 import org.openjfx.Filbehandling.OpenAdminTableview;
+import org.openjfx.Filbehandling.SaveAdminTableview;
 
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
@@ -61,6 +63,8 @@ public class AdminIndexController implements Initializable {
         filter();
 
     }
+    @FXML
+    private AnchorPane anchorpane;
 
     @FXML
     private TableView tableviewAdminIndex;
@@ -189,25 +193,14 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void open(ActionEvent event) throws InterruptedException, IOException {
-        OpenAdminTableview.open(cr, btnOpen, btnSave);
+        OpenAdminTableview.open(cr, anchorpane);
         tableviewAdminIndex.setItems(cr.getComponents());
         filter();
     }
 
     @FXML
-    void save(ActionEvent event) throws IOException {
-        FileChooser fc = new FileChooser();
-        fc.setTitle("Lagre Komponenter");
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
-        File aFile = fc.showSaveDialog(null);
-
-        try (OutputStream os = Files.newOutputStream(aFile.toPath());
-             ObjectOutputStream out = new ObjectOutputStream(os))
-        {
-            out.writeObject(cr);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void save(ActionEvent event) throws IOException, InterruptedException {
+        SaveAdminTableview.save(cr, anchorpane);
 
     }
 

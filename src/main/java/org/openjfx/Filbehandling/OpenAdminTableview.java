@@ -1,6 +1,7 @@
 package org.openjfx.Filbehandling;
 
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import org.openjfx.ComponentRegister;
 import org.openjfx.StartThreadAdmin;
@@ -23,28 +24,14 @@ public class OpenAdminTableview {
         return liste;
     }
 
-    public static void open(ComponentRegister cr, Button btnOpen, Button btnSave) throws InterruptedException, IOException {
-        StartThreadAdmin thread = new StartThreadAdmin(btnOpen, btnSave, selectedFile);
+    public static void open(ComponentRegister cr, AnchorPane anchorpane) throws InterruptedException, IOException {
+        StartThreadAdmin thread = new StartThreadAdmin(anchorpane, selectedFile);
         thread.disable();
         FileChooser fc = new FileChooser();
         fc.setTitle("Åpne lister med komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
         selectedFile = fc.showOpenDialog(null);
         thread.open();
-        /*
-        try (BufferedReader readerJobj = new BufferedReader(new StringReader(readFile(selectedFile)));) {
-            String line;
-            while ((line = readerJobj.readLine()) != null) {
-                Component c = ParseAdminArray.parseComponent(line);
-                adminArray.add(c);
-            }
-        }catch (FileNotFoundException f) {
-            System.out.println(selectedFile.getPath() + " does not exist");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-         */
         try (InputStream fin = Files.newInputStream(selectedFile.toPath());
              ObjectInputStream oin = new ObjectInputStream(fin))
         {
@@ -55,7 +42,7 @@ public class OpenAdminTableview {
             e.printStackTrace();
             throw new IOException("Something is wrong with the implementation. See debug information");
         }
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
     }
 }
