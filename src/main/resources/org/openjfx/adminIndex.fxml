@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -17,9 +16,9 @@
    <children>
       <TableView fx:id="tableviewAdminIndex" editable="true" layoutX="66.0" layoutY="269.0" prefHeight="200.0" prefWidth="532.0">
         <columns>
-           <TableColumn fx:id="typeColumn" editable="true" onEditCommit="#typeEdited" prefWidth="152.0" text="Type"></TableColumn>
-           <TableColumn fx:id="nameColumn" onEditCommit="#nameEdited" prefWidth="214.0" text="Navn"></TableColumn>
-           <TableColumn fx:id="priceColumn" onEditCommit="#priceEdited" prefWidth="98.0" text="Pris"></TableColumn>
+           <TableColumn fx:id="typeColumn" editable="true" onEditCommit="#typeEdited" prefWidth="152.0" text="Type" />
+           <TableColumn fx:id="nameColumn" onEditCommit="#nameEdited" prefWidth="214.0" text="Navn" />
+           <TableColumn fx:id="priceColumn" onEditCommit="#priceEdited" prefWidth="98.0" text="Pris" />
            <TableColumn fx:id="deleteColumn" editable="false" prefWidth="67.0" text="Slett" />
         </columns>
       </TableView>
@@ -65,6 +64,8 @@
 
       </ComboBox>
       <Label fx:id="confirmMsg" layoutX="257.0" layoutY="183.0" textFill="#00cf00" />
+      <Button fx:id="btnOpen" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#open" text="Åpne" />
+      <Button fx:id="btnSave" layoutX="66.0" layoutY="10.0" mnemonicParsing="false" onAction="#save" text="Lagre" />
       <Label fx:id="changeError" layoutX="66.0" layoutY="250.0" textFill="RED">
          <font>
             <Font size="11.0" />

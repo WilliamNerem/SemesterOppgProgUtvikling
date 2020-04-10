@@ -20,19 +20,13 @@ public class UserIndexController {
     ObservableList<Component> minneChoose = FXCollections.observableArrayList();
     ObservableList<Component> motherboardChoose = FXCollections.observableArrayList();
     ObservableList<Component> monitorChoose = FXCollections.observableArrayList();
-    ObservableList<Component> componentsBought = FXCollections.observableArrayList();
+    ObservableList<ComponentAndAntall> componentsBought = FXCollections.observableArrayList();
 
     @FXML
     public ComboBox<Component> cmbSkjermkort;
 
     @FXML
     public ComboBox<Component> cmbHarddisk;
-
-    @FXML
-    private TextField txtAntallHarddisk;
-
-    @FXML
-    private TextField txtAntallSkjermkort;
 
     @FXML
     public ComboBox<Component>cmbMus;
@@ -47,22 +41,7 @@ public class UserIndexController {
     public ComboBox<Component> cmbMotherboard;
 
     @FXML
-    private TextField txtAntallMotherboard;
-
-    @FXML
-    private TextField txtAntallMinne;
-
-    @FXML
-    private TextField txtAntallTastatur;
-
-    @FXML
-    private TextField txtAntallMus;
-
-    @FXML
     public ComboBox<Component> cmbMonitor;
-
-    @FXML
-    private TextField txtAntallMonitor;
 
     @FXML
     private Label lblSkjermkort;
@@ -92,79 +71,118 @@ public class UserIndexController {
     private Button userIndex;
 
     @FXML
-    private Label lblWrongNumber;
+    private Label lblWrong;
 
     @FXML
-    void chooseHarddisk(KeyEvent event) {
-        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        for(Component c : checkArray.checkComponentAll) {
-            if(cmbHarddisk.getValue().toString().equals(c.getName())) {
-                lblHarddisk.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallHarddisk.getText())))+" kr");
+    private ComboBox<Integer> txtAntallSkjermkort;
+
+    @FXML
+    private ComboBox<Integer> txtAntallHarddisk;
+
+    @FXML
+    private ComboBox<Integer> txtAntallMinne;
+
+    @FXML
+    private ComboBox<Integer> txtAntallMonitor;
+
+    @FXML
+    private ComboBox<Integer> txtAntallTastatur;
+
+    @FXML
+    private ComboBox<Integer> txtAntallMus;
+
+    @FXML
+    private ComboBox<Integer> txtAntallMotherboard;
+
+    @FXML
+    void chooseHarddisk(ActionEvent event) {
+            String output = "";
+            try {
+                output = InputException.checkInput(cmbHarddisk, txtAntallHarddisk.getValue());
+                lblWrong.setText("");
+            } catch (InputException.InvalidInputException e) {
+                lblWrong.setText(e.getMessage());
+                lblHarddisk.setText("");
             }
-        }
+            lblHarddisk.setText(output);
     }
 
     @FXML
-    void chooseMinne(KeyEvent event) {
-        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        for(Component c : checkArray.checkComponentAll) {
-            if(cmbMinne.getValue().toString().equals(c.getName())) {
-                lblMinne.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallMinne.getText())))+" kr");
-            }
+    void chooseMinne(ActionEvent event) {
+        String output = "";
+        try {
+            output = InputException.checkInput(cmbMinne, txtAntallMinne.getValue());
+            lblWrong.setText("");
+        } catch (InputException.InvalidInputException e) {
+            lblWrong.setText(e.getMessage());
+            lblMinne.setText("");
         }
-
+        lblMinne.setText(output);
     }
 
     @FXML
-    void chooseMonitor(KeyEvent event) {
-        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        for(Component c : checkArray.checkComponentAll) {
-            if(cmbMonitor.getValue().toString().equals(c.getName())) {
-                lblMonitor.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallMonitor.getText())))+" kr");
-            }
+    void chooseMonitor(ActionEvent event) {
+        String output = "";
+        try {
+            output = InputException.checkInput(cmbMonitor, txtAntallMonitor.getValue());
+            lblWrong.setText("");
+        } catch (InputException.InvalidInputException e) {
+            lblWrong.setText(e.getMessage());
+            lblMonitor.setText("");
         }
-
+        lblMonitor.setText(output);
     }
 
     @FXML
-    void chooseMotherboard(KeyEvent event) {
-        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        for(Component c : checkArray.checkComponentAll) {
-            if(cmbMotherboard.getValue().toString().equals(c.getName())) {
-                lblMotherboard.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallMotherboard.getText())))+" kr");
-            }
+    void chooseMotherboard(ActionEvent event) {
+        String output = "";
+        try {
+            output = InputException.checkInput(cmbMotherboard, txtAntallMotherboard.getValue());
+            lblWrong.setText("");
+        } catch (InputException.InvalidInputException e) {
+            lblWrong.setText(e.getMessage());
+            lblMotherboard.setText("");
         }
-
+        lblMotherboard.setText(output);
     }
 
     @FXML
-    void chooseMus(KeyEvent event) {
-        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        for(Component c : checkArray.checkComponentAll) {
-            if(cmbMus.getValue().toString().equals(c.getName())) {
-                lblMus.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallMus.getText())))+" kr");
-            }
+    void chooseMus(ActionEvent event) {
+        String output = "";
+        try {
+            output = InputException.checkInput(cmbMus, txtAntallMus.getValue());
+            lblWrong.setText("");
+        } catch (InputException.InvalidInputException e) {
+            lblWrong.setText(e.getMessage());
+            lblMus.setText("");
         }
+        lblMus.setText(output);
     }
 
     @FXML
-    void chooseSkjermkort(KeyEvent event) {
-        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        for(Component c : checkArray.checkComponentAll) {
-            if(cmbSkjermkort.getValue().toString().equals(c.getName())) {
-                lblSkjermkort.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallSkjermkort.getText())))+" kr");
-            }
+    void chooseSkjermkort(ActionEvent event) {
+        String output = "";
+        try {
+            output = InputException.checkInput(cmbSkjermkort, txtAntallSkjermkort.getValue());
+            lblWrong.setText("");
+        } catch (InputException.InvalidInputException e) {
+            lblWrong.setText(e.getMessage());
+            lblSkjermkort.setText("");
         }
+        lblSkjermkort.setText(output);
     }
 
     @FXML
-    void chooseTastatur(KeyEvent event) {
-        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        for(Component c : checkArray.checkComponentAll) {
-            if(cmbTastatur.getValue().toString().equals(c.getName())) {
-                lblTastatur.setText((CalculatePrice.calcComponent(c.getPrice(),Integer.parseInt(txtAntallTastatur.getText())))+" kr");
-            }
+    void chooseTastatur(ActionEvent event) {
+        String output = "";
+        try {
+            output = InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue());
+            lblWrong.setText("");
+        } catch (InputException.InvalidInputException e) {
+            lblWrong.setText(e.getMessage());
+            lblTastatur.setText("");
         }
+        lblTastatur.setText(output);
     }
 
     @FXML
@@ -181,27 +199,72 @@ public class UserIndexController {
     void addToHandlekurv(ActionEvent event) throws IOException {
         componentsBought = FXCollections.observableArrayList();
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        if(lblWrongNumber.getText().equals("")) {
-            for(Component c : checkArray.checkComponentAll) { {
-                if (c.getName().equals(cmbHarddisk.getValue().toString()) || c.getName().equals((cmbSkjermkort.getValue().toString())) || c.getName().equals(cmbMus.getValue().toString())) {
-                    componentsBought.add(c);
+        for (Component c : checkArray.checkComponentAll) {
+            if (lblWrong.getText().equals("") && !c.getName().equals("Ingen")) {
+                if (c.getName().equals(cmbHarddisk.getValue().getName())) {
+                    ComponentAndAntall compBoughtHarddisk = new ComponentAndAntall(c.getType(), c.getName(), txtAntallHarddisk.getValue(), c.getPrice());
+                    componentsBought.add(compBoughtHarddisk);
                 }
-            }
+                if (c.getName().equals(cmbSkjermkort.getValue().getName())) {
+                    ComponentAndAntall compBoughtSkjermkort = new ComponentAndAntall(c.getType(), c.getName(),txtAntallSkjermkort.getValue(), c.getPrice());
+                    componentsBought.add(compBoughtSkjermkort);
+                }
+                if (c.getName().equals(cmbMonitor.getValue().getName())) {
+                    ComponentAndAntall compBoughtMonitor = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMonitor.getValue(), c.getPrice());
+                    componentsBought.add(compBoughtMonitor);
+                }
+                if (c.getName().equals(cmbMotherboard.getValue().getName())) {
+                    ComponentAndAntall compBoughtMotherboard = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMotherboard.getValue(), c.getPrice());
+                    componentsBought.add(compBoughtMotherboard);
+                }
+                if (c.getName().equals(cmbMus.getValue().getName())) {
+                    ComponentAndAntall compBoughtMus = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMus.getValue(), c.getPrice());
+                    componentsBought.add(compBoughtMus);
+                }
+                if (c.getName().equals(cmbTastatur.getValue().getName())) {
+                    ComponentAndAntall compBoughtTastatur = new ComponentAndAntall(c.getType(), c.getName(), txtAntallTastatur.getValue(), c.getPrice());
+                    componentsBought.add(compBoughtTastatur);
+                }
+                if (c.getName().equals(cmbMinne.getValue().getName())) {
+                    ComponentAndAntall compBoughtMinne = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMinne.getValue(), c.getPrice());
+                    componentsBought.add(compBoughtMinne);
+                }
+                App.setRoot("handlekurv");
             }
         }
         System.out.print(componentsBought);
-        App.setRoot("handlekurv");
     }
     @FXML
     private void initialize(){
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
         cmbMus.setItems(checkArray.checkmus());
+        cmbMus.getSelectionModel().selectFirst();
         cmbSkjermkort.setItems(checkArray.checkSkjermkort());
+        cmbSkjermkort.getSelectionModel().selectFirst();
         cmbHarddisk.setItems(checkArray.checkHarddisk());
+        cmbHarddisk.getSelectionModel().selectFirst();
         cmbMotherboard.setItems((checkArray.checkMotherboard()));
+        cmbMotherboard.getSelectionModel().selectFirst();
         cmbTastatur.setItems((checkArray.checkTastatur()));
+        cmbTastatur.getSelectionModel().selectFirst();
         cmbMinne.setItems((checkArray.checkMinne()));
+        cmbMinne.getSelectionModel().selectFirst();
         cmbMonitor.setItems((checkArray.checkMonitor()));
+        cmbMonitor.getSelectionModel().selectFirst();
+        txtAntallSkjermkort.setItems(checkArray.antall);
+        txtAntallSkjermkort.getSelectionModel().selectFirst();
+        txtAntallHarddisk.setItems(checkArray.antall);
+        txtAntallHarddisk.getSelectionModel().selectFirst();
+        txtAntallTastatur.setItems(checkArray.antall);
+        txtAntallTastatur.getSelectionModel().selectFirst();
+        txtAntallMotherboard.setItems(checkArray.antall);
+        txtAntallMotherboard.getSelectionModel().selectFirst();
+        txtAntallMonitor.setItems(checkArray.antall);
+        txtAntallMonitor.getSelectionModel().selectFirst();
+        txtAntallMinne.setItems(checkArray.antall);
+        txtAntallMinne.getSelectionModel().selectFirst();
+        txtAntallMus.setItems(checkArray.antall);
+        txtAntallMus.getSelectionModel().selectFirst();
     }
 
 }

@@ -2,21 +2,31 @@ package org.openjfx;
 
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import java.io.IOException;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
+
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
+    ObservableList<Component> adminArray = FXCollections.observableArrayList();
+    Component a = new Component("a", "b", 1);
 
 
     //testdata:
@@ -96,6 +106,17 @@ public class AdminIndexController implements Initializable {
     private Label changeError;
 
     @FXML
+    void xD(DragEvent event) {
+        filter();
+    }
+
+    @FXML
+    private Button btnOpen;
+
+    @FXML
+    private Button btnSave;
+
+    @FXML
     void add(ActionEvent event) {
         confirmMsg.setText("");
         errorMsg.setText("");
@@ -115,6 +136,7 @@ public class AdminIndexController implements Initializable {
         cr.addComponent(newComponent);
         System.out.println("Type: " + newComponent.getType() + "\nNavn: "
                 + newComponent.getName() + "\nPris: " + newComponent.getPrice());
+        errorMsg.setText("");
         confirmMsg.setText("Komponent lagt til");
         resetTextFields();
 
@@ -167,6 +189,30 @@ public class AdminIndexController implements Initializable {
 
     }
 
+
+    @FXML
+    void open(ActionEvent event) throws InterruptedException {
+        cr.clearList();
+        OpenAdminTableview.open(cr.getComponents(), btnOpen, btnSave);
+        tableviewAdminIndex.setItems(cr.getComponents());
+        filter();
+    }
+
+    @FXML
+    void save(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Lagre Komponenter");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+        File aFile = fc.showSaveDialog(null);
+        try (OutputStream os = Files.newOutputStream(aFile.toPath());
+             ObjectOutputStream out = new ObjectOutputStream(os)){
+            //ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File(aFile.getPath())));
+            out.writeObject(FormatAdminArray.formatComponents(cr.getComponents()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void switchToPrimary(ActionEvent event) throws IOException {
@@ -244,6 +290,7 @@ public class AdminIndexController implements Initializable {
                             errorMsg.setText("");
                         }
                         catch (Exception e){
+                            confirmMsg.setText("");
                             errorMsg.setText("Pris må være tall høyere enn 0");
                             return false;
                         }

@@ -17,6 +17,7 @@ import javafx.stage.FileChooser;
 public class HandlekurvController {
     ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
     ComponentAndAntall abc = new ComponentAndAntall("a","b",3,2);
+    ComponentAndAntall dsf = new ComponentAndAntall("1", "2", 1, 2);
 
     @FXML
     private Button secondaryButton;
@@ -64,7 +65,7 @@ public class HandlekurvController {
         OpenKjøpshistorikkTxt.open(kjøpshistorikkArray);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_Pris.setCellValueFactory(new PropertyValueFactory<>("prize"));
+        col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
@@ -98,9 +99,10 @@ public class HandlekurvController {
     @FXML
     private void initialize(){
         kjøpshistorikkArray.add(abc);
+        kjøpshistorikkArray.add(dsf);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_Pris.setCellValueFactory(new PropertyValueFactory<>("prize"));
+        col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
