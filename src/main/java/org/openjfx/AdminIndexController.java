@@ -216,7 +216,7 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void switchToPrimary(ActionEvent event) throws IOException {
-        App.setRoot("primary");
+        App.setRoot("login");
     }
 
     private void resetTextFields(){
