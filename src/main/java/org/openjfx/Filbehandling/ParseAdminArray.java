@@ -1,4 +1,7 @@
-package org.openjfx;
+package org.openjfx.Filbehandling;
+
+import org.openjfx.Component;
+import org.openjfx.Feilhåndtering.InvalidComponentFormatException;
 
 public class ParseAdminArray {
     public static Component parseComponent(String str)

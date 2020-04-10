@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 
 import java.io.*;
@@ -18,9 +17,12 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
 
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
+import org.openjfx.Feilhåndtering.NameException;
+import org.openjfx.Feilhåndtering.PriceException;
+import org.openjfx.Feilhåndtering.TypeException;
+import org.openjfx.Filbehandling.FormatAdminArray;
+import org.openjfx.Filbehandling.OpenAdminTableview;
 
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
@@ -104,11 +106,6 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     private Label changeError;
-
-    @FXML
-    void xD(DragEvent event) {
-        filter();
-    }
 
     @FXML
     private Button btnOpen;
