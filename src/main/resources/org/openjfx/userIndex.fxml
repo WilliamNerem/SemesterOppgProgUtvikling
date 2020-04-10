@@ -111,5 +111,11 @@
          </font>
       </Label>
       <ComboBox fx:id="txtAntallMinne" layoutX="405.0" layoutY="228.0" onAction="#chooseMinne" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
+      <Label fx:id="lblTotalPrice" layoutX="279.0" layoutY="411.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAntallInHandlekurv" layoutX="577.0" layoutY="23.0" />
    </children>
 </AnchorPane>

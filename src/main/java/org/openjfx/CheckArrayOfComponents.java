@@ -2,7 +2,6 @@ package org.openjfx;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
 
 public class CheckArrayOfComponents {
     UserIndexController uic = new UserIndexController();
@@ -28,32 +27,8 @@ public class CheckArrayOfComponents {
     Component test7 = new Component("Monitor", "EnMonitor", 2900);
     Component test8 = new Component("Motherboard", "EtMotherboard", 1450);
 
-    ObservableList<Component> checkComponentAll = FXCollections.observableArrayList(test1, test2, test3, test4, test5, test6, test7, test8);
-    ObservableList<Integer> antall = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9);
-
-    /*                                                                              hvis jeg bruker den kommenterte koden fungerer ikke programmet, det blir nullpointer exception
-                                                                                    tror det er fordi når "cmbMus1.setItems(mus);" og de andre prøver å legge til en UserIndexController
-                                                                                    av en eller annen grunn...
-                                                                                    den andre koden fungerer fint, men det er litt mer rotete og mer kode i UserIndexController.
-    public void check() {
-
-        for(Component c : checkComponent) {
-            if(c.getType().equals("Mus")||c.getType().equals("ingen")) {
-                mus.add(c);
-            }
-            if(c.getType().equals("Skjermkort")||c.getType().equals("ingen")) {
-                skjermKort.add(c);
-            }
-            if(c.getType().equals("Harddisk")||c.getType().equals("ingen")) {
-                harddisk.add(c);
-            }
-        }
-
-        cmbMus1.setItems(mus);
-        cmbSkjermkort1.setItems(skjermKort);
-        cmbHarddisk1.setItems(harddisk);
-    }
-     */
+    public ObservableList<Component> checkComponentAll = FXCollections.observableArrayList(test1, test2, test3, test4, test5, test6, test7, test8);
+    public ObservableList<Integer> antall = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9);
 
     public ObservableList<Component> checkmus(){
         for(Component c : checkComponentAll) {

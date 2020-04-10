@@ -1,0 +1,25 @@
+#primaryButton{
+    -fx-background-color: #17c400;
+    -fx-background-radius: 20;
+}
+
+#primary3Button{
+    -fx-background-color: #17c400;
+    -fx-background-radius: 20;
+}
+
+#primaryButton:hover{
+    -fx-background-color: #15b500;
+}
+
+#primary3Button:hover{
+    -fx-background-color: #15b500;
+}
+
+#primaryButton:pressed{
+    -fx-opacity: 0.5;
+}
+
+#primary3Button:pressed{
+    -fx-opacity: 0.5;
+}
