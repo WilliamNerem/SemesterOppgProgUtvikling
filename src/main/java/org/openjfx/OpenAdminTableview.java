@@ -2,9 +2,11 @@ package org.openjfx;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.shape.Path;
 import javafx.stage.FileChooser;
 
 import java.io.*;
+import java.nio.file.Files;
 
 public class OpenAdminTableview {
 
@@ -21,7 +23,7 @@ public class OpenAdminTableview {
         return liste;
     }
 
-    static void open(ObservableList<Component> adminArray, Button btnOpen, Button btnSave) throws InterruptedException {
+    static void open(ComponentRegister cr, Button btnOpen, Button btnSave) throws InterruptedException, IOException {
         StartThreadAdmin thread = new StartThreadAdmin(btnOpen, btnSave, selectedFile);
         thread.disable();
         FileChooser fc = new FileChooser();
@@ -29,6 +31,7 @@ public class OpenAdminTableview {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
         selectedFile = fc.showOpenDialog(null);
         thread.open();
+        /*
         try (BufferedReader readerJobj = new BufferedReader(new StringReader(readFile(selectedFile)));) {
             String line;
             while ((line = readerJobj.readLine()) != null) {
@@ -39,6 +42,18 @@ public class OpenAdminTableview {
             System.out.println(selectedFile.getPath() + " does not exist");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+         */
+        try (InputStream fin = Files.newInputStream(selectedFile.toPath());
+             ObjectInputStream oin = new ObjectInputStream(fin))
+        {
+            ComponentRegister register = (ComponentRegister) oin.readObject();
+            cr.removeAll();
+            register.getComponents().forEach(cr::addComponent);
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+            throw new IOException("Something is wrong with the implementation. See debug information");
         }
         Thread.sleep(2000);
 
