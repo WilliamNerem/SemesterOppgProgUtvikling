@@ -13,10 +13,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import org.openjfx.Filbehandling.FormatHandlekurvArray;
+import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
 
 public class HandlekurvController {
+    UserIndexController uic = new UserIndexController();
     ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
-    ComponentAndAntall abc = new ComponentAndAntall("a","b",3,2);
+    int numberInHandlevogn;
 
     @FXML
     private Button secondaryButton;
@@ -86,7 +89,7 @@ public class HandlekurvController {
     }
     @FXML
     private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
+        App.setRoot("login");
     }
 
 
@@ -97,7 +100,10 @@ public class HandlekurvController {
 
     @FXML
     private void initialize(){
-        kjøpshistorikkArray.add(abc);
+        kjøpshistorikkArray = uic.componentsBought;
+        for (ComponentAndAntall ca : uic.componentsBought) {
+            numberInHandlevogn += ca.getNumber();
+        }
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));

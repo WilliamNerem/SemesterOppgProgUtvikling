@@ -1,5 +1,8 @@
-package org.openjfx;
+package org.openjfx.Filbehandling;
 
+
+import org.openjfx.ComponentAndAntall;
+import org.openjfx.Feilhåndtering.InvalidComponentFormatException;
 
 public class ParseKjøpshistorikkArray {
     public static ComponentAndAntall parseComponent(String str)
