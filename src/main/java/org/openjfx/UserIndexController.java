@@ -187,7 +187,7 @@ public class UserIndexController {
 
     @FXML
     void switchToPrimary() throws IOException {
-        App.setRoot("primary");
+        App.setRoot("login");
     }
 
     @FXML
