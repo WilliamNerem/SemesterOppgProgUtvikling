@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HandlekurvController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HandlekurvController">
    <children>
       <TabPane prefHeight="598.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -28,12 +28,12 @@
                         <Button fx:id="btnKjop" layoutX="712.0" layoutY="517.0" mnemonicParsing="false" onAction="#kjop" prefHeight="38.0" prefWidth="79.0" text="Kjøp" />
                         <TableView fx:id="tableviewHandlekurv" layoutX="99.0" layoutY="87.0" prefHeight="468.0" prefWidth="607.0">
                           <columns>
-                            <TableColumn prefWidth="137.0" text="Type" />
-                              <TableColumn prefWidth="140.0" text="Navn" />
-                            <TableColumn prefWidth="51.0" text="Antall" />
-                              <TableColumn prefWidth="94.0" text="Pris" />
-                              <TableColumn prefWidth="117.0" text="Totalt" />
-                              <TableColumn prefWidth="68.0" text="Slett" />
+                            <TableColumn fx:id="col_type1" prefWidth="137.0" text="Type" />
+                              <TableColumn fx:id="col_navn1" prefWidth="140.0" text="Navn" />
+                            <TableColumn fx:id="col_antall1" prefWidth="51.0" text="Antall" />
+                              <TableColumn fx:id="col_pris1" prefWidth="94.0" text="Pris" />
+                              <TableColumn fx:id="col_totalt1" prefWidth="117.0" text="Totalt" />
+                              <TableColumn fx:id="col_slett1" prefWidth="68.0" text="Slett" />
                           </columns>
                         </TableView>
                      </children>
