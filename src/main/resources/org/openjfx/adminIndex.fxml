@@ -12,15 +12,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.AdminIndexController">
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.AdminIndexController">
    <children>
       <TableView fx:id="tableviewAdminIndex" editable="true" layoutX="66.0" layoutY="269.0" prefHeight="200.0" prefWidth="532.0">
-        <columns>
-           <TableColumn fx:id="typeColumn" editable="true" onEditCommit="#typeEdited" prefWidth="152.0" text="Type" />
-           <TableColumn fx:id="nameColumn" onEditCommit="#nameEdited" prefWidth="214.0" text="Navn" />
-           <TableColumn fx:id="priceColumn" onEditCommit="#priceEdited" prefWidth="98.0" text="Pris" />
-           <TableColumn fx:id="deleteColumn" editable="false" prefWidth="67.0" text="Slett" />
-        </columns>
+         <columns>
+            <TableColumn fx:id="typeColumn" editable="true" onEditCommit="#typeEdited" prefWidth="152.0" text="Type" />
+            <TableColumn fx:id="nameColumn" onEditCommit="#nameEdited" prefWidth="214.0" text="Navn" />
+            <TableColumn fx:id="priceColumn" onEditCommit="#priceEdited" prefWidth="98.0" text="Pris" />
+            <TableColumn fx:id="deleteColumn" editable="false" prefWidth="67.0" text="Slett" />
+         </columns>
       </TableView>
       <Label layoutX="193.0" layoutY="22.0" text="Legg til eller endre komponenter">
          <font>
