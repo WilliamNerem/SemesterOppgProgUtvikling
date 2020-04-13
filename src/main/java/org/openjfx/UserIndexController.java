@@ -4,23 +4,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import org.openjfx.*;
+import org.openjfx.Feilhåndtering.InputException;
 
 import java.io.IOException;
 
 public class UserIndexController {
-    ObservableList<Component> skjermkortChoose = FXCollections.observableArrayList();
-    ObservableList<Component> harddiskChoose = FXCollections.observableArrayList();
-    ObservableList<Component> musChoose = FXCollections.observableArrayList();
-    ObservableList<Component> tastaturChoose = FXCollections.observableArrayList();
-    ObservableList<Component> minneChoose = FXCollections.observableArrayList();
-    ObservableList<Component> motherboardChoose = FXCollections.observableArrayList();
-    ObservableList<Component> monitorChoose = FXCollections.observableArrayList();
-    ObservableList<ComponentAndAntall> componentsBought = FXCollections.observableArrayList();
+    public ObservableList<Component> skjermkortChoose = FXCollections.observableArrayList();
+    public ObservableList<Component> harddiskChoose = FXCollections.observableArrayList();
+    public ObservableList<Component> musChoose = FXCollections.observableArrayList();
+    public ObservableList<Component> tastaturChoose = FXCollections.observableArrayList();
+    public ObservableList<Component> minneChoose = FXCollections.observableArrayList();
+    public ObservableList<Component> motherboardChoose = FXCollections.observableArrayList();
+    public ObservableList<Component> monitorChoose = FXCollections.observableArrayList();
+    public ObservableList<ComponentAndAntall> componentsBought = FXCollections.observableArrayList();
 
     @FXML
     public ComboBox<Component> cmbSkjermkort;
@@ -93,6 +98,12 @@ public class UserIndexController {
 
     @FXML
     private ComboBox<Integer> txtAntallMotherboard;
+
+    @FXML
+    private Label lblTotalPrice;
+
+    @FXML
+    private Label lblAntallInHandlekurv;
 
     @FXML
     void chooseHarddisk(ActionEvent event) {
@@ -176,7 +187,7 @@ public class UserIndexController {
     void chooseTastatur(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue());
+            output = InputException.checkInput(cmbTastatur, txtAntallSkjermkort.getValue());
             lblWrong.setText("");
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
@@ -201,6 +212,18 @@ public class UserIndexController {
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
         for (Component c : checkArray.checkComponentAll) {
             if (lblWrong.getText().equals("") && !c.getName().equals("Ingen")) {
+                try {
+                    lblTastatur.setText(InputException.checkInput(cmbTastatur,txtAntallTastatur.getValue()));
+                    lblMinne.setText(InputException.checkInput(cmbMinne,txtAntallMinne.getValue()));
+                    lblSkjermkort.setText(InputException.checkInput(cmbSkjermkort,txtAntallSkjermkort.getValue()));
+                    lblMonitor.setText(InputException.checkInput(cmbMonitor,txtAntallMonitor.getValue()));
+                    lblMotherboard.setText(InputException.checkInput(cmbMotherboard,txtAntallMotherboard.getValue()));
+                    lblHarddisk.setText(InputException.checkInput(cmbHarddisk,txtAntallHarddisk.getValue()));
+                    lblMus.setText(InputException.checkInput(cmbMus,txtAntallMus.getValue()));
+                } catch (InputException.InvalidInputException e) {
+                    lblWrong.setText(e.getMessage());
+                    return;
+                }
                 if (c.getName().equals(cmbHarddisk.getValue().getName())) {
                     ComponentAndAntall compBoughtHarddisk = new ComponentAndAntall(c.getType(), c.getName(), txtAntallHarddisk.getValue(), c.getPrice());
                     componentsBought.add(compBoughtHarddisk);
@@ -229,7 +252,14 @@ public class UserIndexController {
                     ComponentAndAntall compBoughtMinne = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMinne.getValue(), c.getPrice());
                     componentsBought.add(compBoughtMinne);
                 }
-                App.setRoot("handlekurv");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("org.openjfx/handlekurv.fxml"));
+
+                HandlekurvController hkController = loader.getController();
+               // hkController.setTable(componentsBought);
+                // hkController.handlekurvArray = componentsBought;
+                Stage stage = new Stage();
+                stage.setScene(new Scene ( (Pane) loader.load()));
+                stage.show();
             }
         }
         System.out.print(componentsBought);
@@ -237,34 +267,9 @@ public class UserIndexController {
     @FXML
     private void initialize(){
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        cmbMus.setItems(checkArray.checkmus());
-        cmbMus.getSelectionModel().selectFirst();
-        cmbSkjermkort.setItems(checkArray.checkSkjermkort());
-        cmbSkjermkort.getSelectionModel().selectFirst();
-        cmbHarddisk.setItems(checkArray.checkHarddisk());
-        cmbHarddisk.getSelectionModel().selectFirst();
-        cmbMotherboard.setItems((checkArray.checkMotherboard()));
-        cmbMotherboard.getSelectionModel().selectFirst();
-        cmbTastatur.setItems((checkArray.checkTastatur()));
-        cmbTastatur.getSelectionModel().selectFirst();
-        cmbMinne.setItems((checkArray.checkMinne()));
-        cmbMinne.getSelectionModel().selectFirst();
-        cmbMonitor.setItems((checkArray.checkMonitor()));
-        cmbMonitor.getSelectionModel().selectFirst();
-        txtAntallSkjermkort.setItems(checkArray.antall);
-        txtAntallSkjermkort.getSelectionModel().selectFirst();
-        txtAntallHarddisk.setItems(checkArray.antall);
-        txtAntallHarddisk.getSelectionModel().selectFirst();
-        txtAntallTastatur.setItems(checkArray.antall);
-        txtAntallTastatur.getSelectionModel().selectFirst();
-        txtAntallMotherboard.setItems(checkArray.antall);
-        txtAntallMotherboard.getSelectionModel().selectFirst();
-        txtAntallMonitor.setItems(checkArray.antall);
-        txtAntallMonitor.getSelectionModel().selectFirst();
-        txtAntallMinne.setItems(checkArray.antall);
-        txtAntallMinne.getSelectionModel().selectFirst();
-        txtAntallMus.setItems(checkArray.antall);
-        txtAntallMus.getSelectionModel().selectFirst();
+        HandlekurvController hkc = new HandlekurvController();
+        lblAntallInHandlekurv.setText("("+hkc.numberInHandlevogn+")");
+        checkArray.setAll(cmbMus,cmbSkjermkort,cmbHarddisk,cmbMotherboard,cmbTastatur,cmbMinne,cmbMonitor,txtAntallSkjermkort,txtAntallHarddisk,txtAntallTastatur,txtAntallMotherboard,txtAntallMonitor,txtAntallMinne,txtAntallMus);
     }
 
 }

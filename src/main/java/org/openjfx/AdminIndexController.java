@@ -10,22 +10,26 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
+import org.openjfx.Feilhåndtering.NameException;
+import org.openjfx.Feilhåndtering.PriceException;
+import org.openjfx.Feilhåndtering.TypeException;
+import org.openjfx.Filbehandling.FormatAdminArray;
+import org.openjfx.Filbehandling.OpenAdminTableview;
+import org.openjfx.Filbehandling.SaveAdminTableview;
 
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
-    ObservableList<Component> adminArray = FXCollections.observableArrayList();
     Component a = new Component("a", "b", 1);
 
 
@@ -59,6 +63,8 @@ public class AdminIndexController implements Initializable {
         filter();
 
     }
+    @FXML
+    private AnchorPane anchorpane;
 
     @FXML
     private TableView tableviewAdminIndex;
@@ -104,11 +110,6 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     private Label changeError;
-
-    @FXML
-    void xD(DragEvent event) {
-        filter();
-    }
 
     @FXML
     private Button btnOpen;
@@ -191,27 +192,16 @@ public class AdminIndexController implements Initializable {
 
 
     @FXML
-    void open(ActionEvent event) throws InterruptedException {
-        cr.clearList();
-        OpenAdminTableview.open(cr.getComponents(), btnOpen, btnSave);
+    void open(ActionEvent event) throws InterruptedException, IOException {
+        OpenAdminTableview.open(cr, anchorpane);
         tableviewAdminIndex.setItems(cr.getComponents());
         filter();
     }
 
     @FXML
-    void save(ActionEvent event) {
-        FileChooser fc = new FileChooser();
-        fc.setTitle("Lagre Komponenter");
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
-        File aFile = fc.showSaveDialog(null);
-        try (OutputStream os = Files.newOutputStream(aFile.toPath());
-             ObjectOutputStream out = new ObjectOutputStream(os)){
-            //ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(new File(aFile.getPath())));
-            out.writeObject(FormatAdminArray.formatComponents(cr.getComponents()));
+    void save(ActionEvent event) throws IOException, InterruptedException {
+        SaveAdminTableview.save(cr, anchorpane);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML

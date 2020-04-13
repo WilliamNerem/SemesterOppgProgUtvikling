@@ -1,7 +1,9 @@
-package org.openjfx;
+package org.openjfx.Filbehandling;
 
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
+import org.openjfx.ComponentAndAntall;
+import org.openjfx.Filbehandling.ParseKjøpshistorikkArray;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class OpenKjøpshistorikkTxt {
-    static void open(ObservableList<ComponentAndAntall> kjøpshistorikkArray){
+    public static void open(ObservableList<ComponentAndAntall> kjøpshistorikkArray){
         FileChooser fc = new FileChooser();
         fc.setTitle("Åpne tidligere kjøp");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("text files","*.txt"));

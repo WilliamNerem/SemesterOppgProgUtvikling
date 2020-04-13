@@ -1,4 +1,6 @@
-package org.openjfx;
+package org.openjfx.Filbehandling;
+
+import org.openjfx.ComponentAndAntall;
 
 import java.util.List;
 

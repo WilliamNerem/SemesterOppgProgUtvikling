@@ -19,6 +19,37 @@ public class CheckArrayOfComponents {
     ObservableList <Component> monitor = uic.monitorChoose;
     ObservableList <Component> motherboard = uic.motherboardChoose;
 
+    public void setAll(ComboBox<Component> cmbMus, ComboBox<Component> cmbSkjermkort, ComboBox<Component> cmbHarddisk, ComboBox<Component> cmbMotherboard, ComboBox<Component> cmbTastatur, ComboBox<Component> cmbMinne, ComboBox<Component> cmbMonitor, ComboBox<Integer> txtAntallSkjermkort, ComboBox<Integer> txtAntallHarddisk, ComboBox<Integer> txtAntallTastatur, ComboBox<Integer> txtAntallMotherboard, ComboBox<Integer> txtAntallMonitor, ComboBox<Integer> txtAntallMinne, ComboBox<Integer> txtAntallMus) {
+        cmbMus.setItems(checkmus());
+        cmbMus.getSelectionModel().selectFirst();
+        cmbSkjermkort.setItems(checkSkjermkort());
+        cmbSkjermkort.getSelectionModel().selectFirst();
+        cmbHarddisk.setItems(checkHarddisk());
+        cmbHarddisk.getSelectionModel().selectFirst();
+        cmbMotherboard.setItems((checkMotherboard()));
+        cmbMotherboard.getSelectionModel().selectFirst();
+        cmbTastatur.setItems((checkTastatur()));
+        cmbTastatur.getSelectionModel().selectFirst();
+        cmbMinne.setItems((checkMinne()));
+        cmbMinne.getSelectionModel().selectFirst();
+        cmbMonitor.setItems((checkMonitor()));
+        cmbMonitor.getSelectionModel().selectFirst();
+        txtAntallSkjermkort.setItems(antall);
+        txtAntallSkjermkort.getSelectionModel().selectFirst();
+        txtAntallHarddisk.setItems(antall);
+        txtAntallHarddisk.getSelectionModel().selectFirst();
+        txtAntallTastatur.setItems(antall);
+        txtAntallTastatur.getSelectionModel().selectFirst();
+        txtAntallMotherboard.setItems(antall);
+        txtAntallMotherboard.getSelectionModel().selectFirst();
+        txtAntallMonitor.setItems(antall);
+        txtAntallMonitor.getSelectionModel().selectFirst();
+        txtAntallMinne.setItems(antall);
+        txtAntallMinne.getSelectionModel().selectFirst();
+        txtAntallMus.setItems(antall);
+        txtAntallMus.getSelectionModel().selectFirst();
+    }
+
     Component test1 = new Component("Ingen","Ingen",0);
     Component test2 = new Component("Mus","EnMus",1999);
     Component test3 = new Component("Skjermkort", "EtSkjermkort", 1479);
@@ -28,32 +59,8 @@ public class CheckArrayOfComponents {
     Component test7 = new Component("Monitor", "EnMonitor", 2900);
     Component test8 = new Component("Motherboard", "EtMotherboard", 1450);
 
-    ObservableList<Component> checkComponentAll = FXCollections.observableArrayList(test1, test2, test3, test4, test5, test6, test7, test8);
-    ObservableList<Integer> antall = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9);
-
-    /*                                                                              hvis jeg bruker den kommenterte koden fungerer ikke programmet, det blir nullpointer exception
-                                                                                    tror det er fordi når "cmbMus1.setItems(mus);" og de andre prøver å legge til en UserIndexController
-                                                                                    av en eller annen grunn...
-                                                                                    den andre koden fungerer fint, men det er litt mer rotete og mer kode i UserIndexController.
-    public void check() {
-
-        for(Component c : checkComponent) {
-            if(c.getType().equals("Mus")||c.getType().equals("ingen")) {
-                mus.add(c);
-            }
-            if(c.getType().equals("Skjermkort")||c.getType().equals("ingen")) {
-                skjermKort.add(c);
-            }
-            if(c.getType().equals("Harddisk")||c.getType().equals("ingen")) {
-                harddisk.add(c);
-            }
-        }
-
-        cmbMus1.setItems(mus);
-        cmbSkjermkort1.setItems(skjermKort);
-        cmbHarddisk1.setItems(harddisk);
-    }
-     */
+    public ObservableList<Component> checkComponentAll = FXCollections.observableArrayList(test1, test2, test3, test4, test5, test6, test7, test8);
+    public ObservableList<Integer> antall = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9);
 
     public ObservableList<Component> checkmus(){
         for(Component c : checkComponentAll) {

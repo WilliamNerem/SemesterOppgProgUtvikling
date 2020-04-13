@@ -2,36 +2,33 @@ package org.openjfx;
 
 import javafx.concurrent.WorkerStateEvent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.*;
 
 public class StartThreadAdmin {
 
     private ThreadAdmin task;
-    private Button btnOpen;
-    private Button btnSave;
+    private AnchorPane anchorpane;
     private File selectedFile;
 
-    public StartThreadAdmin(Button btnOpen, Button btnSave, File selectedFile) {
-        this.btnOpen = btnOpen;
-        this.btnSave = btnSave;
+    public StartThreadAdmin(AnchorPane anchorpane, File selectedFile) {
+        this.anchorpane = anchorpane;
         this.selectedFile = selectedFile;
     }
 
-    void disable(){
-        btnSave.setDisable(true);
-        btnOpen.setDisable(true);
+    public void disable(){
+        anchorpane.setDisable(true);
     }
 
-    void open(){
+    public void open(){
         task = new ThreadAdmin(selectedFile);
         task.setOnSucceeded(this::threadDone);
         Thread thread = new Thread(task);
         thread.start();
     }
 
-    void threadDone(WorkerStateEvent event) {
-        btnOpen.setDisable(false);
-        btnSave.setDisable(false);
+    public void threadDone(WorkerStateEvent event) {
+        anchorpane.setDisable(false);
     }
 }

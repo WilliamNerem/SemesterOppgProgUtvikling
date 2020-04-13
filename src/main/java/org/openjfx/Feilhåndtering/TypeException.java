@@ -1,4 +1,4 @@
-package org.openjfx;
+package org.openjfx.Feilhåndtering;
 
 public class TypeException extends Exception{
 
