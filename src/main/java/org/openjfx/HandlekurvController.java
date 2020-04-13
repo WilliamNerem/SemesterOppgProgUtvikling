@@ -20,10 +20,10 @@ public class HandlekurvController {
     UserIndexController uic = new UserIndexController();
     ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
     ObservableList<ComponentAndAntall> handlekurvArray = FXCollections.observableArrayList();
-
+/*
     public void handlekurvArray(ObservableList<ComponentAndAntall> ){
 
-    }
+    }*/
 
     int numberInHandlevogn;
 
