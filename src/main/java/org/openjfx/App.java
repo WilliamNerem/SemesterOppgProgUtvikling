@@ -43,6 +43,7 @@ public class App extends Application {
         hc.setTable(ol);
 
         scene = new Scene(mainLayout);
+        scene.getStylesheets().add("Primary.css");
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
         primaryStage.show();
