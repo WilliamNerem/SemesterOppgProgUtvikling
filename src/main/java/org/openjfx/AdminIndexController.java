@@ -222,7 +222,7 @@ public class AdminIndexController implements Initializable {
             @Override
             public TableCell call(final TableColumn<Component, Void> param) {
                 final TableCell<Component, Void> cell = new TableCell<>() {
-                    final Button btn = new Button("Slett");
+                    final Button btn = new Button("x");
 
                     @Override
                     public void updateItem(Void item, boolean empty) {

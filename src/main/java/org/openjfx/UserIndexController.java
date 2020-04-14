@@ -34,7 +34,7 @@ public class UserIndexController {
     public ComboBox<Component> cmbHarddisk;
 
     @FXML
-    public ComboBox<Component>cmbMus;
+    public ComboBox<Component> cmbMus;
 
     @FXML
     public ComboBox<Component> cmbTastatur;
@@ -187,7 +187,7 @@ public class UserIndexController {
     void chooseTastatur(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbTastatur, txtAntallSkjermkort.getValue());
+            output = InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue());
             lblWrong.setText("");
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
@@ -252,15 +252,12 @@ public class UserIndexController {
                     ComponentAndAntall compBoughtMinne = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMinne.getValue(), c.getPrice());
                     componentsBought.add(compBoughtMinne);
                 }
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("org.openjfx/handlekurv.fxml"));
-
-                HandlekurvController hkController = loader.getController();
-               // hkController.setTable(componentsBought);
-                // hkController.handlekurvArray = componentsBought;
-                Stage stage = new Stage();
-                stage.setScene(new Scene ( (Pane) loader.load()));
-                stage.show();
             }
+        }
+        try {
+            App.switchToHandlekurv(componentsBought);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         System.out.print(componentsBought);
     }
