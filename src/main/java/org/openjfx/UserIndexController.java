@@ -259,7 +259,7 @@ public class UserIndexController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.print(componentsBought);
+        //System.out.print(componentsBought);
     }
     @FXML
     private void initialize(){

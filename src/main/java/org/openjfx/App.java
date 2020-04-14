@@ -1,6 +1,7 @@
 package org.openjfx;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +16,7 @@ public class App extends Application {
     private static Scene scene;
     private static Stage primaryStage;
     private static AnchorPane mainLayout;
+    private static ObservableList<ComponentAndAntall> array1 = FXCollections.observableArrayList();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -40,13 +42,16 @@ public class App extends Application {
         mainLayout = loader.load();
 
         HandlekurvController hc = loader.getController();
-        hc.setTable(ol);
+        array1.addAll(ol);
+        System.out.println(array1);
+        hc.saveHandlekurvArray(array1);
 
-        scene = new Scene(mainLayout);
+        scene.setRoot(mainLayout);
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
         primaryStage.show();
     }
+
 
     public static void main(String[] args) {
         launch();
