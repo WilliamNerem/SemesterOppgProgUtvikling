@@ -6,11 +6,6 @@ import javafx.scene.control.ComboBox;
 
 public class CheckArrayOfComponents {
     UserIndexController uic = new UserIndexController();
-    /*
-    ComboBox <Component> cmbMus1 = check1.cmbMus;
-    ComboBox <Component> cmbSkjermkort1 = check1.cmbSkjermkort;
-    ComboBox <Component> cmbHarddisk1 = check1.cmbHarddisk;
-    */
     ObservableList <Component> mus = uic.musChoose;
     ObservableList <Component> skjermkort = uic.skjermkortChoose;
     ObservableList <Component> harddisk = uic.harddiskChoose;
@@ -51,7 +46,7 @@ public class CheckArrayOfComponents {
     }
 
     Component test1 = new Component("Ingen","Ingen",0);
-    Component test2 = new Component("Mus","EnMus",1999);
+    Component test2 = new Component("Mus","FK Zowie 13",1999);
     Component test3 = new Component("Skjermkort", "EtSkjermkort", 1479);
     Component test4 = new Component("Harddisk", "EnHarddisk", 1479);
     Component test5 = new Component("Tastatur", "EtTastatur", 2500);
