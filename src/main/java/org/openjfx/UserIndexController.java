@@ -255,16 +255,7 @@ public class UserIndexController {
             }
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "handlekurv.fxml"));
-            Parent root = (Parent) loader.load();
-            HandlekurvController ctrl = loader.getController();
-            ctrl.setTable(componentsBought);
-
-            Scene newScene = new Scene(root);
-            Stage newStage = new Stage();
-            newStage.setScene(newScene);
-            newStage.show();
+            App.switchToHandlekurv(componentsBought);
         } catch (Exception e) {
             e.printStackTrace();
         }

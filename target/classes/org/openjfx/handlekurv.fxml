@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HandlekurvController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HandlekurvController">
    <children>
       <TabPane prefHeight="598.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -36,7 +36,6 @@
                               <TableColumn fx:id="col_slett1" prefWidth="68.0" text="Slett" />
                           </columns>
                         </TableView>
-                        <Button layoutX="99.0" layoutY="34.0" mnemonicParsing="false" text="Button" />
                      </children>
                   </AnchorPane>
             </content>
