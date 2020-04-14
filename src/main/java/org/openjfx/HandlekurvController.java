@@ -5,6 +5,8 @@ import java.nio.file.Files;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -88,6 +90,8 @@ public class HandlekurvController {
         col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
+
+        filter();
     }
 
     @FXML
@@ -110,6 +114,8 @@ public class HandlekurvController {
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewHandlekurv.setItems(kjøpshistorikkArray);
+
+        filter();
     }
     @FXML
     private void switchToPrimary() throws IOException {
@@ -150,7 +156,40 @@ public class HandlekurvController {
         col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
+
+        filter();
     }
 
+    private void filter(){
+
+        //https://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
+        FilteredList<ComponentAndAntall> filteredData = new FilteredList<>(kjøpshistorikkArray, c -> true);
+
+        searchHistory.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(component -> {
+                // If filter text is empty, display all components.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (component.getType().toLowerCase().startsWith(lowerCaseFilter)) {
+                    return true;
+                }else return component.getName().toLowerCase().startsWith((lowerCaseFilter));
+
+                // Does not match.
+            });
+        });
+
+        System.out.println(filteredData);
+
+       SortedList<ComponentAndAntall> sortedData = new SortedList<>(filteredData);
+
+        sortedData.comparatorProperty().bind(tableviewPrishistorikk.comparatorProperty());
+
+        tableviewPrishistorikk.setItems(sortedData);
+
+    }
 
 }

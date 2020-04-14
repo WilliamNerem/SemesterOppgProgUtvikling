@@ -6,28 +6,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.UserIndexController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.UserIndexController">
    <children>
-      <ComboBox fx:id="cmbSkjermkort" layoutX="204.0" layoutY="70.0" onAction="#chooseSkjermkort" prefWidth="150.0" promptText="Ingen" />
-      <ComboBox fx:id="cmbHarddisk" layoutX="204.0" layoutY="110.0" onAction="#chooseHarddisk" prefWidth="150.0" promptText="Ingen" />
-      <Label layoutX="362.0" layoutY="114.0" text="Antall">
+      <ComboBox fx:id="cmbSkjermkort" layoutX="204.0" layoutY="70.0" onAction="#chooseSkjermkort" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
+      <ComboBox fx:id="cmbHarddisk" layoutX="204.0" layoutY="110.0" onAction="#chooseHarddisk" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
+      <Label layoutX="386.0" layoutY="115.0" text="Antall">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="362.0" layoutY="74.0" text="Antall">
+      <Label layoutX="386.0" layoutY="73.0" text="Antall">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <ComboBox fx:id="cmbMus" layoutX="204.0" layoutY="150.0" onAction="#chooseMus" prefWidth="150.0" promptText="Ingen" />
-      <ComboBox fx:id="cmbTastatur" layoutX="204.0" layoutY="188.0" onAction="#chooseTastatur" prefWidth="150.0" promptText="Ingen" />
-      <ComboBox fx:id="cmbMinne" layoutX="204.0" layoutY="228.0" onAction="#chooseMinne" prefWidth="150.0" promptText="Ingen" />
-      <ComboBox fx:id="cmbMotherboard" layoutX="204.0" layoutY="266.0" onAction="#chooseMotherboard" prefWidth="150.0" promptText="Ingen" />
+      <ComboBox fx:id="cmbMus" layoutX="204.0" layoutY="150.0" onAction="#chooseMus" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
+      <ComboBox fx:id="cmbTastatur" layoutX="204.0" layoutY="188.0" onAction="#chooseTastatur" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
+      <ComboBox fx:id="cmbMinne" layoutX="204.0" layoutY="228.0" onAction="#chooseMinne" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
+      <ComboBox fx:id="cmbMotherboard" layoutX="204.0" layoutY="266.0" onAction="#chooseMotherboard" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
       <Label layoutX="206.0" layoutY="14.0" text="Komponenter">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cmbMonitor" layoutX="204.0" layoutY="304.0" onAction="#chooseMonitor" prefWidth="150.0" promptText="Ingen" />
+      <ComboBox fx:id="cmbMonitor" layoutX="204.0" layoutY="304.0" onAction="#chooseMonitor" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
       <Label layoutX="61.0" layoutY="72.0" text="Skjermkort">
          <font>
             <Font size="15.0" />
@@ -63,59 +63,60 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblSkjermkort" layoutX="487.0" layoutY="74.0" prefHeight="17.0" prefWidth="81.0" />
-      <Label fx:id="lblMonitor" layoutX="487.0" layoutY="308.0" prefHeight="17.0" prefWidth="81.0" />
-      <Label fx:id="lblMotherboard" layoutX="487.0" layoutY="270.0" prefHeight="17.0" prefWidth="81.0" />
-      <Label fx:id="lblMinne" layoutX="487.0" layoutY="232.0" prefHeight="17.0" prefWidth="81.0" />
-      <Label fx:id="lblTastatur" layoutX="487.0" layoutY="192.0" prefHeight="17.0" prefWidth="81.0" />
-      <Label fx:id="lblMus" layoutX="487.0" layoutY="154.0" prefHeight="17.0" prefWidth="81.0" />
-      <Label fx:id="lblHarddisk" layoutX="487.0" layoutY="114.0" prefHeight="17.0" prefWidth="81.0" />
+      <Label fx:id="lblSkjermkort" layoutX="528.0" layoutY="76.0" prefHeight="17.0" prefWidth="81.0" />
+      <Label fx:id="lblMonitor" layoutX="528.0" layoutY="308.0" prefHeight="17.0" prefWidth="81.0" />
+      <Label fx:id="lblMotherboard" layoutX="528.0" layoutY="262.0" prefHeight="17.0" prefWidth="81.0" />
+      <Label fx:id="lblMinne" layoutX="528.0" layoutY="232.0" prefHeight="17.0" prefWidth="81.0" />
+      <Label fx:id="lblTastatur" layoutX="528.0" layoutY="193.0" prefHeight="17.0" prefWidth="81.0" />
+      <Label fx:id="lblMus" layoutX="528.0" layoutY="154.0" prefHeight="17.0" prefWidth="81.0" />
+      <Label fx:id="lblHarddisk" layoutX="528.0" layoutY="114.0" prefHeight="17.0" prefWidth="81.0" />
       <Button fx:id="handlevognKnapp" layoutX="487.0" layoutY="19.0" mnemonicParsing="false" onAction="#switchToHandlevogn" text="Handlevogn" />
-      <Button fx:id="addToCart" layoutX="431.0" layoutY="398.0" mnemonicParsing="false" onAction="#addToHandlekurv" prefHeight="43.0" prefWidth="174.0" text="Legg til i handlevogn" />
-      <Button fx:id="userIndex" layoutX="62.0" layoutY="407.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
-      <Label fx:id="lblWrong" layoutX="126.0" layoutY="355.0" prefHeight="35.0" prefWidth="422.0" textFill="#8d1212">
+      <Button fx:id="addToCart" layoutX="441.0" layoutY="433.0" mnemonicParsing="false" onAction="#addToHandlekurv" prefHeight="43.0" prefWidth="174.0" text="Legg til i handlevogn" />
+      <Button fx:id="userIndex" layoutX="60.0" layoutY="442.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
+      <Label fx:id="lblWrong" layoutX="120.0" layoutY="394.0" prefHeight="35.0" prefWidth="422.0" textFill="#8d1212">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
       <Label fx:id="lblTotalAntall" layoutX="577.0" layoutY="23.0" />
-      <ComboBox fx:id="txtAntallSkjermkort" layoutX="406.0" layoutY="70.0" onAction="#chooseSkjermkort" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
-      <ComboBox fx:id="txtAntallHarddisk" layoutX="406.0" layoutY="112.0" onAction="#chooseHarddisk" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
-      <Label layoutX="362.0" layoutY="152.0" text="Antall">
+      <ComboBox fx:id="txtAntallSkjermkort" layoutX="437.0" layoutY="70.0" onAction="#chooseSkjermkort" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
+      <ComboBox fx:id="txtAntallHarddisk" layoutX="437.0" layoutY="112.0" onAction="#chooseHarddisk" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
+      <Label layoutX="386.0" layoutY="153.0" text="Antall">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="txtAntallMus" layoutX="406.0" layoutY="150.0" onAction="#chooseMus" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
-      <Label layoutX="362.0" layoutY="191.0" text="Antall">
+      <ComboBox fx:id="txtAntallMus" layoutX="437.0" layoutY="150.0" onAction="#chooseMus" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
+      <Label layoutX="386.0" layoutY="191.0" text="Antall">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="txtAntallTastatur" layoutX="406.0" layoutY="188.0" onAction="#chooseTastatur" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
-      <Label layoutX="362.0" layoutY="307.0" text="Antall">
+      <ComboBox fx:id="txtAntallTastatur" layoutX="437.0" layoutY="188.0" onAction="#chooseTastatur" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
+      <Label layoutX="386.0" layoutY="307.0" text="Antall">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="txtAntallMonitor" layoutX="406.0" layoutY="305.0" onAction="#chooseMonitor" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
-      <Label layoutX="362.0" layoutY="270.0" text="Antall">
+      <ComboBox fx:id="txtAntallMonitor" layoutX="437.0" layoutY="304.0" onAction="#chooseMonitor" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
+      <Label layoutX="386.0" layoutY="269.0" text="Antall">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="txtAntallMotherboard" layoutX="406.0" layoutY="267.0" onAction="#chooseMotherboard" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
-      <Label layoutX="361.0" layoutY="231.0" text="Antall">
+      <ComboBox fx:id="txtAntallMotherboard" layoutX="437.0" layoutY="268.0" onAction="#chooseMotherboard" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
+      <Label layoutX="386.0" layoutY="233.0" text="Antall">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="txtAntallMinne" layoutX="405.0" layoutY="228.0" onAction="#chooseMinne" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
+      <ComboBox fx:id="txtAntallMinne" layoutX="437.0" layoutY="228.0" onAction="#chooseMinne" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
       <Label fx:id="lblTotalPrice" layoutX="279.0" layoutY="411.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <Label fx:id="lblAntallInHandlekurv" layoutX="577.0" layoutY="23.0" />
+      <Label fx:id="lblTotalPrice" layoutX="487.0" layoutY="354.0" prefHeight="25.0" prefWidth="146.0" />
    </children>
 </AnchorPane>

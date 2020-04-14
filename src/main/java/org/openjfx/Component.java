@@ -23,7 +23,10 @@ public class Component implements Serializable {
 
     @Override
     public String toString() {
-        return getName();
+        if(getName().equals("Ingen")) {
+            return name.get();
+        }
+        else return name.get()+"  "+price.get()+",-";
     }
 
     public String getType() { return type.get(); }
