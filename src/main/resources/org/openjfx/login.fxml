@@ -9,19 +9,19 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.LoginController">
    <children>
-      <Button fx:id="primaryButton" layoutX="292.0" layoutY="409.0" mnemonicParsing="false" onAction="#switchToUserIndex" prefHeight="31.0" prefWidth="221.0" text="Logg inn som bruker" textFill="WHITE">
+      <Button fx:id="primaryButton" layoutX="291.0" layoutY="428.0" mnemonicParsing="false" onAction="#switchToUserIndex" prefHeight="31.0" prefWidth="221.0" text="Gå videre som bruker" textFill="WHITE">
          <font>
             <Font name="Berlin Sans FB" size="16.0" />
          </font></Button>
-      <Button fx:id="primary3Button" layoutX="292.0" layoutY="366.0" mnemonicParsing="false" onAction="#switchToThird" prefHeight="31.0" prefWidth="221.0" text="Logg inn som administrator" textFill="WHITE">
+      <Button fx:id="primary3Button" layoutX="292.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToThird" prefHeight="31.0" prefWidth="221.0" text="Logg inn som administrator" textFill="WHITE">
          <font>
             <Font name="Berlin Sans FB" size="16.0" />
          </font></Button>
-      <TextField fx:id="username" layoutX="292.0" layoutY="229.0" prefHeight="43.0" prefWidth="221.0" promptText="Brukernavn" style="-fx-background-color: #ededed; -fx-background-radius: 20;">
+      <TextField fx:id="username" layoutX="292.0" layoutY="229.0" prefHeight="43.0" prefWidth="221.0" promptText="Brukernavn">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font></TextField>
-      <PasswordField fx:id="password" layoutX="292.0" layoutY="286.0" prefHeight="43.0" prefWidth="221.0" promptText="Passord" style="-fx-background-color: #ededed; -fx-background-radius: 20;">
+      <PasswordField fx:id="password" layoutX="292.0" layoutY="286.0" prefHeight="43.0" prefWidth="221.0" promptText="Passord">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font></PasswordField>
@@ -30,10 +30,11 @@
             <Font name="Berlin Sans FB" size="38.0" />
          </font>
       </Label>
-      <Label fx:id="errorMsg" layoutX="304.0" layoutY="338.0" textFill="RED">
+      <Label fx:id="errorMsg" layoutX="300.0" layoutY="329.0" textFill="RED">
          <font>
             <Font name="Berlin Sans FB" size="13.0" />
          </font>
       </Label>
+      <Label layoutX="390.0" layoutY="399.0" text="eller" />
    </children>
 </AnchorPane>

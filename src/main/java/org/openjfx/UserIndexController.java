@@ -26,6 +26,7 @@ public class UserIndexController {
     public ObservableList<Component> motherboardChoose = FXCollections.observableArrayList();
     public ObservableList<Component> monitorChoose = FXCollections.observableArrayList();
     public ObservableList<ComponentAndAntall> componentsBought = FXCollections.observableArrayList();
+    public Integer int1;
 
     @FXML
     public ComboBox<Component> cmbSkjermkort;
@@ -203,7 +204,7 @@ public class UserIndexController {
 
     @FXML
     void switchToHandlevogn() throws IOException {
-        App.setRoot("handlekurv");
+        App.switchToHandlekurv(componentsBought);
     }
 
     @FXML
@@ -252,6 +253,11 @@ public class UserIndexController {
                     ComponentAndAntall compBoughtMinne = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMinne.getValue(), c.getPrice());
                     componentsBought.add(compBoughtMinne);
                 }
+                try {
+                    App.switchToHandlekurv(componentsBought);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         try {
@@ -259,13 +265,16 @@ public class UserIndexController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.print(componentsBought);
+        //System.out.print(componentsBought);
     }
+
+    public void addToHandlekurvNumber(int i){
+        lblAntallInHandlekurv.setText("("+i+")");
+    }
+
     @FXML
     private void initialize(){
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        HandlekurvController hkc = new HandlekurvController();
-        lblAntallInHandlekurv.setText("("+hkc.numberInHandlevogn+")");
         checkArray.setAll(cmbMus,cmbSkjermkort,cmbHarddisk,cmbMotherboard,cmbTastatur,cmbMinne,cmbMonitor,txtAntallSkjermkort,txtAntallHarddisk,txtAntallTastatur,txtAntallMotherboard,txtAntallMonitor,txtAntallMinne,txtAntallMus);
     }
 
