@@ -110,49 +110,46 @@ public class HandlekurvController {
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewHandlekurv.setItems(kjøpshistorikkArray);
-        setTable(handlekurvArray);
     }
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("login");
     }
 
-    public void setTable(ObservableList<ComponentAndAntall> obl) {
-        this.handlekurvArray = obl;
-        col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
-        col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
-        col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
-        tableviewHandlekurv.setItems(obl);
-        handlekurvArray = tableviewHandlekurv.getItems();
-        System.out.print(handlekurvArray);
+    public void saveHandlekurvArray(ObservableList<ComponentAndAntall> ol){
+        handlekurvArray = ol;
+        setTable();
     }
 
-
-    @FXML
-    void switchToUserIndex() throws IOException {
-        App.setRoot("userIndex");
-    }
-
-    @FXML
-    private void initialize(){
-        for (ComponentAndAntall ca : handlekurvArray) {
-            numberInHandlevogn += ca.getNumber();
-        }
-        col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
-        col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
-        col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
-        col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
-        tableviewPrishistorikk.setItems(kjøpshistorikkArray);
-
+    public void setTable() {
         col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewHandlekurv.setItems(handlekurvArray);
+        handlekurvArray = tableviewHandlekurv.getItems();
+        System.out.print(handlekurvArray);
+        for (ComponentAndAntall ca : handlekurvArray) {
+            numberInHandlevogn += ca.getNumber();
+        }
+        System.out.println(numberInHandlevogn);
+    }
+
+
+    @FXML
+    void switchToUserIndex() throws IOException {
+        App.switchToUserIndex(numberInHandlevogn);
+    }
+
+    @FXML
+    private void initialize(){
+        col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
+        col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
+        col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
+        col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
+        tableviewPrishistorikk.setItems(kjøpshistorikkArray);
     }
 
 

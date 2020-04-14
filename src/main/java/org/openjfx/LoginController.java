@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController {
+    HandlekurvController a = new HandlekurvController();
 
     @FXML
     private TextField username;
@@ -26,9 +27,8 @@ public class LoginController {
 
     @FXML
     private void switchToThird() throws IOException {
-        App.setRoot("adminIndex");
         if(username.getText().equals("sensor") && password.getText().equals("Sensor123")){
-
+            App.setRoot("adminIndex");
         }else {
             errorMsg.setText("Brukernavn eller passord er feil");
         }
