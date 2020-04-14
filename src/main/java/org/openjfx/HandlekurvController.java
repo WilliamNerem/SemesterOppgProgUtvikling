@@ -81,9 +81,11 @@ public class HandlekurvController {
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         Files.write(afile.toPath(), FormatHandlekurvArray.formatComponents(kjøpshistorikkArray).getBytes());
         handlekurvArray.clear();
+        filter();
     }
     @FXML
     private void switchToPrimary() throws IOException {
+        handlekurvArray.clear();
         App.setRoot("login");
     }
 
@@ -93,12 +95,12 @@ public class HandlekurvController {
     }
 
     public void setTable() {
+        tableviewHandlekurv.setItems(handlekurvArray);
         col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
-        tableviewHandlekurv.setItems(handlekurvArray);
         handlekurvArray = tableviewHandlekurv.getItems();
         System.out.print(handlekurvArray);
         for (ComponentAndAntall ca : handlekurvArray) {
