@@ -46,6 +46,7 @@ public class App extends Application {
         System.out.println(array1);
         hc.saveHandlekurvArray(array1);
 
+        scene.getStylesheets().add("Primary.css");
         scene.setRoot(mainLayout);
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
