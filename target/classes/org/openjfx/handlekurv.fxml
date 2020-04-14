@@ -14,7 +14,7 @@
    <children>
       <TabPane prefHeight="598.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Handlekurv">
+          <Tab fx:id="tab1" text="Handlekurv">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="77.0" prefWidth="77.0">
                      <children>
@@ -41,7 +41,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Kjøpshistorikk">
+          <Tab fx:id="tab2" text="Kjøpshistorikk">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -61,12 +61,7 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="searchHistory" layoutX="508.0" layoutY="46.0" />
-                        <Label layoutX="472.0" layoutY="49.0" text="Søk">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
+                        <TextField fx:id="searchHistory" layoutX="508.0" layoutY="46.0" promptText="Søk..." />
                         <Button fx:id="btnOpenHandlekurv" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#open" text="Åpne" />
                         <Button fx:id="btnSaveHandlekurv" layoutX="69.0" layoutY="18.0" mnemonicParsing="false" onAction="#save" text="Lagre" />
                      </children>
