@@ -9,12 +9,10 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 import org.openjfx.Filbehandling.FormatHandlekurvArray;
 import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
 
@@ -63,7 +61,7 @@ public class HandlekurvController {
     private TableColumn<ComponentAndAntall, Integer> col_totalt1;
 
     @FXML
-    private TableColumn<?, ?> col_slett1;
+    private TableColumn<ComponentAndAntall, Void> col_slett1;
 
 
     @FXML
@@ -156,6 +154,7 @@ public class HandlekurvController {
         col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
+        addButtonToTable();
 
         filter();
     }
@@ -190,6 +189,36 @@ public class HandlekurvController {
 
         tableviewPrishistorikk.setItems(sortedData);
 
+    }
+
+    //https://stackoverflow.com/questions/29489366/how-to-add-button-in-javafx-table-view
+    private void addButtonToTable() {
+        Callback<TableColumn<ComponentAndAntall, Void>, TableCell<ComponentAndAntall, Void>> cellFactory = new Callback<>() {
+            @Override
+            public TableCell call(final TableColumn<ComponentAndAntall, Void> param) {
+                final TableCell<ComponentAndAntall, Void> cell = new TableCell<>() {
+                    final Button btn = new Button("x");
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            //onClick event som sletter elementet fra lista
+                            btn.setOnAction(event -> {
+                                System.out.println("Slettknapp klikket");
+                            });
+
+                            setGraphic(btn);
+                            setText(null);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        col_slett1.setCellFactory(cellFactory);
     }
 
 }
