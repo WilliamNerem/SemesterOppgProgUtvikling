@@ -17,11 +17,11 @@
          <font>
             <Font name="Berlin Sans FB" size="16.0" />
          </font></Button>
-      <TextField fx:id="username" layoutX="292.0" layoutY="229.0" prefHeight="43.0" prefWidth="221.0" promptText="Brukernavn" style="-fx-background-color: #ededed; -fx-background-radius: 20;">
+      <TextField fx:id="username" layoutX="292.0" layoutY="229.0" prefHeight="43.0" prefWidth="221.0" promptText="Brukernavn">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font></TextField>
-      <PasswordField fx:id="password" layoutX="292.0" layoutY="286.0" prefHeight="43.0" prefWidth="221.0" promptText="Passord" style="-fx-background-color: #ededed; -fx-background-radius: 20;">
+      <PasswordField fx:id="password" layoutX="292.0" layoutY="286.0" prefHeight="43.0" prefWidth="221.0" promptText="Passord">
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font></PasswordField>

@@ -3,13 +3,16 @@
     -fx-font-family: "Century Gothic";
 }
 
-.button{
-    -fx-cursor: hand;
-}
-
 #primaryButton, #primary3Button{
     -fx-background-color: #17c400;
     -fx-background-radius: 20;
+    -fx-border-style: hidden;
+}
+
+#username, #password{
+    -fx-background-color: #ededed;
+    -fx-background-radius: 20;
+    -fx-border-style: hidden;
 }
 
 
@@ -21,88 +24,70 @@
     -fx-opacity: 0.5;
 }
 
-#tableviewAdminIndex, #tableviewHandlekurv, #tableviewPrishistorikk{
+.table-view{
     -fx-background-color: transparent;
 }
 
-#tableviewAdminIndex .column-header, #tableviewHandlekurv .column-header, #tableviewPrishistorikk .column-header{
+.table-view .column-header{
     -fx-background-color: white;
     -fx-border-color: lightgrey;
     -fx-border-style: solid hidden solid hidden;
 }
 
-#tableviewAdminIndex .table-cell, #tableviewHandlekurv .table-cell, #tableviewPrishistorikk .table-cell{
+.table-view .table-cell{
     -fx-border-style: solid hidden solid hidden;
     -fx-alignment: center;
 }
 
-#tableviewAdminIndex .button, #tableviewHandlekurv .button{
+.table-view .button{
     -fx-background-color: #8c8c8c;
     -fx-text-fill: white;
     -fx-background-radius: 50;
     -fx-content-display: center;
     -fx-font-weight: bold;
+    -fx-border-style: hidden;
 }
 
-#tableviewAdminIndex .button:hover #tableviewHandlekurvr .button:hover{
+.table-view .button:hover{
     -fx-background-color: #a7a7a7;
 }
 
-#cbType, #chBox, #cmbHarddisk, #cmbMinne, #cmbMonitor, #cmbMotherboard, #cmbMus, #cmbSkjermkort, #cmbTastatur,
-#txtAntallHarddisk, #txtAntallMinne, #txtAntallMonitor, #txtAntallMotherboard, #txtAntallMus, #txtAntallSkjermkort,
-#txtAntallTastatur{
+.combo-box, .choice-box{
     -fx-background-color: #e6e6e6;
     -fx-background-radius: 10;
+    -fx-cursor: hand;
 }
 
-#cbType:hover, #chBox:hover, #cmbHarddisk:hover, #cmbMinne:hover, #cmbMonitor:hover, #cmbMotherboard:hover,
-#cmbMus:hover, #cmbSkjermkort:hover, #cmbTastatur:hover, #txtAntallHarddisk:hover, #txtAntallMinne:hover,
-#txtAntallMonitor:hover, #txtAntallMotherboard:hover, #txtAntallMus:hover, #txtAntallSkjermkort:hover,
-#txtAntallTastatur:hover{
+.combo-box:hover, .choice-box:hover{
     -fx-background-color: #cdcdcd;
 }
 
-#chBox .menu-item:focused, #cbType .list-cell:hover, #cbType .list-view .list-cell:selected,
-#cmbHarddisk .list-cell:hover, #cmbMinne .list-cell:hover, #cmbMonitor .list-cell:hover,
-#cmbMotherboard .list-cell:hover, #cmbMus .list-cell:hover, #cmbSkjermkort .list-cell:hover,
-#cmbTastatur .list-cell:hover, #txtAntallHarddisk .list-cell:hover, #txtAntallMinne .list-cell:hover,
-#txtAntallMonitor .list-cell:hover, #txtAntallMotherboard .list-cell:hover, #txtAntallMus .list-cell:hover,
-#txtAntallSkjermkort .list-cell:hover, #txtAntallTastatur .list-cell:hover, #cmbHarddisk .list-view .list-cell:selected,
-#cmbMinne .list-view .list-cell:selected, #cmbMonitor .list-view .list-cell:selected,
-#cmbMotherboard .list-view .list-cell:selected, #cmbMus .list-view .list-cell:selected,
-#cmbSkjermkort .list-view .list-cell:selected, #cmbTastatur .list-view .list-cell:selected,
-#txtAntallHarddisk .list-view .list-cell:selected, #txtAntallMinne .list-view .list-cell:selected,
-#txtAntallMonitor .list-view .list-cell:selected, #txtAntallMotherboard .list-view .list-cell:selected,
-#txtAntallMus .list-view .list-cell:selected, #txtAntallSkjermkort .list-view .list-cell:selected,
-#txtAntallTastatur .list-view .list-cell:selected
+.combo-box .list-view .list-cell:selected, .choice-box .list-view .list-cell:selected,
+.combo-box .list-view .list-cell:hover, .choice-box .list-view .list-cell:hover
 {
     -fx-background-color: #df7a2e;
 }
 
-#txtNewComponent, #txtNewPrice, #txtSearchComponent, #searchHistory{
+.text-field{
     -fx-background-color: white;
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-color: #c3c3c3;
 }
 
-#btnAddComponent, #logOut, #btnOpen, #btnSave, #handlevognKnapp, #userIndex, #tilbakeTilUserIndex, #secondaryButton1,
-#secondaryButton, #tilbakeTilUserIndex1, #btnOpenHandlekurv, #btnSaveHandlekurv{
+.button{
     -fx-background-color: #e6e6e6;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-color: #b4b4b4;
+    -fx-cursor: hand;
 }
 
-#btnAddComponent:hover, #logOut:hover, #btnOpen:hover, #btnSave:hover, #handlevognKnapp:hover, #userIndex:hover,
-#tilbakeTilUserIndex:hover, #secondaryButton1:hover, #secondaryButton:hover, #tilbakeTilUserIndex1:hover,
-#btnOpenHandlekurv:hover, #btnSaveHandlekurv:hover{
+.button:hover{
     -fx-background-color: #f0f0f0;
 }
 
-#btnAddComponent:pressed, #logOut:pressed, #btnOpen:pressed, #btnSave:pressed, #handlevognKnapp:pressed,
-#userIndex:pressed, #tilbakeTilUserIndex:pressed, #secondaryButton1:pressed, #secondaryButton:pressed,
-#tilbakeTilUserIndex1:pressed, #btnOpenHandlekurv:pressed, #btnSaveHandlekurv:pressed{
+.button:pressed{
     -fx-border-style: hidden;
     -fx-background-color: #e1e1e1;
 }
@@ -125,16 +110,16 @@
     -fx-background-color: #ddaa07;
 }
 
-#tab1, #tab2{
+.tab-pane{
     -fx-background-color: #d3d3d3;
     -fx-border-style: solid, solid, hidden, hidden;
     -fx-border-color: #c3c3c3;
 }
 
-#tab1:hover, #tab2:hover{
+.tab-pane:hover{
     -fx-background-color: #e2e2e2;
 }
 
-#tab1:selected, #tab2:selected{
+.tab-pane:selected{
     -fx-background-color: white;
 }
