@@ -71,9 +71,9 @@
       <Label fx:id="lblMus" layoutX="528.0" layoutY="154.0" prefHeight="17.0" prefWidth="81.0" />
       <Label fx:id="lblHarddisk" layoutX="528.0" layoutY="114.0" prefHeight="17.0" prefWidth="81.0" />
       <Button fx:id="handlevognKnapp" layoutX="487.0" layoutY="19.0" mnemonicParsing="false" onAction="#switchToHandlevogn" text="Handlevogn" />
-      <Button fx:id="addToCart" layoutX="441.0" layoutY="433.0" mnemonicParsing="false" onAction="#addToHandlekurv" prefHeight="43.0" prefWidth="174.0" text="Legg til i handlevogn" />
-      <Button fx:id="userIndex" layoutX="60.0" layoutY="442.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
-      <Label fx:id="lblWrong" layoutX="120.0" layoutY="394.0" prefHeight="35.0" prefWidth="422.0" textFill="#8d1212">
+      <Button fx:id="addToCart" layoutX="441.0" layoutY="410.0" mnemonicParsing="false" onAction="#addToHandlekurv" prefHeight="43.0" prefWidth="174.0" text="Legg til i handlevogn" />
+      <Button fx:id="userIndex" layoutX="62.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
+      <Label fx:id="lblWrong" layoutX="132.0" layoutY="367.0" prefHeight="35.0" prefWidth="422.0" textFill="#8d1212">
          <font>
             <Font size="17.0" />
          </font>
@@ -117,6 +117,10 @@
          </font>
       </Label>
       <Label fx:id="lblAntallInHandlekurv" layoutX="577.0" layoutY="23.0" />
-      <Label fx:id="lblTotalPrice" layoutX="487.0" layoutY="354.0" prefHeight="25.0" prefWidth="146.0" />
+      <Label fx:id="lblTotalPrice" layoutX="441.0" layoutY="461.0" prefHeight="25.0" prefWidth="146.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
