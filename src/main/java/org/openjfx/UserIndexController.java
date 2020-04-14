@@ -169,6 +169,7 @@ public class UserIndexController {
             lblMus.setText("");
         }
         lblMus.setText(output);
+        lblTotalPrice.setText(CalculatePrice.calcComponent(cmbMus.getValue().getPrice(),txtAntallMus.getValue()));
     }
 
     @FXML
@@ -214,13 +215,13 @@ public class UserIndexController {
         for (Component c : checkArray.checkComponentAll) {
             if (lblWrong.getText().equals("") && !c.getName().equals("Ingen")) {
                 try {
-                    lblTastatur.setText(InputException.checkInput(cmbTastatur,txtAntallTastatur.getValue()));
-                    lblMinne.setText(InputException.checkInput(cmbMinne,txtAntallMinne.getValue()));
-                    lblSkjermkort.setText(InputException.checkInput(cmbSkjermkort,txtAntallSkjermkort.getValue()));
-                    lblMonitor.setText(InputException.checkInput(cmbMonitor,txtAntallMonitor.getValue()));
-                    lblMotherboard.setText(InputException.checkInput(cmbMotherboard,txtAntallMotherboard.getValue()));
-                    lblHarddisk.setText(InputException.checkInput(cmbHarddisk,txtAntallHarddisk.getValue()));
-                    lblMus.setText(InputException.checkInput(cmbMus,txtAntallMus.getValue()));
+                    lblTastatur.setText(InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue()));
+                    lblMinne.setText(InputException.checkInput(cmbMinne, txtAntallMinne.getValue()));
+                    lblSkjermkort.setText(InputException.checkInput(cmbSkjermkort, txtAntallSkjermkort.getValue()));
+                    lblMonitor.setText(InputException.checkInput(cmbMonitor, txtAntallMonitor.getValue()));
+                    lblMotherboard.setText(InputException.checkInput(cmbMotherboard, txtAntallMotherboard.getValue()));
+                    lblHarddisk.setText(InputException.checkInput(cmbHarddisk, txtAntallHarddisk.getValue()));
+                    lblMus.setText(InputException.checkInput(cmbMus, txtAntallMus.getValue()));
                 } catch (InputException.InvalidInputException e) {
                     lblWrong.setText(e.getMessage());
                     return;
@@ -230,7 +231,7 @@ public class UserIndexController {
                     componentsBought.add(compBoughtHarddisk);
                 }
                 if (c.getName().equals(cmbSkjermkort.getValue().getName())) {
-                    ComponentAndAntall compBoughtSkjermkort = new ComponentAndAntall(c.getType(), c.getName(),txtAntallSkjermkort.getValue(), c.getPrice());
+                    ComponentAndAntall compBoughtSkjermkort = new ComponentAndAntall(c.getType(), c.getName(), txtAntallSkjermkort.getValue(), c.getPrice());
                     componentsBought.add(compBoughtSkjermkort);
                 }
                 if (c.getName().equals(cmbMonitor.getValue().getName())) {
@@ -255,12 +256,13 @@ public class UserIndexController {
                 }
             }
         }
-        try {
-            App.switchToHandlekurv(componentsBought);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (lblWrong.getText().equals(""))  {
+            try {
+                App.switchToHandlekurv(componentsBought);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        //System.out.print(componentsBought);
     }
 
     public void addToHandlekurvNumber(int i){

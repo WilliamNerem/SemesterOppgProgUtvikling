@@ -12,12 +12,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public class OpenKjøpshistorikkTxt {
-    public static void open(ObservableList<ComponentAndAntall> kjøpshistorikkArray){
-        FileChooser fc = new FileChooser();
-        fc.setTitle("Åpne tidligere kjøp");
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("text files","*.txt"));
-        File selectedFile = fc.showOpenDialog(null);
-        try (BufferedReader reader = Files.newBufferedReader(selectedFile.toPath())) {
+    public static void open(ObservableList<ComponentAndAntall> kjøpshistorikkArray, File afile){
+        try (BufferedReader reader = Files.newBufferedReader(afile.toPath())) {
             String line;
             reader.readLine();
             while ((line = reader.readLine()) != null) {
@@ -25,7 +21,7 @@ public class OpenKjøpshistorikkTxt {
                 kjøpshistorikkArray.add(c);
             }
         }catch (FileNotFoundException f) {
-            System.out.println(selectedFile.getPath() + " does not exist");
+            System.out.println(afile.getPath() + " does not exist");
         } catch (IOException e) {
             e.printStackTrace();
         }

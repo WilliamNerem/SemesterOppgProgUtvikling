@@ -36,7 +36,6 @@
                               <TableColumn fx:id="col_slett1" prefWidth="68.0" text="Slett" />
                           </columns>
                         </TableView>
-                        <Button layoutX="99.0" layoutY="34.0" mnemonicParsing="false" text="Button" />
                      </children>
                   </AnchorPane>
             </content>
@@ -61,7 +60,7 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="searchHistory" layoutX="508.0" layoutY="46.0" promptText="Søk..." />
+                        <TextField fx:id="searchHistory" layoutX="558.0" layoutY="43.0" promptText="Søk..." />
                         <Button fx:id="btnOpenHandlekurv" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#open" text="Åpne" />
                         <Button fx:id="btnSaveHandlekurv" layoutX="69.0" layoutY="18.0" mnemonicParsing="false" onAction="#save" text="Lagre" />
                      </children>

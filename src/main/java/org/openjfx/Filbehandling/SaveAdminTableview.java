@@ -17,13 +17,10 @@ public class SaveAdminTableview {
     private static File selectedFile;
 
     public static void save(ComponentRegister cr, AnchorPane anchorpane) throws InterruptedException {
-        StartThreadAdmin thread = new StartThreadAdmin(anchorpane, selectedFile);
-        thread.disable();
         FileChooser fc = new FileChooser();
         fc.setTitle("Lagre Komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
         selectedFile = fc.showSaveDialog(null);
-        thread.open();
         try (OutputStream os = Files.newOutputStream(selectedFile.toPath());
              ObjectOutputStream out = new ObjectOutputStream(os))
         {
@@ -31,6 +28,5 @@ public class SaveAdminTableview {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Thread.sleep(3000);
     }
 }
