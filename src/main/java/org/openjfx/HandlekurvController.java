@@ -110,7 +110,6 @@ public class HandlekurvController {
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewHandlekurv.setItems(kjøpshistorikkArray);
-        setTable();
     }
     @FXML
     private void switchToPrimary() throws IOException {
