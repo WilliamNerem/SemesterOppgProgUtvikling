@@ -81,7 +81,6 @@ public class HandlekurvController {
 
     @FXML
     void open(ActionEvent event) {
-        kjøpshistorikkArray = FXCollections.observableArrayList();
         OpenKjøpshistorikkTxt.open(kjøpshistorikkArray);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -103,13 +102,14 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) {
-        UserIndexController uic = new UserIndexController();
+        kjøpshistorikkArray = handlekurvArray;
+        tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
-        tableviewHandlekurv.setItems(handlekurvArray);
+        tableviewHandlekurv.setItems(kjøpshistorikkArray);
         setTable();
     }
     @FXML
@@ -129,19 +129,22 @@ public class HandlekurvController {
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewHandlekurv.setItems(handlekurvArray);
+        handlekurvArray = tableviewHandlekurv.getItems();
+        System.out.print(handlekurvArray);
+        for (ComponentAndAntall ca : handlekurvArray) {
+            numberInHandlevogn += ca.getNumber();
+        }
+        System.out.println(numberInHandlevogn);
     }
 
 
     @FXML
     void switchToUserIndex() throws IOException {
-        App.setRoot("userIndex");
+        App.switchToUserIndex(numberInHandlevogn);
     }
 
     @FXML
     private void initialize(){
-        for (ComponentAndAntall ca : handlekurvArray) {
-            numberInHandlevogn += ca.getNumber();
-        }
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
