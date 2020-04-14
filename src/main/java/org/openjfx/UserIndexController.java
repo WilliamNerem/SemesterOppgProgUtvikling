@@ -187,7 +187,7 @@ public class UserIndexController {
     void chooseTastatur(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbTastatur, txtAntallSkjermkort.getValue());
+            output = InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue());
             lblWrong.setText("");
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
