@@ -253,6 +253,11 @@ public class UserIndexController {
                     ComponentAndAntall compBoughtMinne = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMinne.getValue(), c.getPrice());
                     componentsBought.add(compBoughtMinne);
                 }
+                try {
+                    App.switchToHandlekurv(componentsBought);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         try {

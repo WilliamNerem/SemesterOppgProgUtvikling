@@ -36,7 +36,6 @@
                               <TableColumn fx:id="col_slett1" prefWidth="68.0" text="Slett" />
                           </columns>
                         </TableView>
-                        <Button layoutX="99.0" layoutY="34.0" mnemonicParsing="false" text="Button" />
                      </children>
                   </AnchorPane>
             </content>
