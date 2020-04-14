@@ -26,8 +26,9 @@ public class LoginController {
 
     @FXML
     private void switchToThird() throws IOException {
+        App.setRoot("adminIndex");
         if(username.getText().equals("sensor") && password.getText().equals("Sensor123")){
-            App.setRoot("adminIndex");
+
         }else {
             errorMsg.setText("Brukernavn eller passord er feil");
         }

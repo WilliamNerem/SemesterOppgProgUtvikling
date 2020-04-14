@@ -2,6 +2,7 @@ package org.openjfx;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 
 public class CheckArrayOfComponents {
     UserIndexController uic = new UserIndexController();
@@ -17,6 +18,37 @@ public class CheckArrayOfComponents {
     ObservableList <Component> minne = uic.minneChoose;
     ObservableList <Component> monitor = uic.monitorChoose;
     ObservableList <Component> motherboard = uic.motherboardChoose;
+
+    public void setAll(ComboBox<Component> cmbMus, ComboBox<Component> cmbSkjermkort, ComboBox<Component> cmbHarddisk, ComboBox<Component> cmbMotherboard, ComboBox<Component> cmbTastatur, ComboBox<Component> cmbMinne, ComboBox<Component> cmbMonitor, ComboBox<Integer> txtAntallSkjermkort, ComboBox<Integer> txtAntallHarddisk, ComboBox<Integer> txtAntallTastatur, ComboBox<Integer> txtAntallMotherboard, ComboBox<Integer> txtAntallMonitor, ComboBox<Integer> txtAntallMinne, ComboBox<Integer> txtAntallMus) {
+        cmbMus.setItems(checkmus());
+        cmbMus.getSelectionModel().selectFirst();
+        cmbSkjermkort.setItems(checkSkjermkort());
+        cmbSkjermkort.getSelectionModel().selectFirst();
+        cmbHarddisk.setItems(checkHarddisk());
+        cmbHarddisk.getSelectionModel().selectFirst();
+        cmbMotherboard.setItems((checkMotherboard()));
+        cmbMotherboard.getSelectionModel().selectFirst();
+        cmbTastatur.setItems((checkTastatur()));
+        cmbTastatur.getSelectionModel().selectFirst();
+        cmbMinne.setItems((checkMinne()));
+        cmbMinne.getSelectionModel().selectFirst();
+        cmbMonitor.setItems((checkMonitor()));
+        cmbMonitor.getSelectionModel().selectFirst();
+        txtAntallSkjermkort.setItems(antall);
+        txtAntallSkjermkort.getSelectionModel().selectFirst();
+        txtAntallHarddisk.setItems(antall);
+        txtAntallHarddisk.getSelectionModel().selectFirst();
+        txtAntallTastatur.setItems(antall);
+        txtAntallTastatur.getSelectionModel().selectFirst();
+        txtAntallMotherboard.setItems(antall);
+        txtAntallMotherboard.getSelectionModel().selectFirst();
+        txtAntallMonitor.setItems(antall);
+        txtAntallMonitor.getSelectionModel().selectFirst();
+        txtAntallMinne.setItems(antall);
+        txtAntallMinne.getSelectionModel().selectFirst();
+        txtAntallMus.setItems(antall);
+        txtAntallMus.getSelectionModel().selectFirst();
+    }
 
     Component test1 = new Component("Ingen","Ingen",0);
     Component test2 = new Component("Mus","EnMus",1999);

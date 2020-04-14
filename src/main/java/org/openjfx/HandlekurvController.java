@@ -17,15 +17,15 @@ import org.openjfx.Filbehandling.FormatHandlekurvArray;
 import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
 
 public class HandlekurvController {
-    UserIndexController uic = new UserIndexController();
     ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
+    ObservableList<ComponentAndAntall> handlekurvArray = FXCollections.observableArrayList();
     int numberInHandlevogn;
 
     @FXML
     private Button secondaryButton;
 
     @FXML
-    private TableView<Component> tableviewHandlekurv;
+    private TableView<ComponentAndAntall> tableviewHandlekurv;
 
     @FXML
     private Button tilbakeTilUserIndex;
@@ -44,6 +44,24 @@ public class HandlekurvController {
 
     @FXML
     private Button btnSaveHandlekurv;
+
+    @FXML
+    private TableColumn<ComponentAndAntall, String> col_type1;
+
+    @FXML
+    private TableColumn<ComponentAndAntall, String> col_navn1;
+
+    @FXML
+    private TableColumn<ComponentAndAntall, Integer> col_antall1;
+
+    @FXML
+    private TableColumn<ComponentAndAntall, Integer> col_pris1;
+
+    @FXML
+    private TableColumn<ComponentAndAntall, Integer> col_totalt1;
+
+    @FXML
+    private TableColumn<?, ?> col_slett1;
 
 
     @FXML
@@ -85,11 +103,28 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) {
-
+        UserIndexController uic = new UserIndexController();
+        col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
+        col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
+        col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
+        col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
+        tableviewHandlekurv.setItems(handlekurvArray);
+        setTable(handlekurvArray);
     }
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("login");
+    }
+
+    public void setTable(ObservableList<ComponentAndAntall> obl) {
+        this.handlekurvArray = obl;
+        col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
+        col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
+        col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
+        col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
+        tableviewHandlekurv.setItems(obl);
     }
 
 
@@ -100,8 +135,7 @@ public class HandlekurvController {
 
     @FXML
     private void initialize(){
-        kjøpshistorikkArray = uic.componentsBought;
-        for (ComponentAndAntall ca : uic.componentsBought) {
+        for (ComponentAndAntall ca : handlekurvArray) {
             numberInHandlevogn += ca.getNumber();
         }
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -110,6 +144,13 @@ public class HandlekurvController {
         col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
+
+        col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
+        col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
+        col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
+        col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
+        tableviewHandlekurv.setItems(handlekurvArray);
     }
 
 
