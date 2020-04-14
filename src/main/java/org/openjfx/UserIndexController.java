@@ -255,11 +255,6 @@ public class UserIndexController {
                 }
             }
         }
-        try {
-            App.switchToHandlekurv(componentsBought);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         //System.out.print(componentsBought);
     }
 
