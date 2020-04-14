@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.openjfx.Filbehandling.FormatHandlekurvArray;
 import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
+import javafx.util.Callback;
 
 public class HandlekurvController {
     ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
