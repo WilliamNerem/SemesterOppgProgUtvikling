@@ -1,0 +1,2 @@
+Type;Navn;Antall;Pris;Totalpris
+Monitor;EnMonitor;4;2900;11600
