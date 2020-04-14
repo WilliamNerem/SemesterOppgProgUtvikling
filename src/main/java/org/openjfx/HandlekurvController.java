@@ -118,6 +118,7 @@ public class HandlekurvController {
     }
 
     public void setTable(ObservableList<ComponentAndAntall> obl) {
+        this.handlekurvArray = obl;
         col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -149,7 +150,7 @@ public class HandlekurvController {
         col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
-        tableviewPrishistorikk.setItems(handlekurvArray);
+        tableviewHandlekurv.setItems(handlekurvArray);
     }
 
 

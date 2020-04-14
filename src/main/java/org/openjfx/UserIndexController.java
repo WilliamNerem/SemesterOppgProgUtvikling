@@ -187,7 +187,7 @@ public class UserIndexController {
     void chooseTastatur(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbTastatur, txtAntallSkjermkort.getValue());
+            output = InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue());
             lblWrong.setText("");
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
@@ -255,16 +255,7 @@ public class UserIndexController {
             }
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "handlekurv.fxml"));
-            Parent root = (Parent) loader.load();
-            HandlekurvController ctrl = loader.getController();
-            ctrl.setTable(componentsBought);
-
-            Scene newScene = new Scene(root);
-            Stage newStage = new Stage();
-            newStage.setScene(newScene);
-            newStage.show();
+            App.switchToHandlekurv(componentsBought);
         } catch (Exception e) {
             e.printStackTrace();
         }
