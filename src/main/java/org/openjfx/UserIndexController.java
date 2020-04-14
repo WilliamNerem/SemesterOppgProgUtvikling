@@ -34,7 +34,7 @@ public class UserIndexController {
     public ComboBox<Component> cmbHarddisk;
 
     @FXML
-    public ComboBox<Component>cmbMus;
+    public ComboBox<Component> cmbMus;
 
     @FXML
     public ComboBox<Component> cmbTastatur;
@@ -252,15 +252,21 @@ public class UserIndexController {
                     ComponentAndAntall compBoughtMinne = new ComponentAndAntall(c.getType(), c.getName(), txtAntallMinne.getValue(), c.getPrice());
                     componentsBought.add(compBoughtMinne);
                 }
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("org.openjfx/handlekurv.fxml"));
-
-                HandlekurvController hkController = loader.getController();
-               // hkController.setTable(componentsBought);
-                // hkController.handlekurvArray = componentsBought;
-                Stage stage = new Stage();
-                stage.setScene(new Scene ( (Pane) loader.load()));
-                stage.show();
             }
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "handlekurv.fxml"));
+            Parent root = (Parent) loader.load();
+            HandlekurvController ctrl = loader.getController();
+            ctrl.setTable(componentsBought);
+
+            Scene newScene = new Scene(root);
+            Stage newStage = new Stage();
+            newStage.setScene(newScene);
+            newStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         System.out.print(componentsBought);
     }
