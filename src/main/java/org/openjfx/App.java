@@ -17,6 +17,7 @@ public class App extends Application {
     private static Stage primaryStage;
     private static AnchorPane mainLayout;
     private static ObservableList<ComponentAndAntall> array1 = FXCollections.observableArrayList();
+    private static Integer int1;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -45,6 +46,23 @@ public class App extends Application {
         array1.addAll(ol);
         System.out.println(array1);
         hc.saveHandlekurvArray(array1);
+
+        scene.getStylesheets().add("Primary.css");
+        scene.setRoot(mainLayout);
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(true);
+        primaryStage.show();
+    }
+
+    public static void switchToUserIndex(Integer i) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(App.class.getResource("userIndex.fxml"));
+        mainLayout = loader.load();
+
+        UserIndexController uic = loader.getController();
+        int1 = i;
+        System.out.println(int1);
+        uic.addToHandlekurvNumber(int1);
 
         scene.getStylesheets().add("Primary.css");
         scene.setRoot(mainLayout);
