@@ -81,7 +81,6 @@ public class HandlekurvController {
 
     @FXML
     void open(ActionEvent event) {
-        kjøpshistorikkArray = FXCollections.observableArrayList();
         OpenKjøpshistorikkTxt.open(kjøpshistorikkArray);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -103,14 +102,15 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) {
-        UserIndexController uic = new UserIndexController();
+        kjøpshistorikkArray = handlekurvArray;
+        tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
-        tableviewHandlekurv.setItems(handlekurvArray);
-        setTable();
+        tableviewHandlekurv.setItems(kjøpshistorikkArray);
+        setTable(handlekurvArray);
     }
     @FXML
     private void switchToPrimary() throws IOException {
@@ -128,7 +128,9 @@ public class HandlekurvController {
         col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
-        tableviewHandlekurv.setItems(handlekurvArray);
+        tableviewHandlekurv.setItems(obl);
+        handlekurvArray = tableviewHandlekurv.getItems();
+        System.out.print(handlekurvArray);
     }
 
 
