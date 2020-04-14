@@ -8,7 +8,6 @@ public class ComponentAndAntall extends Component {
         super(type, name, price);
         this.number = new SimpleIntegerProperty(number);
     }
-
     public int getNumber() { return number.get(); }
     public int getTotal() {
         int ut = getNumber()*getPrice();
