@@ -121,3 +121,10 @@
 #tab1:selected, #tab2:selected{
     -fx-background-color: white;
 }
+.label{
+    -fx-font-family: "Century Gothic";
+}
+
+#loginnlbl{
+    -fx-font-family: "Berlin Sans FB";
+}
