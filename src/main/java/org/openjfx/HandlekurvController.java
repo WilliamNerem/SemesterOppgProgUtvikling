@@ -11,15 +11,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.FileChooser;
-import javafx.util.Callback;
 import org.openjfx.Filbehandling.FormatHandlekurvArray;
 import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
+import javafx.util.Callback;
 
 public class HandlekurvController {
     ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
     ObservableList<ComponentAndAntall> handlekurvArray = FXCollections.observableArrayList();
     int numberInHandlevogn;
+    File afile = new File("testSaveTxtUser.txt");
 
     @FXML
     private Button secondaryButton;
@@ -38,12 +38,6 @@ public class HandlekurvController {
 
     @FXML
     private TextField searchHistory;
-
-    @FXML
-    private Button btnOpenHandlekurv;
-
-    @FXML
-    private Button btnSaveHandlekurv;
 
     @FXML
     private TableColumn<ComponentAndAntall, String> col_type1;
@@ -80,43 +74,19 @@ public class HandlekurvController {
     private TableColumn<ComponentAndAntall, Integer> col_Totalt;
 
     @FXML
-    void open(ActionEvent event) {
-        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray);
-        col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
-        col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
-        col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
-        col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
+    void kjop(ActionEvent event) throws IOException {
+        kjøpshistorikkArray.clear();
+        kjøpshistorikkArray.addAll(handlekurvArray);
+        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile);
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
-
-        filter();
-    }
-
-    @FXML
-    void save(ActionEvent event) throws IOException {
-        FileChooser fc = new FileChooser();
-        fc.setTitle("Lagre kjøpshistorikk");
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("text files","*.txt"));
-        File aFile = fc.showSaveDialog(null);
-
-        Files.write(aFile.toPath(), FormatHandlekurvArray.formatComponents(kjøpshistorikkArray).getBytes());
-    }
-
-    @FXML
-    void kjop(ActionEvent event) {
-        kjøpshistorikkArray = handlekurvArray;
-        tableviewPrishistorikk.setItems(kjøpshistorikkArray);
-        col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
-        col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
-        col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
-        tableviewHandlekurv.setItems(kjøpshistorikkArray);
-
+        Files.write(afile.toPath(), FormatHandlekurvArray.formatComponents(kjøpshistorikkArray).getBytes());
+        handlekurvArray.clear();
+        numberInHandlevogn = 0;
         filter();
     }
     @FXML
     private void switchToPrimary() throws IOException {
+        handlekurvArray.clear();
         App.setRoot("login");
     }
 
@@ -126,28 +96,27 @@ public class HandlekurvController {
     }
 
     public void setTable() {
+        tableviewHandlekurv.setItems(handlekurvArray);
         col_type1.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_navn1.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_pris1.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
-        tableviewHandlekurv.setItems(handlekurvArray);
         handlekurvArray = tableviewHandlekurv.getItems();
-        System.out.print(handlekurvArray);
-        for (ComponentAndAntall ca : handlekurvArray) {
-            numberInHandlevogn += ca.getNumber();
-        }
-        System.out.println(numberInHandlevogn);
     }
 
 
     @FXML
     void switchToUserIndex() throws IOException {
+        for (ComponentAndAntall ca : handlekurvArray) {
+            numberInHandlevogn += ca.getNumber();
+        }
         App.switchToUserIndex(numberInHandlevogn);
     }
 
     @FXML
     private void initialize(){
+        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -207,7 +176,8 @@ public class HandlekurvController {
                         } else {
                             //onClick event som sletter elementet fra lista
                             btn.setOnAction(event -> {
-                                System.out.println("Slettknapp klikket");
+                                int c = getTableRow().getIndex();
+                                handlekurvArray.remove(c);
                             });
 
                             setGraphic(btn);

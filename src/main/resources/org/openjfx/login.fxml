@@ -25,11 +25,10 @@
          <font>
             <Font name="Berlin Sans FB" size="14.0" />
          </font></PasswordField>
-      <Label layoutX="332.0" layoutY="147.0" prefHeight="43.0" prefWidth="141.0" text="Logg inn">
+      <Label fx:id="loginnlbl" layoutX="329.0" layoutY="149.0" prefHeight="54.0" prefWidth="147.0" text="Logg inn">
          <font>
-            <Font name="Berlin Sans FB" size="38.0" />
-         </font>
-      </Label>
+            <Font size="37.0" />
+         </font></Label>
       <Label fx:id="errorMsg" layoutX="300.0" layoutY="329.0" textFill="RED">
          <font>
             <Font name="Berlin Sans FB" size="13.0" />

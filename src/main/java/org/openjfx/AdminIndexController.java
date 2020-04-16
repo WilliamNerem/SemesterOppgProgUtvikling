@@ -30,7 +30,6 @@ import org.openjfx.Filbehandling.SaveAdminTableview;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
-    Component a = new Component("a", "b", 1);
 
 
     //testdata:
@@ -193,9 +192,13 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void open(ActionEvent event) throws InterruptedException, IOException {
-        OpenAdminTableview.open(cr, anchorpane);
-        tableviewAdminIndex.setItems(cr.getComponents());
-        filter();
+        try {
+            OpenAdminTableview.open(cr, anchorpane);
+            tableviewAdminIndex.setItems(cr.getComponents());
+            filter();
+        } catch(Exception e) {
+            errorMsg.setText("Feil med innlasting av fil");
+        }
     }
 
     @FXML

@@ -80,28 +80,28 @@ public class UserIndexController {
     private Label lblWrong;
 
     @FXML
-    private ComboBox<Integer> txtAntallSkjermkort;
+    public ComboBox<Integer> txtAntallSkjermkort;
 
     @FXML
-    private ComboBox<Integer> txtAntallHarddisk;
+    public ComboBox<Integer> txtAntallHarddisk;
 
     @FXML
-    private ComboBox<Integer> txtAntallMinne;
+    public ComboBox<Integer> txtAntallMinne;
 
     @FXML
-    private ComboBox<Integer> txtAntallMonitor;
+    public ComboBox<Integer> txtAntallMonitor;
 
     @FXML
-    private ComboBox<Integer> txtAntallTastatur;
+    public ComboBox<Integer> txtAntallTastatur;
 
     @FXML
-    private ComboBox<Integer> txtAntallMus;
+    public ComboBox<Integer> txtAntallMus;
 
     @FXML
-    private ComboBox<Integer> txtAntallMotherboard;
+    public ComboBox<Integer> txtAntallMotherboard;
 
     @FXML
-    private Label lblTotalPrice;
+    public Label lblTotalPrice;
 
     @FXML
     private Label lblAntallInHandlekurv;
@@ -112,6 +112,7 @@ public class UserIndexController {
             try {
                 output = InputException.checkInput(cmbHarddisk, txtAntallHarddisk.getValue());
                 lblWrong.setText("");
+                lblTotalPrice.setText(InputException.checkForTotalPrice(this));
             } catch (InputException.InvalidInputException e) {
                 lblWrong.setText(e.getMessage());
                 lblHarddisk.setText("");
@@ -125,6 +126,7 @@ public class UserIndexController {
         try {
             output = InputException.checkInput(cmbMinne, txtAntallMinne.getValue());
             lblWrong.setText("");
+            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblMinne.setText("");
@@ -138,6 +140,7 @@ public class UserIndexController {
         try {
             output = InputException.checkInput(cmbMonitor, txtAntallMonitor.getValue());
             lblWrong.setText("");
+            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblMonitor.setText("");
@@ -151,6 +154,7 @@ public class UserIndexController {
         try {
             output = InputException.checkInput(cmbMotherboard, txtAntallMotherboard.getValue());
             lblWrong.setText("");
+            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblMotherboard.setText("");
@@ -164,12 +168,12 @@ public class UserIndexController {
         try {
             output = InputException.checkInput(cmbMus, txtAntallMus.getValue());
             lblWrong.setText("");
+            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblMus.setText("");
         }
         lblMus.setText(output);
-        lblTotalPrice.setText(CalculatePrice.calcComponent(cmbMus.getValue().getPrice(),txtAntallMus.getValue()));
     }
 
     @FXML
@@ -178,6 +182,7 @@ public class UserIndexController {
         try {
             output = InputException.checkInput(cmbSkjermkort, txtAntallSkjermkort.getValue());
             lblWrong.setText("");
+            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblSkjermkort.setText("");
@@ -191,6 +196,7 @@ public class UserIndexController {
         try {
             output = InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue());
             lblWrong.setText("");
+            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblTastatur.setText("");
