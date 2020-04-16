@@ -60,9 +60,7 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="searchHistory" layoutX="558.0" layoutY="43.0" promptText="Søk..." />
-                        <Button fx:id="btnOpenHandlekurv" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#open" text="Åpne" />
-                        <Button fx:id="btnSaveHandlekurv" layoutX="69.0" layoutY="18.0" mnemonicParsing="false" onAction="#save" text="Lagre" />
+                        <TextField fx:id="searchHistory" layoutX="508.0" layoutY="46.0" promptText="Søk..." />
                      </children>
                   </AnchorPane>
             </content>
