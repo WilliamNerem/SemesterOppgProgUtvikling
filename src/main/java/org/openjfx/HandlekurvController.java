@@ -2,6 +2,7 @@ package org.openjfx;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +39,9 @@ public class HandlekurvController {
 
     @FXML
     private TextField searchHistory;
+
+    @FXML
+    private Label lblTotalPrice;
 
     @FXML
     private TableColumn<ComponentAndAntall, String> col_type1;
@@ -103,6 +107,8 @@ public class HandlekurvController {
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
         handlekurvArray = tableviewHandlekurv.getItems();
+
+        lblTotalPrice.setText("Totalpris: " + sumPrice(handlekurvArray) + ",-");
     }
 
 
@@ -178,6 +184,7 @@ public class HandlekurvController {
                             btn.setOnAction(event -> {
                                 int c = getTableRow().getIndex();
                                 handlekurvArray.remove(c);
+                                lblTotalPrice.setText("Totalpris: " + sumPrice(handlekurvArray) + ",-");
                             });
 
                             setGraphic(btn);
@@ -189,6 +196,16 @@ public class HandlekurvController {
             }
         };
         col_slett1.setCellFactory(cellFactory);
+    }
+
+    public int sumPrice(ObservableList<ComponentAndAntall> list){
+        int sum = 0;
+
+        for(ComponentAndAntall c : list){
+            sum += c.getTotal();
+        }
+
+        return sum;
     }
 
 }

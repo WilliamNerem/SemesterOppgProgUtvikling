@@ -26,7 +26,7 @@
                            </font>
                         </Label>
                         <Button fx:id="btnKjop" layoutX="712.0" layoutY="517.0" mnemonicParsing="false" onAction="#kjop" prefHeight="38.0" prefWidth="79.0" text="Kjøp" />
-                        <TableView fx:id="tableviewHandlekurv" layoutX="99.0" layoutY="87.0" prefHeight="468.0" prefWidth="607.0">
+                        <TableView fx:id="tableviewHandlekurv" layoutX="99.0" layoutY="87.0" prefHeight="415.0" prefWidth="607.0">
                           <columns>
                             <TableColumn fx:id="col_type1" prefWidth="137.0" text="Type" />
                               <TableColumn fx:id="col_navn1" prefWidth="140.0" text="Navn" />
@@ -36,6 +36,11 @@
                               <TableColumn fx:id="col_slett1" prefWidth="68.0" text="Slett" />
                           </columns>
                         </TableView>
+                        <Label fx:id="lblTotalPrice" layoutX="486.0" layoutY="522.0" text="Totalpris:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>
