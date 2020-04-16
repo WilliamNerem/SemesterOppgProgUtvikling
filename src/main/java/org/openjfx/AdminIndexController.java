@@ -30,7 +30,6 @@ import org.openjfx.Filbehandling.SaveAdminTableview;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
-    Component a = new Component("a", "b", 1);
 
 
     //testdata:
