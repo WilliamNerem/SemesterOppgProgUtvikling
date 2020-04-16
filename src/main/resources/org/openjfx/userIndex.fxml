@@ -22,7 +22,7 @@
       <ComboBox fx:id="cmbTastatur" layoutX="313.0" layoutY="271.0" onAction="#chooseTastatur" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
       <ComboBox fx:id="cmbMinne" layoutX="313.0" layoutY="311.0" onAction="#chooseMinne" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
       <ComboBox fx:id="cmbMotherboard" layoutX="313.0" layoutY="349.0" onAction="#chooseMotherboard" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
-      <Label layoutX="283.0" layoutY="42.0" prefHeight="75.0" prefWidth="286.0" text="Komponenter">
+      <Label layoutX="229.0" layoutY="43.0" prefHeight="75.0" prefWidth="343.0" text="Kjøp komponenter">
          <font>
             <Font size="37.0" />
          </font>
@@ -70,10 +70,10 @@
       <Label fx:id="lblTastatur" layoutX="637.0" layoutY="276.0" prefHeight="17.0" prefWidth="81.0" />
       <Label fx:id="lblMus" layoutX="637.0" layoutY="237.0" prefHeight="17.0" prefWidth="81.0" />
       <Label fx:id="lblHarddisk" layoutX="637.0" layoutY="197.0" prefHeight="17.0" prefWidth="81.0" />
-      <Button fx:id="handlevognKnapp" layoutX="678.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchToHandlevogn" text="Handlevogn" />
+      <Button fx:id="handlevognKnapp" layoutX="663.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchToHandlevogn" text="Handlevogn" />
       <Button fx:id="addToCart" layoutX="616.0" layoutY="540.0" mnemonicParsing="false" onAction="#addToHandlekurv" prefHeight="43.0" prefWidth="174.0" text="Legg til i handlevogn" />
       <Button fx:id="userIndex" layoutX="14.0" layoutY="558.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
-      <Label fx:id="lblWrong" layoutX="241.0" layoutY="450.0" prefHeight="35.0" prefWidth="422.0" textFill="#8d1212">
+      <Label fx:id="lblWrong" layoutX="163.0" layoutY="449.0" prefHeight="35.0" prefWidth="479.0" textFill="#8d1212">
          <font>
             <Font size="17.0" />
          </font>
@@ -110,8 +110,8 @@
          </font>
       </Label>
       <ComboBox fx:id="txtAntallMinne" layoutX="546.0" layoutY="311.0" onAction="#chooseMinne" prefHeight="25.0" prefWidth="42.0" promptText="0" visibleRowCount="5" />
-      <Label fx:id="lblAntallInHandlekurv" layoutX="774.0" layoutY="14.0" prefHeight="17.0" prefWidth="21.0" />
-      <Label fx:id="lblTotalPrice" layoutX="637.0" layoutY="424.0" prefHeight="25.0" prefWidth="146.0">
+      <Label fx:id="lblAntallInHandlekurv" layoutX="766.0" layoutY="14.0" prefHeight="17.0" prefWidth="36.0" />
+      <Label fx:id="lblTotalPrice" layoutX="630.0" layoutY="503.0" prefHeight="25.0" prefWidth="146.0">
          <font>
             <Font size="14.0" />
          </font>
