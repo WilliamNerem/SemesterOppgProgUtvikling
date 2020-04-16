@@ -1,4 +1,6 @@
 Type;Navn;Antall;Pris;Totalpris
+Skjermkort;EtSkjermkort;1;1479;1479
+Harddisk;EnHarddisk;1;1479;1479
 Skjermkort;EtSkjermkort;2;1479;2958
 Minne;EtMinne;1;599;599
 Motherboard;EtMotherboard;2;1450;2900

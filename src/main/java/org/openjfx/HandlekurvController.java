@@ -177,7 +177,8 @@ public class HandlekurvController {
                         } else {
                             //onClick event som sletter elementet fra lista
                             btn.setOnAction(event -> {
-                                System.out.println("Slettknapp klikket");
+                                int c = getTableRow().getIndex();
+                                handlekurvArray.remove(c);
                             });
 
                             setGraphic(btn);

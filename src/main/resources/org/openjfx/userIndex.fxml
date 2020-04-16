@@ -22,7 +22,7 @@
       <ComboBox fx:id="cmbTastatur" layoutX="313.0" layoutY="271.0" onAction="#chooseTastatur" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
       <ComboBox fx:id="cmbMinne" layoutX="313.0" layoutY="311.0" onAction="#chooseMinne" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
       <ComboBox fx:id="cmbMotherboard" layoutX="313.0" layoutY="349.0" onAction="#chooseMotherboard" prefHeight="25.0" prefWidth="174.0" promptText="Ingen" />
-      <Label layoutX="283.0" layoutY="42.0" prefHeight="75.0" prefWidth="234.0" text="Komponenter">
+      <Label layoutX="283.0" layoutY="42.0" prefHeight="75.0" prefWidth="286.0" text="Komponenter">
          <font>
             <Font size="37.0" />
          </font>
