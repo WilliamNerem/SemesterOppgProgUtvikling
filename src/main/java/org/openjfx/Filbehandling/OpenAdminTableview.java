@@ -79,7 +79,9 @@ public class OpenAdminTableview {
 
     public void threadError(WorkerStateEvent event){
         errorMsg.setText("");
-        errorMsg.setText("Feil med innlasting av fil");
+        if (!exited){
+            errorMsg.setText("Feil med innlasting av fil");
+        }
         anchorpane.setDisable(false);
     }
 }
