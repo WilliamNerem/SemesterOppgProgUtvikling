@@ -2,6 +2,7 @@ package org.openjfx;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +39,9 @@ public class HandlekurvController {
 
     @FXML
     private TextField searchHistory;
+
+    @FXML
+    private Label lblTotalPrice;
 
     @FXML
     private TableColumn<ComponentAndAntall, String> col_type1;
@@ -81,6 +85,7 @@ public class HandlekurvController {
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         Files.write(afile.toPath(), FormatHandlekurvArray.formatComponents(kjøpshistorikkArray).getBytes());
         handlekurvArray.clear();
+        numberInHandlevogn = 0;
         filter();
     }
     @FXML
@@ -102,16 +107,16 @@ public class HandlekurvController {
         col_antall1.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_totalt1.setCellValueFactory(new PropertyValueFactory<>("total"));
         handlekurvArray = tableviewHandlekurv.getItems();
-        System.out.print(handlekurvArray);
-        for (ComponentAndAntall ca : handlekurvArray) {
-            numberInHandlevogn += ca.getNumber();
-        }
-        System.out.println(numberInHandlevogn);
+
+        lblTotalPrice.setText("Totalpris: " + sumPrice(handlekurvArray) + ",-");
     }
 
 
     @FXML
     void switchToUserIndex() throws IOException {
+        for (ComponentAndAntall ca : handlekurvArray) {
+            numberInHandlevogn += ca.getNumber();
+        }
         App.switchToUserIndex(numberInHandlevogn);
     }
 
@@ -179,6 +184,7 @@ public class HandlekurvController {
                             btn.setOnAction(event -> {
                                 int c = getTableRow().getIndex();
                                 handlekurvArray.remove(c);
+                                lblTotalPrice.setText("Totalpris: " + sumPrice(handlekurvArray) + ",-");
                             });
 
                             setGraphic(btn);
@@ -190,6 +196,16 @@ public class HandlekurvController {
             }
         };
         col_slett1.setCellFactory(cellFactory);
+    }
+
+    public int sumPrice(ObservableList<ComponentAndAntall> list){
+        int sum = 0;
+
+        for(ComponentAndAntall c : list){
+            sum += c.getTotal();
+        }
+
+        return sum;
     }
 
 }
