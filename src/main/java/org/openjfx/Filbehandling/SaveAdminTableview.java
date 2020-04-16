@@ -4,7 +4,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import org.openjfx.Component;
 import org.openjfx.ComponentRegister;
-import org.openjfx.StartThreadAdmin;
 
 import java.io.File;
 import java.io.IOException;
