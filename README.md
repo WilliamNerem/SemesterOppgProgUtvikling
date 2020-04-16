@@ -2,6 +2,8 @@
 
 #### Administrator info:
 
-Brukernavn: _sensor_
+###### Brukernavn:
+sensor
 
-Passord: _Sensor123_
+###### Passord: 
+Sensor123
