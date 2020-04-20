@@ -1,11 +1,15 @@
 Type;Navn;Antall;Pris;Totalpris
 Tastatur;EtTastatur;2;2500;5000
+<<<<<<< Updated upstream
 Skjermkort;EtSkjermkort;2;1479;2958
 Harddisk;EnHarddisk;1;1479;1479
 Mus;FK Zowie 13;1;1999;1999
 Skjermkort;EtSkjermkort;2;1479;2958
 Harddisk;EnHarddisk;3;1479;4437
 Motherboard;EtMotherboard;4;1450;5800
+=======
+Mus;FK Zowie 13;3;1999;5997
+>>>>>>> Stashed changes
 Skjermkort;EtSkjermkort;1;1479;1479
 Harddisk;EnHarddisk;1;1479;1479
 Skjermkort;EtSkjermkort;2;1479;2958

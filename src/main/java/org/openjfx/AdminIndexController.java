@@ -192,13 +192,10 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void open(ActionEvent event) throws InterruptedException, IOException {
-        try {
-            OpenAdminTableview.open(cr, anchorpane);
-            tableviewAdminIndex.setItems(cr.getComponents());
-            filter();
-        } catch(Exception e) {
-            errorMsg.setText("Feil med innlasting av fil");
-        }
+        OpenAdminTableview open = new OpenAdminTableview();
+        open.open(cr, anchorpane, errorMsg);
+
+        filter();
     }
 
     @FXML
