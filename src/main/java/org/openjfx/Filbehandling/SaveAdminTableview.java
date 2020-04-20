@@ -28,6 +28,7 @@ public class SaveAdminTableview {
         FileChooser fc = new FileChooser();
         fc.setTitle("Lagre Komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         selectedFile = fc.showSaveDialog(null);
         try (OutputStream os = Files.newOutputStream(selectedFile.toPath());
              ObjectOutputStream out = new ObjectOutputStream(os))
