@@ -60,11 +60,7 @@
                               <TableColumn fx:id="col_Totalt" prefWidth="137.0" text="Totalt" />
                           </columns>
                         </TableView>
-                        <Label layoutX="335.0" layoutY="15.0" text="Kjøpshistorikk">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Label>
+                         <Label fx:id="historylbl" layoutX="335.0" layoutY="15.0" text="Kjøpshistorikk"/>
                         <TextField fx:id="searchHistory" layoutX="508.0" layoutY="46.0" promptText="Søk..." />
                      </children>
                   </AnchorPane>
