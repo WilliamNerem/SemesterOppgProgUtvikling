@@ -21,7 +21,7 @@
            <TableColumn fx:id="typeColumn" editable="true" onEditCommit="#typeEdited" prefWidth="152.0" text="Type" />
            <TableColumn fx:id="nameColumn" onEditCommit="#nameEdited" prefWidth="281.9999694824219" text="Navn" />
            <TableColumn fx:id="priceColumn" onEditCommit="#priceEdited" prefWidth="72.66668701171875" text="Pris" />
-           <TableColumn fx:id="deleteColumn" editable="false" prefWidth="52.0" text="Slett" />
+           <TableColumn fx:id="deleteColumn" editable="false" prefWidth="53.33331298828125" text="Slett" />
         </columns>
       </TableView>
       <Label layoutX="147.0" layoutY="12.0" text="Legg til eller endre komponenter">
@@ -92,5 +92,7 @@
           <MenuItem fx:id="save_as" mnemonicParsing="false" onAction="#save" text="Lagre som" />
         </items>
       </MenuButton>
+      <Label fx:id="lblStandardFile" layoutX="14.0" layoutY="58.0" text="Standardfil:" />
+      <Button layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#changeStandardFile" text="Endre" />
    </children>
 </AnchorPane>
