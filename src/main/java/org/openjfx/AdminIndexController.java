@@ -207,8 +207,7 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void save(ActionEvent event) throws IOException, InterruptedException {
-        save.save(cr, anchorpane, errorMsg);
-
+        save.save(cr, anchorpane, errorMsg, confirmMsg);
     }
 
     @FXML
@@ -225,11 +224,14 @@ public class AdminIndexController implements Initializable {
     @FXML
     void changeStandardFile(ActionEvent event) throws IOException, ClassNotFoundException {
         f = open.openStandardFile();
-        InputStream fin = Files.newInputStream(f.toPath());
-        ObjectInputStream oin = new ObjectInputStream(fin);
-        ComponentRegister register = (ComponentRegister) oin.readObject();
-        save.saveStartup(register, f.toPath().toString());
-        open.setLbl(lblStandardFile, fLbl);
+        try(InputStream fin = Files.newInputStream(f.toPath());
+            ObjectInputStream oin = new ObjectInputStream(fin)) {
+            ComponentRegister register = (ComponentRegister) oin.readObject();
+            save.saveStartup(register, f.toPath().toString());
+            open.setLbl(lblStandardFile, fLbl);
+        }catch (ClassNotFoundException | IOException | ClassCastException e){
+            errorMsg.setText("Noe er galt med Filen");
+        }
     }
 
     private void resetTextFields(){
