@@ -10,6 +10,7 @@ import org.openjfx.ThreadAdmin;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class SaveAdminTableview {
 
@@ -34,14 +35,20 @@ public class SaveAdminTableview {
              ObjectOutputStream out = new ObjectOutputStream(os))
         {
             out.writeObject(cr);
-            open();
+            anchorpane.setDisable(false);
+            errorMsg.setText("");
+            confirmMsg.setText("Ny fil lagret");
         } catch (IOException | ClassCastException e) {
             e.printStackTrace();
             failed = true;
-            open();
+            anchorpane.setDisable(false);
+            confirmMsg.setText("");
+            errorMsg.setText("Feil med innlastning av fil");
         } catch (NullPointerException e){
             exited = true;
-            open();
+            confirmMsg.setText("");
+            errorMsg.setText("");
+            anchorpane.setDisable(false);
         }
     }
 
@@ -49,35 +56,21 @@ public class SaveAdminTableview {
         anchorpane.setDisable(true);
     }
 
-    public void open(){
-        task = new ThreadAdmin(selectedFile, failed, exited);
-        task.setOnSucceeded(this::threadDone);
-        task.setOnFailed(this::threadError);
-        Thread thread = new Thread(task);
-        thread.start();
-    }
 
-    public void threadDone(WorkerStateEvent event) {
-        anchorpane.setDisable(false);
-        //errorMsg.setText("");
-
-    }
-
-    public void threadError(WorkerStateEvent event){
-        if (!exited){
-            errorMsg.setText("Feil med lagring av fil");
-        }
-        anchorpane.setDisable(false);
-        errorMsg.setText("");
-    }
-
-    public void quickSave(ComponentRegister componentRegister, File filepath) {
+    public void quickSave(ComponentRegister componentRegister, File filepath, Label confirmMsg, Label errorMsg) throws IOException {
         try{
             OutputStream os = Files.newOutputStream(filepath.toPath());
             ObjectOutputStream out = new ObjectOutputStream(os);
             out.writeObject(componentRegister);
-            confirmMsg.setText("Filen er lagret!");
-        } catch (Exception ignored){}
+            errorMsg.setText("");
+            confirmMsg.setText("Fil lagret");
+        } catch (Exception ignored){
+            OutputStream os = Files.newOutputStream(Paths.get("StandardFile.jobj"));
+            ObjectOutputStream out = new ObjectOutputStream(os);
+            out.writeObject(componentRegister);
+            errorMsg.setText("");
+            confirmMsg.setText("Fil lagret");
+        }
     }
 
     public void saveStartup(ComponentRegister componentRegister, String str) throws IOException {
