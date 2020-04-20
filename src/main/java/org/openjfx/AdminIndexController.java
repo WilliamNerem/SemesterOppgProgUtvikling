@@ -31,13 +31,16 @@ import org.openjfx.Filbehandling.SaveAdminTableview;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
-    File f = new File("adminDummy.jobj");
+    File f = new File("");
     OpenAdminTableview oat = new OpenAdminTableview();
     SaveAdminTableview save = new SaveAdminTableview();
     OpenAdminTableview open = new OpenAdminTableview();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (f.toString().equals("") || f.toString().equals("adminDummy.jobj")){
+            f = new File("testsemesterooppg.jobj");
+        }
         try{
             oat.openDefault(f, cr);
         }catch (Exception ignored){}
@@ -53,6 +56,8 @@ public class AdminIndexController implements Initializable {
         addButtonToTable();
 
         chBox.getSelectionModel().selectFirst();
+
+        lblStandardFile.setText("Standardfil: " + f.toString());
 
         filter();
 
@@ -104,6 +109,9 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     private Label changeError;
+
+    @FXML
+    private Label lblStandardFile;
 
     @FXML
     private Button btnOpen;
@@ -205,17 +213,8 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void quickSave(ActionEvent event) throws IOException {
-        try{
-            File selectedFile = open.getSelectedFile();
-            OutputStream os = Files.newOutputStream(selectedFile.toPath());
-            ObjectOutputStream out = new ObjectOutputStream(os);
-            out.writeObject(cr);
-        } catch (Exception e){
-            File file = new File("adminDummy.jobj");
-            OutputStream os = Files.newOutputStream(file.toPath());
-            ObjectOutputStream out = new ObjectOutputStream(os);
-            out.writeObject(cr);
-        }
+        File selectedFile = open.getSelectedFile();
+        save.quickSave(cr, selectedFile);
     }
 
     @FXML
@@ -223,11 +222,16 @@ public class AdminIndexController implements Initializable {
         App.setRoot("login");
     }
 
+    @FXML
+    void changeStandardFile(ActionEvent event) {
+        f = open.openStandardFile();
+        lblStandardFile.setText("Standardfil: " + f.toPath().toString());
+    }
+
     private void resetTextFields(){
         cbType.setValue("");
         txtNewComponent.setText("");
         txtNewPrice.setText("");
-
     }
 
     //https://stackoverflow.com/questions/29489366/how-to-add-button-in-javafx-table-view

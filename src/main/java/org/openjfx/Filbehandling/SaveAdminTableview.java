@@ -69,4 +69,17 @@ public class SaveAdminTableview {
         anchorpane.setDisable(false);
         errorMsg.setText("");
     }
+
+    public void quickSave(ComponentRegister componentRegister, File filepath) throws IOException {
+        try{
+            OutputStream os = Files.newOutputStream(filepath.toPath());
+            ObjectOutputStream out = new ObjectOutputStream(os);
+            out.writeObject(componentRegister);
+        } catch (Exception e){
+            File file = new File("adminDummy.jobj");
+            OutputStream os = Files.newOutputStream(file.toPath());
+            ObjectOutputStream out = new ObjectOutputStream(os);
+            out.writeObject(componentRegister);
+        }
+    }
 }

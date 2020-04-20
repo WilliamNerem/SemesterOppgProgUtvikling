@@ -50,7 +50,6 @@ public class OpenAdminTableview {
         try(InputStream fin = Files.newInputStream(selectedFile.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
             register = (ComponentRegister) oin.readObject();
-            cr.removeAll();
             open();
         } catch (ClassNotFoundException | IOException | ClassCastException e) {
             e.printStackTrace();
@@ -78,6 +77,7 @@ public class OpenAdminTableview {
     public void threadDone(WorkerStateEvent event) {
         errorMsg.setText("");
         anchorpane.setDisable(false);
+        cr.removeAll();
         register.getComponents().forEach(cr::addComponent);
     }
 
@@ -95,5 +95,13 @@ public class OpenAdminTableview {
         register = (ComponentRegister) oin.readObject();
         cr.removeAll();
         register.getComponents().forEach(cr::addComponent);
+    }
+
+    public File openStandardFile(){
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Åpne lister med komponenter");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+        selectedFile = fc.showOpenDialog(null);
+        return selectedFile;
     }
 }
