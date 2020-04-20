@@ -18,6 +18,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Spliterator;
 
 import javafx.util.Callback;
 import org.openjfx.Feilhåndtering.NameException;
@@ -30,22 +31,16 @@ import org.openjfx.Filbehandling.SaveAdminTableview;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
-
-
-    //testdata:
-
-    Component component1 = new Component("Monitor", "Samsung 32'' Curved skjerm C32F39M", 1995);
-    Component component2 = new Component("Skjermkort", "Gigabyte GeForce RTX 2060 OC", 4599);
-    Component component3 = new Component("Harddisk", "Seagate Expansion Portable 2TB", 899);
-    Component component4 = new Component("Mus", "Logitech M171 Trådløs Mud Sort", 159);
+    File f = new File("adminDummy.jobj");
+    OpenAdminTableview oat = new OpenAdminTableview();
+    SaveAdminTableview save = new SaveAdminTableview();
+    OpenAdminTableview open = new OpenAdminTableview();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cr.addComponent(component1);
-        cr.addComponent(component2);
-        cr.addComponent(component3);
-        cr.addComponent(component4);
-        cr.attachTableView(tableviewAdminIndex);
+        try{
+            oat.openDefault(f, cr);
+        }catch (Exception ignored){}
 
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -115,6 +110,12 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     private Button btnSave;
+
+    @FXML
+    private MenuItem quick_save;
+
+    @FXML
+    private MenuItem save_as;
 
     @FXML
     void add(ActionEvent event) {
@@ -192,16 +193,20 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void open(ActionEvent event) throws InterruptedException, IOException {
-        OpenAdminTableview open = new OpenAdminTableview();
         open.open(cr, anchorpane, errorMsg);
-
         filter();
     }
 
     @FXML
     void save(ActionEvent event) throws IOException, InterruptedException {
-        SaveAdminTableview.save(cr, anchorpane);
+        save.save(cr, anchorpane, errorMsg);
 
+    }
+
+    @FXML
+    void quickSave(ActionEvent event) throws IOException {
+        File selectedFile = open.getSelectedFile();
+        save.quickSave(cr, selectedFile);
     }
 
     @FXML

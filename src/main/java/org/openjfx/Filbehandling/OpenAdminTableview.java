@@ -34,6 +34,10 @@ public class OpenAdminTableview {
         return liste;
     }
 
+    public File getSelectedFile(){
+        return selectedFile;
+    }
+
     public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg) throws InterruptedException, IOException {
         this.anchorpane = anchorpane;
         this.errorMsg = errorMsg;
@@ -46,7 +50,6 @@ public class OpenAdminTableview {
         try(InputStream fin = Files.newInputStream(selectedFile.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
             register = (ComponentRegister) oin.readObject();
-            cr.removeAll();
             open();
         } catch (ClassNotFoundException | IOException | ClassCastException e) {
             e.printStackTrace();
@@ -74,6 +77,7 @@ public class OpenAdminTableview {
     public void threadDone(WorkerStateEvent event) {
         errorMsg.setText("");
         anchorpane.setDisable(false);
+        cr.removeAll();
         register.getComponents().forEach(cr::addComponent);
     }
 
@@ -83,5 +87,13 @@ public class OpenAdminTableview {
             errorMsg.setText("Feil med innlasting av fil");
         }
         anchorpane.setDisable(false);
+    }
+
+    public void openDefault(File f, ComponentRegister cr) throws IOException, ClassNotFoundException{
+        InputStream fin = Files.newInputStream(f.toPath());
+        ObjectInputStream oin = new ObjectInputStream(fin);
+        register = (ComponentRegister) oin.readObject();
+        cr.removeAll();
+        register.getComponents().forEach(cr::addComponent);
     }
 }
