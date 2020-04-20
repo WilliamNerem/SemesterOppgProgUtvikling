@@ -14,17 +14,13 @@
    <children>
       <TabPane prefHeight="598.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="tab1" text="Handlekurv">
+          <Tab fx:id="tab1" text="Handlevogn">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="77.0" prefWidth="77.0">
                      <children>
                         <Button fx:id="tilbakeTilUserIndex1" layoutX="737.0" layoutY="18.0" mnemonicParsing="false" onAction="#switchToUserIndex" text="Tilbake" />
                         <Button fx:id="secondaryButton1" layoutX="14.0" layoutY="530.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
-                        <Label layoutX="348.0" layoutY="14.0" text="Handlekurv">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Label>
+                         <Label  fx:id="lblShoppingcart" layoutX="348.0" layoutY="14.0" text="Handlevogn"/>
                         <Button fx:id="btnKjop" layoutX="712.0" layoutY="517.0" mnemonicParsing="false" onAction="#kjop" prefHeight="38.0" prefWidth="79.0" text="Kjøp" />
                         <TableView fx:id="tableviewHandlekurv" layoutX="99.0" layoutY="87.0" prefHeight="415.0" prefWidth="607.0">
                           <columns>
@@ -36,11 +32,7 @@
                               <TableColumn fx:id="col_slett1" prefWidth="68.0" text="Slett" />
                           </columns>
                         </TableView>
-                        <Label fx:id="lblTotalPrice" layoutX="486.0" layoutY="522.0" text="Totalpris:">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                         <Label fx:id="lblTotalPrice" layoutX="486.0" layoutY="522.0" text="Totalpris:"/>
                      </children>
                   </AnchorPane>
             </content>

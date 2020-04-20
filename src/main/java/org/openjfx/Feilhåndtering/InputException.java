@@ -22,10 +22,10 @@ public class InputException extends Exception{
         else if(cb.getValue().getName().equals("Ingen") && antall.equals(0)) {
             return "";
         }
-        else return CalculatePrice.calcComponent(cb.getValue().getPrice(),antall)+" kr";
+        else return CalculatePrice.calcComponent(cb.getValue().getPrice(),antall)+",-";
     }
 
     public static String checkForTotalPrice(UserIndexController uic) {
-        return "Totalpris : "+((uic.cmbMotherboard.getValue().getPrice()*uic.txtAntallMotherboard.getValue())+(uic.cmbHarddisk.getValue().getPrice()*uic.txtAntallHarddisk.getValue())+(uic.cmbSkjermkort.getValue().getPrice()*uic.txtAntallSkjermkort.getValue())+(uic.cmbMus.getValue().getPrice()*uic.txtAntallMus.getValue())+(uic.cmbTastatur.getValue().getPrice()*uic.txtAntallTastatur.getValue())+(uic.cmbMinne.getValue().getPrice()*uic.txtAntallMinne.getValue())+(uic.cmbMonitor.getValue().getPrice()*uic.txtAntallMonitor.getValue()))+" kr";
+        return "Totalpris : "+((uic.cmbMotherboard.getValue().getPrice()*uic.txtAntallMotherboard.getValue())+(uic.cmbHarddisk.getValue().getPrice()*uic.txtAntallHarddisk.getValue())+(uic.cmbSkjermkort.getValue().getPrice()*uic.txtAntallSkjermkort.getValue())+(uic.cmbMus.getValue().getPrice()*uic.txtAntallMus.getValue())+(uic.cmbTastatur.getValue().getPrice()*uic.txtAntallTastatur.getValue())+(uic.cmbMinne.getValue().getPrice()*uic.txtAntallMinne.getValue())+(uic.cmbMonitor.getValue().getPrice()*uic.txtAntallMonitor.getValue()))+",-";
     }
 }
