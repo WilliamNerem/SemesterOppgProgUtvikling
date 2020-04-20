@@ -82,7 +82,8 @@
             <FXCollections fx:factory="observableArrayList">
                <String fx:id="filterType" fx:value="Type" />
                <String fx:id="filterName" fx:value="Navn" />
-               <String fx:id="filterPrice" fx:value="Pris" />
+               <String fx:id="filterPriceMin" fx:value="Pris (min)" />
+               <String fx:id="filerPriceMax" fx:value="Pris (maks)" />
             </FXCollections>
          </items>
       </ChoiceBox>

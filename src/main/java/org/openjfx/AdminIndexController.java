@@ -31,16 +31,18 @@ import org.openjfx.Filbehandling.SaveAdminTableview;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
-    File f = new File("");
+    File fLbl = new File("StandardFileLbl.jobj");
+    File f = new File("StandardFile.jobj");
     OpenAdminTableview oat = new OpenAdminTableview();
     SaveAdminTableview save = new SaveAdminTableview();
     OpenAdminTableview open = new OpenAdminTableview();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (f.toString().equals("") || f.toString().equals("adminDummy.jobj")){
-            f = new File("testsemesterooppg.jobj");
-        }
+        try {
+            open.setLbl(lblStandardFile, fLbl);
+        } catch (Exception ignored) {}
+
         try{
             oat.openDefault(f, cr);
         }catch (Exception ignored){}
@@ -56,8 +58,6 @@ public class AdminIndexController implements Initializable {
         addButtonToTable();
 
         chBox.getSelectionModel().selectFirst();
-
-        lblStandardFile.setText("Standardfil: " + f.toString());
 
         filter();
 
@@ -207,8 +207,7 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void save(ActionEvent event) throws IOException, InterruptedException {
-        save.save(cr, anchorpane, errorMsg);
-
+        save.save(cr, anchorpane, errorMsg, confirmMsg);
     }
 
     @FXML
@@ -223,9 +222,17 @@ public class AdminIndexController implements Initializable {
     }
 
     @FXML
-    void changeStandardFile(ActionEvent event) {
+    void changeStandardFile(ActionEvent event) throws IOException, ClassNotFoundException {
         f = open.openStandardFile();
-        lblStandardFile.setText("Standardfil: " + f.toPath().toString());
+        try(InputStream fin = Files.newInputStream(f.toPath());
+            ObjectInputStream oin = new ObjectInputStream(fin)) {
+            ComponentRegister register = (ComponentRegister) oin.readObject();
+            save.saveStartup(register, f.toPath().toString());
+            open.setLbl(lblStandardFile, fLbl);
+            confirmMsg.setText("Standardfil for sluttbruker endret");
+        }catch (ClassNotFoundException | IOException | ClassCastException e){
+            errorMsg.setText("Noe er galt med Filen");
+        }
     }
 
     private void resetTextFields(){
@@ -291,10 +298,10 @@ public class AdminIndexController implements Initializable {
                             return true;
                         }
                         break;
-                    case "Pris":
-                        int IntLCF = 0;
+                    case "Pris (min)":
+                        int IntLCMin = 0;
                         try{
-                            IntLCF = Integer.parseInt(lowerCaseFilter);
+                            IntLCMin = Integer.parseInt(lowerCaseFilter);
                             errorMsg.setText("");
                         }
                         catch (Exception e){
@@ -302,7 +309,22 @@ public class AdminIndexController implements Initializable {
                             errorMsg.setText("Pris må være tall høyere enn 0");
                             return false;
                         }
-                        if(component.getPrice() == IntLCF){
+                        if(component.getPrice() >= IntLCMin){
+                            return true;
+                        }
+                        break;
+                    case "Pris (maks)":
+                        int IntLCMaks = 0;
+                        try{
+                            IntLCMaks = Integer.parseInt(lowerCaseFilter);
+                            errorMsg.setText("");
+                        }
+                        catch (Exception e){
+                            confirmMsg.setText("");
+                            errorMsg.setText("Pris må være tall høyere enn 0");
+                            return false;
+                        }
+                        if(component.getPrice() <= IntLCMaks){
                             return true;
                         }
                         break;

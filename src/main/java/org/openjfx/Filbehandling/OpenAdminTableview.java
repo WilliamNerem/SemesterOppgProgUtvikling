@@ -5,12 +5,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import org.openjfx.ComponentRegister;
 import org.openjfx.ThreadAdmin;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class OpenAdminTableview {
 
@@ -38,7 +41,7 @@ public class OpenAdminTableview {
         return selectedFile;
     }
 
-    public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg) throws InterruptedException, IOException {
+    public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg) throws IOException {
         this.anchorpane = anchorpane;
         this.errorMsg = errorMsg;
         this.cr = cr;
@@ -46,6 +49,7 @@ public class OpenAdminTableview {
         FileChooser fc = new FileChooser();
         fc.setTitle("Åpne lister med komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         selectedFile = fc.showOpenDialog(null);
         try(InputStream fin = Files.newInputStream(selectedFile.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
@@ -101,7 +105,15 @@ public class OpenAdminTableview {
         FileChooser fc = new FileChooser();
         fc.setTitle("Åpne lister med komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         selectedFile = fc.showOpenDialog(null);
         return selectedFile;
+    }
+
+    public void setLbl(Label standardLbl, File StandardFileLbl) throws IOException, ClassNotFoundException {
+        InputStream fin = Files.newInputStream(StandardFileLbl.toPath());
+        ObjectInputStream oin = new ObjectInputStream(fin);
+        Path fileName = Paths.get((String) oin.readObject());
+        standardLbl.setText("Standardfil: " + fileName.getFileName());
     }
 }

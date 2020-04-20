@@ -8,10 +8,7 @@ import org.openjfx.Component;
 import org.openjfx.ComponentRegister;
 import org.openjfx.ThreadAdmin;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
 
 public class SaveAdminTableview {
@@ -20,15 +17,18 @@ public class SaveAdminTableview {
     private AnchorPane anchorpane;
     private ThreadAdmin task;
     private Label errorMsg;
+    private Label confirmMsg;
     private boolean failed = false;
     private boolean exited = false;
 
-    public void save(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg) throws InterruptedException {
+    public void save(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg, Label confirmMsg) throws InterruptedException {
         this.anchorpane = anchorpane;
+        this.confirmMsg = confirmMsg;
         disable();
         FileChooser fc = new FileChooser();
         fc.setTitle("Lagre Komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         selectedFile = fc.showSaveDialog(null);
         try (OutputStream os = Files.newOutputStream(selectedFile.toPath());
              ObjectOutputStream out = new ObjectOutputStream(os))
@@ -59,7 +59,8 @@ public class SaveAdminTableview {
 
     public void threadDone(WorkerStateEvent event) {
         anchorpane.setDisable(false);
-        errorMsg.setText("");
+        //errorMsg.setText("");
+
     }
 
     public void threadError(WorkerStateEvent event){
@@ -70,16 +71,23 @@ public class SaveAdminTableview {
         errorMsg.setText("");
     }
 
-    public void quickSave(ComponentRegister componentRegister, File filepath) throws IOException {
+    public void quickSave(ComponentRegister componentRegister, File filepath) {
         try{
             OutputStream os = Files.newOutputStream(filepath.toPath());
             ObjectOutputStream out = new ObjectOutputStream(os);
             out.writeObject(componentRegister);
-        } catch (Exception e){
-            File file = new File("adminDummy.jobj");
-            OutputStream os = Files.newOutputStream(file.toPath());
-            ObjectOutputStream out = new ObjectOutputStream(os);
-            out.writeObject(componentRegister);
-        }
+            confirmMsg.setText("Filen er lagret!");
+        } catch (Exception ignored){}
+    }
+
+    public void saveStartup(ComponentRegister componentRegister, String str) throws IOException {
+        File afile = new File("StandardFile.jobj");
+        File selectedFileLbl = new File("StandardFileLbl.jobj");
+        OutputStream os = Files.newOutputStream(afile.toPath());
+        ObjectOutputStream out = new ObjectOutputStream(os);
+        out.writeObject(componentRegister);
+        OutputStream osLbl = Files.newOutputStream(selectedFileLbl.toPath());
+        ObjectOutputStream outLbl = new ObjectOutputStream(osLbl);
+        outLbl.writeObject(str);
     }
 }
