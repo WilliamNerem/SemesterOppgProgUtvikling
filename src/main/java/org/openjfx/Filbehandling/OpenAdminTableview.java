@@ -34,6 +34,10 @@ public class OpenAdminTableview {
         return liste;
     }
 
+    public File getSelectedFile(){
+        return selectedFile;
+    }
+
     public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg) throws InterruptedException, IOException {
         this.anchorpane = anchorpane;
         this.errorMsg = errorMsg;
