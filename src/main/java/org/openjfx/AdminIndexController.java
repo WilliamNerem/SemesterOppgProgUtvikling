@@ -200,7 +200,8 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void save(ActionEvent event) throws IOException, InterruptedException {
-        SaveAdminTableview.save(cr, anchorpane);
+        SaveAdminTableview save = new SaveAdminTableview();
+        save.save(cr, anchorpane, errorMsg);
 
     }
 
