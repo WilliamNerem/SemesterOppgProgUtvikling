@@ -45,11 +45,10 @@ public class OpenAdminTableview {
         this.errorMsg = errorMsg;
         this.cr = cr;
         disable();
-        File existingFile = new File("testSaveTxtUser.txt");
         FileChooser fc = new FileChooser();
         fc.setTitle("Åpne lister med komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
-        fc.setInitialDirectory(existingFile);
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         selectedFile = fc.showOpenDialog(null);
         try(InputStream fin = Files.newInputStream(selectedFile.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
