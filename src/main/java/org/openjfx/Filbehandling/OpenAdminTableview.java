@@ -50,7 +50,6 @@ public class OpenAdminTableview {
         try(InputStream fin = Files.newInputStream(selectedFile.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
             register = (ComponentRegister) oin.readObject();
-            cr.removeAll();
             open();
         } catch (ClassNotFoundException | IOException | ClassCastException e) {
             e.printStackTrace();
@@ -78,6 +77,7 @@ public class OpenAdminTableview {
     public void threadDone(WorkerStateEvent event) {
         errorMsg.setText("");
         anchorpane.setDisable(false);
+        cr.removeAll();
         register.getComponents().forEach(cr::addComponent);
     }
 
