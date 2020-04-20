@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -65,7 +67,6 @@
       </ComboBox>
       <Label fx:id="confirmMsg" layoutX="355.0" layoutY="214.0" textFill="#00cf00" />
       <Button fx:id="btnOpen" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#open" text="Åpne" />
-      <Button fx:id="btnSave" layoutX="71.0" layoutY="14.0" mnemonicParsing="false" onAction="#save" text="Lagre" />
       <Label fx:id="changeError" layoutX="164.0" layoutY="281.0" textFill="RED">
          <font>
             <Font size="11.0" />
@@ -85,5 +86,11 @@
             </FXCollections>
          </items>
       </ChoiceBox>
+      <MenuButton layoutX="71.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Lagre">
+        <items>
+          <MenuItem fx:id="quick_save" mnemonicParsing="false" onAction="#quickSave" text="Lagre" />
+          <MenuItem fx:id="save_as" mnemonicParsing="false" onAction="#save" text="Lagre som" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>
