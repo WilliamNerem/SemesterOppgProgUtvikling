@@ -96,4 +96,12 @@ public class OpenAdminTableview {
         cr.removeAll();
         register.getComponents().forEach(cr::addComponent);
     }
+
+    public File openStandardFile(){
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Åpne lister med komponenter");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+        selectedFile = fc.showOpenDialog(null);
+        return selectedFile;
+    }
 }

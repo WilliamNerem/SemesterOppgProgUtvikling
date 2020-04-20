@@ -52,17 +52,18 @@
     -fx-background-color: #a7a7a7;
 }
 
-.combo-box, .choice-box{
+.combo-box, .choice-box, .menu-button{
     -fx-background-color: #e6e6e6;
     -fx-background-radius: 10;
     -fx-cursor: hand;
 }
 
-.combo-box:hover, .choice-box:hover{
+.combo-box:hover, .choice-box:hover, .menu-button:hover{
     -fx-background-color: #cdcdcd;
 }
 
-.combo-box .list-view .list-cell:selected, .choice-box .menu-item:focused, .combo-box .list-view .list-cell:hover {
+.combo-box .list-view .list-cell:selected, .choice-box .menu-item:focused, .combo-box .list-view .list-cell:hover,
+.menu-button .menu-item:focused{
     -fx-background-color: #df7a2e;
 }
 
