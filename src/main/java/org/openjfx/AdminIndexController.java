@@ -30,6 +30,8 @@ import org.openjfx.Filbehandling.SaveAdminTableview;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
+    SaveAdminTableview save = new SaveAdminTableview();
+    OpenAdminTableview open = new OpenAdminTableview();
 
 
     //testdata:
@@ -117,6 +119,12 @@ public class AdminIndexController implements Initializable {
     private Button btnSave;
 
     @FXML
+    private MenuItem quick_save;
+
+    @FXML
+    private MenuItem save_as;
+
+    @FXML
     void add(ActionEvent event) {
         confirmMsg.setText("");
         errorMsg.setText("");
@@ -192,17 +200,29 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void open(ActionEvent event) throws InterruptedException, IOException {
-        OpenAdminTableview open = new OpenAdminTableview();
         open.open(cr, anchorpane, errorMsg);
-
         filter();
     }
 
     @FXML
     void save(ActionEvent event) throws IOException, InterruptedException {
-        SaveAdminTableview save = new SaveAdminTableview();
         save.save(cr, anchorpane, errorMsg);
 
+    }
+
+    @FXML
+    void quickSave(ActionEvent event) throws IOException {
+        try{
+            File selectedFile = open.getSelectedFile();
+            OutputStream os = Files.newOutputStream(selectedFile.toPath());
+            ObjectOutputStream out = new ObjectOutputStream(os);
+            out.writeObject(cr);
+        } catch (Exception e){
+            File file = new File("adminDummy.jobj");
+            OutputStream os = Files.newOutputStream(file.toPath());
+            ObjectOutputStream out = new ObjectOutputStream(os);
+            out.writeObject(cr);
+        }
     }
 
     @FXML
