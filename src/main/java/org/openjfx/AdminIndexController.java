@@ -18,6 +18,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Spliterator;
 
 import javafx.util.Callback;
 import org.openjfx.Feilhåndtering.NameException;
@@ -30,22 +31,14 @@ import org.openjfx.Filbehandling.SaveAdminTableview;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
-
-
-    //testdata:
-
-    Component component1 = new Component("Monitor", "Samsung 32'' Curved skjerm C32F39M", 1995);
-    Component component2 = new Component("Skjermkort", "Gigabyte GeForce RTX 2060 OC", 4599);
-    Component component3 = new Component("Harddisk", "Seagate Expansion Portable 2TB", 899);
-    Component component4 = new Component("Mus", "Logitech M171 Trådløs Mud Sort", 159);
+    File f = new File("adminDummy.jobj");
+    OpenAdminTableview oat = new OpenAdminTableview();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        cr.addComponent(component1);
-        cr.addComponent(component2);
-        cr.addComponent(component3);
-        cr.addComponent(component4);
-        cr.attachTableView(tableviewAdminIndex);
+        try{
+            oat.openDefault(f, cr);
+        }catch (Exception ignored){}
 
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

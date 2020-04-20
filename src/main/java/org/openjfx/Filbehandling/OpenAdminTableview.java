@@ -84,4 +84,12 @@ public class OpenAdminTableview {
         }
         anchorpane.setDisable(false);
     }
+
+    public void openDefault(File f, ComponentRegister cr) throws IOException, ClassNotFoundException{
+        InputStream fin = Files.newInputStream(f.toPath());
+        ObjectInputStream oin = new ObjectInputStream(fin);
+        register = (ComponentRegister) oin.readObject();
+        cr.removeAll();
+        register.getComponents().forEach(cr::addComponent);
+    }
 }
