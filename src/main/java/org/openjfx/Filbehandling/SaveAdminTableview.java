@@ -8,10 +8,7 @@ import org.openjfx.Component;
 import org.openjfx.ComponentRegister;
 import org.openjfx.ThreadAdmin;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.nio.file.Files;
 
 public class SaveAdminTableview {
@@ -81,5 +78,16 @@ public class SaveAdminTableview {
             ObjectOutputStream out = new ObjectOutputStream(os);
             out.writeObject(componentRegister);
         }
+    }
+
+    public void saveStartup(ComponentRegister componentRegister, String str) throws IOException {
+        File afile = new File("StandardFile.jobj");
+        File selectedFileLbl = new File("StandardFileLbl.jobj");
+        OutputStream os = Files.newOutputStream(afile.toPath());
+        ObjectOutputStream out = new ObjectOutputStream(os);
+        out.writeObject(componentRegister);
+        OutputStream osLbl = Files.newOutputStream(selectedFileLbl.toPath());
+        ObjectOutputStream outLbl = new ObjectOutputStream(osLbl);
+        outLbl.writeObject(str);
     }
 }

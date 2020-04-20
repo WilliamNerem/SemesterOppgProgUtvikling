@@ -23,7 +23,7 @@ public class CheckArrayOfComponents {
     public void setComponents(){
         checkComponentAll.add(i);
         ComponentRegister cr = new ComponentRegister();
-        File f = new File("adminDummy.jobj");
+        File f = new File("StandardFile.jobj");
         OpenAdminTableview oat = new OpenAdminTableview();
         try{
             oat.openDefault(f, cr);

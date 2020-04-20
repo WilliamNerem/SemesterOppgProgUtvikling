@@ -11,6 +11,8 @@ import org.openjfx.ThreadAdmin;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class OpenAdminTableview {
 
@@ -103,5 +105,12 @@ public class OpenAdminTableview {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
         selectedFile = fc.showOpenDialog(null);
         return selectedFile;
+    }
+
+    public void setLbl(Label standardLbl, File StandardFileLbl) throws IOException, ClassNotFoundException {
+        InputStream fin = Files.newInputStream(StandardFileLbl.toPath());
+        ObjectInputStream oin = new ObjectInputStream(fin);
+        Path fileName = Paths.get((String) oin.readObject());
+        standardLbl.setText("Standardfil: " + fileName.getFileName());
     }
 }

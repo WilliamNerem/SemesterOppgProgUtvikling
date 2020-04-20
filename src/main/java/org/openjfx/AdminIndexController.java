@@ -31,16 +31,18 @@ import org.openjfx.Filbehandling.SaveAdminTableview;
 public class AdminIndexController implements Initializable {
     ComponentRegister cr = new ComponentRegister();
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
-    File f = new File("");
+    File fLbl = new File("StandardFileLbl.jobj");
+    File f = new File("StandardFile.jobj");
     OpenAdminTableview oat = new OpenAdminTableview();
     SaveAdminTableview save = new SaveAdminTableview();
     OpenAdminTableview open = new OpenAdminTableview();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (f.toString().equals("") || f.toString().equals("adminDummy.jobj")){
-            f = new File("testsemesterooppg.jobj");
-        }
+        try {
+            open.setLbl(lblStandardFile, fLbl);
+        } catch (Exception ignored) {}
+
         try{
             oat.openDefault(f, cr);
         }catch (Exception ignored){}
@@ -56,8 +58,6 @@ public class AdminIndexController implements Initializable {
         addButtonToTable();
 
         chBox.getSelectionModel().selectFirst();
-
-        lblStandardFile.setText("Standardfil: " + f.toString());
 
         filter();
 
@@ -223,9 +223,13 @@ public class AdminIndexController implements Initializable {
     }
 
     @FXML
-    void changeStandardFile(ActionEvent event) {
+    void changeStandardFile(ActionEvent event) throws IOException, ClassNotFoundException {
         f = open.openStandardFile();
-        lblStandardFile.setText("Standardfil: " + f.toPath().toString());
+        InputStream fin = Files.newInputStream(f.toPath());
+        ObjectInputStream oin = new ObjectInputStream(fin);
+        ComponentRegister register = (ComponentRegister) oin.readObject();
+        save.saveStartup(register, f.toPath().toString());
+        open.setLbl(lblStandardFile, fLbl);
     }
 
     private void resetTextFields(){
