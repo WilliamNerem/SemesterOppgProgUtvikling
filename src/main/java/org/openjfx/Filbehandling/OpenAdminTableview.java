@@ -51,8 +51,6 @@ public class OpenAdminTableview {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
         fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         selectedFile = fc.showOpenDialog(null);
-        File defaultDirectory = ;
-        fc.setInitialDirectory(defaultDirectory);
         try(InputStream fin = Files.newInputStream(selectedFile.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
             register = (ComponentRegister) oin.readObject();
