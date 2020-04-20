@@ -205,17 +205,8 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void quickSave(ActionEvent event) throws IOException {
-        try{
-            File selectedFile = open.getSelectedFile();
-            OutputStream os = Files.newOutputStream(selectedFile.toPath());
-            ObjectOutputStream out = new ObjectOutputStream(os);
-            out.writeObject(cr);
-        } catch (Exception e){
-            File file = new File("adminDummy.jobj");
-            OutputStream os = Files.newOutputStream(file.toPath());
-            ObjectOutputStream out = new ObjectOutputStream(os);
-            out.writeObject(cr);
-        }
+        File selectedFile = open.getSelectedFile();
+        save.quickSave(cr, selectedFile);
     }
 
     @FXML
