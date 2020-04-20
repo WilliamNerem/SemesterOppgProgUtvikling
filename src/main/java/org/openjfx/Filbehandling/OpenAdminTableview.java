@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import org.openjfx.ComponentRegister;
 import org.openjfx.ThreadAdmin;
@@ -40,7 +41,7 @@ public class OpenAdminTableview {
         return selectedFile;
     }
 
-    public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg) throws InterruptedException, IOException {
+    public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg) throws IOException {
         this.anchorpane = anchorpane;
         this.errorMsg = errorMsg;
         this.cr = cr;
@@ -50,6 +51,8 @@ public class OpenAdminTableview {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
         fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         selectedFile = fc.showOpenDialog(null);
+        File defaultDirectory = ;
+        fc.setInitialDirectory(defaultDirectory);
         try(InputStream fin = Files.newInputStream(selectedFile.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
             register = (ComponentRegister) oin.readObject();

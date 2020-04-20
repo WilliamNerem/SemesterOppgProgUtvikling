@@ -229,6 +229,7 @@ public class AdminIndexController implements Initializable {
             ComponentRegister register = (ComponentRegister) oin.readObject();
             save.saveStartup(register, f.toPath().toString());
             open.setLbl(lblStandardFile, fLbl);
+            confirmMsg.setText("Standardfil for sluttbruker endret");
         }catch (ClassNotFoundException | IOException | ClassCastException e){
             errorMsg.setText("Noe er galt med Filen");
         }
