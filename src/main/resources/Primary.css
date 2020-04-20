@@ -130,6 +130,10 @@
     -fx-font-family: "Berlin Sans FB";
 }
 
-#historylbl{
+#historylbl, #lblShoppingcart{
     -fx-font-size: 22;
+}
+
+#lblTotalPrice{
+    -fx-font-size: 18;
 }

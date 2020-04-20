@@ -5,11 +5,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import org.openjfx.ComponentRegister;
 import org.openjfx.ThreadAdmin;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,6 +22,7 @@ public class OpenAdminTableview {
     private ThreadAdmin task;
     private AnchorPane anchorpane;
     private Label errorMsg;
+    private Label confirmMsg;
     private ComponentRegister cr;
     private boolean failed = false;
     private boolean exited = false;
@@ -40,16 +43,16 @@ public class OpenAdminTableview {
         return selectedFile;
     }
 
-    public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg) throws InterruptedException, IOException {
+    public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg, Label confirmMsg) throws IOException {
         this.anchorpane = anchorpane;
         this.errorMsg = errorMsg;
+        this.confirmMsg = confirmMsg;
         this.cr = cr;
         disable();
-        File existingFile = new File("testSaveTxtUser.txt");
         FileChooser fc = new FileChooser();
         fc.setTitle("Åpne lister med komponenter");
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
-        fc.setInitialDirectory(existingFile);
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         selectedFile = fc.showOpenDialog(null);
         try(InputStream fin = Files.newInputStream(selectedFile.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
@@ -58,11 +61,14 @@ public class OpenAdminTableview {
         } catch (ClassNotFoundException | IOException | ClassCastException e) {
             e.printStackTrace();
             failed = true;
-            open();
-            throw new IOException("Something is wrong with the implementation. See debug information");
+            anchorpane.setDisable(false);
+            errorMsg.setText("Noe er galt med filen");
+            confirmMsg.setText("");
         } catch (NullPointerException e){
             exited = true;
-            open();
+            anchorpane.setDisable(false);
+            errorMsg.setText("");
+            confirmMsg.setText("");
         }
     }
 
@@ -73,7 +79,6 @@ public class OpenAdminTableview {
     public void open(){
         task = new ThreadAdmin(selectedFile, failed, exited);
         task.setOnSucceeded(this::threadDone);
-        task.setOnFailed(this::threadError);
         Thread thread = new Thread(task);
         thread.start();
     }
@@ -83,14 +88,7 @@ public class OpenAdminTableview {
         anchorpane.setDisable(false);
         cr.removeAll();
         register.getComponents().forEach(cr::addComponent);
-    }
-
-    public void threadError(WorkerStateEvent event){
-        errorMsg.setText("");
-        if (!exited){
-            errorMsg.setText("Feil med innlasting av fil");
-        }
-        anchorpane.setDisable(false);
+        confirmMsg.setText("");
     }
 
     public void openDefault(File f, ComponentRegister cr) throws IOException, ClassNotFoundException{
@@ -102,11 +100,16 @@ public class OpenAdminTableview {
     }
 
     public File openStandardFile(){
-        FileChooser fc = new FileChooser();
-        fc.setTitle("Åpne lister med komponenter");
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
-        selectedFile = fc.showOpenDialog(null);
-        return selectedFile;
+        try {
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Åpne lister med komponenter");
+            fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("binary files","*.jobj"));
+            fc.setInitialDirectory(new File(System.getProperty("user.dir")));
+            selectedFile = fc.showOpenDialog(null);
+            return selectedFile;
+        }catch (RuntimeException e){
+             return null;
+        }
     }
 
     public void setLbl(Label standardLbl, File StandardFileLbl) throws IOException, ClassNotFoundException {
