@@ -291,10 +291,10 @@ public class AdminIndexController implements Initializable {
                             return true;
                         }
                         break;
-                    case "Pris":
-                        int IntLCF = 0;
+                    case "Pris (min)":
+                        int IntLCMin = 0;
                         try{
-                            IntLCF = Integer.parseInt(lowerCaseFilter);
+                            IntLCMin = Integer.parseInt(lowerCaseFilter);
                             errorMsg.setText("");
                         }
                         catch (Exception e){
@@ -302,7 +302,22 @@ public class AdminIndexController implements Initializable {
                             errorMsg.setText("Pris må være tall høyere enn 0");
                             return false;
                         }
-                        if(component.getPrice() == IntLCF){
+                        if(component.getPrice() >= IntLCMin){
+                            return true;
+                        }
+                        break;
+                    case "Pris (maks)":
+                        int IntLCMaks = 0;
+                        try{
+                            IntLCMaks = Integer.parseInt(lowerCaseFilter);
+                            errorMsg.setText("");
+                        }
+                        catch (Exception e){
+                            confirmMsg.setText("");
+                            errorMsg.setText("Pris må være tall høyere enn 0");
+                            return false;
+                        }
+                        if(component.getPrice() <= IntLCMaks){
                             return true;
                         }
                         break;
