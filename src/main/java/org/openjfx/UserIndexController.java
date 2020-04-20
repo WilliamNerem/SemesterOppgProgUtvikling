@@ -29,6 +29,17 @@ public class UserIndexController {
     public Integer int1;
 
     @FXML
+    private void initialize(){
+        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
+        checkArray.setComponents();
+        checkArray.setAll(cmbMus,cmbSkjermkort,cmbHarddisk,cmbMotherboard,cmbTastatur,cmbMinne,cmbMonitor,
+                txtAntallSkjermkort,txtAntallHarddisk,txtAntallTastatur,txtAntallMotherboard,txtAntallMonitor,
+                txtAntallMinne,txtAntallMus);
+        System.out.println(checkArray.checkComponentAll);
+
+    }
+
+    @FXML
     public ComboBox<Component> cmbSkjermkort;
 
     @FXML
@@ -218,6 +229,7 @@ public class UserIndexController {
     void addToHandlekurv(ActionEvent event) throws IOException {
         componentsBought = FXCollections.observableArrayList();
         CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
+        checkArray.setComponents();
         for (Component c : checkArray.checkComponentAll) {
             if (lblWrong.getText().equals("") && !c.getName().equals("Ingen")) {
                 try {
@@ -273,12 +285,6 @@ public class UserIndexController {
 
     public void addToHandlekurvNumber(int i){
         lblAntallInHandlekurv.setText("("+i+")");
-    }
-
-    @FXML
-    private void initialize(){
-        CheckArrayOfComponents checkArray = new CheckArrayOfComponents();
-        checkArray.setAll(cmbMus,cmbSkjermkort,cmbHarddisk,cmbMotherboard,cmbTastatur,cmbMinne,cmbMonitor,txtAntallSkjermkort,txtAntallHarddisk,txtAntallTastatur,txtAntallMotherboard,txtAntallMonitor,txtAntallMinne,txtAntallMus);
     }
 
 }

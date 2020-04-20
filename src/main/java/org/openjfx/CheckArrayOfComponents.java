@@ -3,6 +3,9 @@ package org.openjfx;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
+import org.openjfx.Filbehandling.OpenAdminTableview;
+
+import java.io.File;
 
 public class CheckArrayOfComponents {
     UserIndexController uic = new UserIndexController();
@@ -13,8 +16,30 @@ public class CheckArrayOfComponents {
     ObservableList <Component> minne = uic.minneChoose;
     ObservableList <Component> monitor = uic.monitorChoose;
     ObservableList <Component> motherboard = uic.motherboardChoose;
+    Component i = new Component("Ingen", "Ingen", 0);
+    ObservableList<Component> checkComponentAll = FXCollections.observableArrayList();
+    ObservableList<Integer> antall = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9);
 
-    public void setAll(ComboBox<Component> cmbMus, ComboBox<Component> cmbSkjermkort, ComboBox<Component> cmbHarddisk, ComboBox<Component> cmbMotherboard, ComboBox<Component> cmbTastatur, ComboBox<Component> cmbMinne, ComboBox<Component> cmbMonitor, ComboBox<Integer> txtAntallSkjermkort, ComboBox<Integer> txtAntallHarddisk, ComboBox<Integer> txtAntallTastatur, ComboBox<Integer> txtAntallMotherboard, ComboBox<Integer> txtAntallMonitor, ComboBox<Integer> txtAntallMinne, ComboBox<Integer> txtAntallMus) {
+    public void setComponents(){
+        checkComponentAll.add(i);
+        ComponentRegister cr = new ComponentRegister();
+        File f = new File("adminDummy.jobj");
+        OpenAdminTableview oat = new OpenAdminTableview();
+        try{
+            oat.openDefault(f, cr);
+        }catch (Exception ignored){}
+
+        checkComponentAll.addAll(cr.getComponents());
+
+    }
+
+    public void setAll(ComboBox<Component> cmbMus, ComboBox<Component> cmbSkjermkort,
+                       ComboBox<Component> cmbHarddisk, ComboBox<Component> cmbMotherboard,
+                       ComboBox<Component> cmbTastatur, ComboBox<Component> cmbMinne,
+                       ComboBox<Component> cmbMonitor, ComboBox<Integer> txtAntallSkjermkort,
+                       ComboBox<Integer> txtAntallHarddisk, ComboBox<Integer> txtAntallTastatur,
+                       ComboBox<Integer> txtAntallMotherboard, ComboBox<Integer> txtAntallMonitor,
+                       ComboBox<Integer> txtAntallMinne, ComboBox<Integer> txtAntallMus) {
         cmbMus.setItems(checkmus());
         cmbMus.getSelectionModel().selectFirst();
         cmbSkjermkort.setItems(checkSkjermkort());
@@ -45,17 +70,9 @@ public class CheckArrayOfComponents {
         txtAntallMus.getSelectionModel().selectFirst();
     }
 
-    Component test1 = new Component("Ingen","Ingen",0);
-    Component test2 = new Component("Mus","FK Zowie 13",1999);
-    Component test3 = new Component("Skjermkort", "EtSkjermkort", 1479);
-    Component test4 = new Component("Harddisk", "EnHarddisk", 1479);
-    Component test5 = new Component("Tastatur", "EtTastatur", 2500);
-    Component test6 = new Component("Minne", "EtMinne", 599);
-    Component test7 = new Component("Monitor", "EnMonitor", 2900);
-    Component test8 = new Component("Motherboard", "EtMotherboard", 1450);
 
-    public ObservableList<Component> checkComponentAll = FXCollections.observableArrayList(test1, test2, test3, test4, test5, test6, test7, test8);
-    public ObservableList<Integer> antall = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9);
+
+
 
     public ObservableList<Component> checkmus(){
         for(Component c : checkComponentAll) {
