@@ -4,8 +4,8 @@ package org.openjfx.Filbehandling;
 import org.openjfx.ComponentAndAntall;
 import org.openjfx.Feilhåndtering.InvalidComponentFormatException;
 
-public class ParseKjøpshistorikkArray {
-    public static ComponentAndAntall parseComponent(String str)
+class ParseKjøpshistorikkArray {
+    static ComponentAndAntall parseComponent(String str)
             throws InvalidComponentFormatException {
         String [] strings = str.split(FormatHandlekurvArray.DELIMITTER);
         if(strings.length != 5) {
