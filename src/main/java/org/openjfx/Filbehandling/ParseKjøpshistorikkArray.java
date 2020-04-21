@@ -4,7 +4,6 @@ package org.openjfx.Filbehandling;
 import javafx.scene.control.*;
 import org.openjfx.ComponentAndAntall;
 import org.openjfx.Feilhåndtering.CheckInput;
-import org.openjfx.Feilhåndtering.ComponentFormatException;
 import org.openjfx.Feilhåndtering.TypeException;
 
 import java.util.Optional;
