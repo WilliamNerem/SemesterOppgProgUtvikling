@@ -16,7 +16,7 @@ Monitor;Asus 27" ROG Strix;4;6990;27960
 Skjermkort;Sapphire Radeon RX 5500;4;2399;9596
 Harddisk;Seagate IronWolf 14TB HDD;4;6527;26108
 Tastatur;Microsoft Wireless 900;9;559;5031
-Minne;Crucial 32GB DDR4-2666;7;2378;16646
+Minnedw;Crucial 32GB DDR4-2666;19;sadsada;16646
 Motherboard;ASUS PRO WS C621;3;6549;19647
 Harddisk;Seagate Expansion Portable 2TB;4;899;3596
 Minne;HyperX Fury 3200MHz 128GB;2;7999;15998
