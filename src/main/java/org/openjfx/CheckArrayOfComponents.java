@@ -28,9 +28,7 @@ public class CheckArrayOfComponents {
         try{
             oat.openDefault(f, cr);
         }catch (Exception ignored){}
-
         checkComponentAll.addAll(cr.getComponents());
-
     }
 
     public void setAll(ComboBox<Component> cmbMus, ComboBox<Component> cmbSkjermkort,
@@ -69,10 +67,6 @@ public class CheckArrayOfComponents {
         txtAntallMus.setItems(antall);
         txtAntallMus.getSelectionModel().selectFirst();
     }
-
-
-
-
 
     public ObservableList<Component> checkmus(){
         for(Component c : checkComponentAll) {

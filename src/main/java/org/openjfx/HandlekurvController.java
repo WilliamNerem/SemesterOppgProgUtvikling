@@ -69,13 +69,23 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) throws IOException {
+        ButtonType button = new ButtonType("OK");
+        if(handlekurvArray.size() > 0){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,("Ditt kjøp til " + sumPrice(handlekurvArray) +
+                    " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),button);
+            alert.setTitle("Kjøp vellykket!");
+            alert.setHeaderText("Kjøp vellykket!");
+            alert.showAndWait();
+        }
         kjøpshistorikkArray.clear();
         kjøpshistorikkArray.addAll(handlekurvArray);
         OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile);
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         Files.write(afile.toPath(), FormatHandlekurvArray.formatComponents(kjøpshistorikkArray).getBytes());
+
         handlekurvArray.clear();
         numberInHandlevogn = 0;
+        lblTotalPrice.setText("Totalpris: " + 0 + ",-");
         filter();
     }
     @FXML
