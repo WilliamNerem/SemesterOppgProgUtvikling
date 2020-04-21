@@ -1,9 +1,7 @@
 package org.openjfx.Filbehandling;
 
 import javafx.collections.ObservableList;
-import javafx.stage.FileChooser;
 import org.openjfx.ComponentAndAntall;
-import org.openjfx.Filbehandling.ParseKjøpshistorikkArray;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,17 +1,13 @@
 package org.openjfx.Filbehandling;
 
 import javafx.concurrent.WorkerStateEvent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import org.openjfx.ComponentRegister;
 import org.openjfx.ThreadAdmin;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,31 +15,20 @@ import java.nio.file.Paths;
 public class OpenAdminTableview {
 
     private static File selectedFile;
-    private ThreadAdmin task;
+    private boolean failed = false;
+    private boolean exited = false;
     private AnchorPane anchorpane;
     private Label errorMsg;
     private Label confirmMsg;
     private ComponentRegister cr;
-    private boolean failed = false;
-    private boolean exited = false;
     private ComponentRegister register;
 
-    public static String readFile(File filename) {
-        String liste = "";
-        try {
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream(filename));
-            liste = (String) is.readObject();
-        } catch (IOException | ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        return liste;
-    }
 
     public File getSelectedFile(){
         return selectedFile;
     }
 
-    public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg, Label confirmMsg) throws IOException {
+    public void open(ComponentRegister cr, AnchorPane anchorpane, Label errorMsg, Label confirmMsg){
         this.anchorpane = anchorpane;
         this.errorMsg = errorMsg;
         this.confirmMsg = confirmMsg;
@@ -77,7 +62,7 @@ public class OpenAdminTableview {
     }
 
     public void open(){
-        task = new ThreadAdmin(selectedFile, failed, exited);
+        ThreadAdmin task = new ThreadAdmin(selectedFile, failed, exited);
         task.setOnSucceeded(this::threadDone);
         Thread thread = new Thread(task);
         thread.start();
