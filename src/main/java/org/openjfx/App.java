@@ -44,7 +44,6 @@ public class App extends Application {
 
         HandlekurvController hc = loader.getController();
         array1.addAll(ol);
-        System.out.println(array1);
         hc.saveHandlekurvArray(array1);
 
         scene.getStylesheets().add("Primary.css");
@@ -61,7 +60,6 @@ public class App extends Application {
 
         UserIndexController uic = loader.getController();
         int1 = i;
-        System.out.println(int1);
         uic.addToHandlekurvNumber(int1);
 
         scene.getStylesheets().add("Primary.css");

@@ -7,7 +7,7 @@ public class NameException extends Exception {
     }
 
     public static String checkName(String inName) throws InvalidNameException {
-        if (inName.isEmpty() || inName == null) {
+        if (inName.isEmpty()) {
             throw new InvalidNameException("Du må skrive inn et navn!");
         }
         return inName;
