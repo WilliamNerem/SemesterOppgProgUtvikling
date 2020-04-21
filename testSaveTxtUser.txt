@@ -1,4 +1,5 @@
 Type;Navn;Antall;Pris;Totalpris
+Tastatur;Microsoft Wireless 900;3;559;1677
 Tastatur;Corsair Gaming K70;2;2190;4380
 Motherboard;ASUS ROG ZENITH;2;8819;17638
 Motherboard;ASUS ROG ZENITH;1;8819;8819

@@ -14,10 +14,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
 import javafx.util.Callback;
-import org.openjfx.Feilhåndtering.NameException;
-import org.openjfx.Feilhåndtering.PriceException;
-import org.openjfx.Feilhåndtering.CheckInput;
-import org.openjfx.Feilhåndtering.TypeException;
+import org.openjfx.Feilhåndtering.*;
 import org.openjfx.Filbehandling.OpenAdminTableview;
 import org.openjfx.Filbehandling.SaveAdminTableview;
 
@@ -26,14 +23,13 @@ public class AdminIndexController implements Initializable {
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
     File fLbl = new File("StandardFileLbl.jobj");
     File f = new File("StandardFile.jobj");
+    SaveAdminTableview sat = new SaveAdminTableview();
     OpenAdminTableview oat = new OpenAdminTableview();
-    SaveAdminTableview save = new SaveAdminTableview();
-    OpenAdminTableview open = new OpenAdminTableview();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            open.setLbl(lblStandardFile, fLbl);
+            oat.setLbl(lblStandardFile, fLbl);
         } catch (Exception ignored) {}
 
         try{
@@ -174,19 +170,19 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void open(ActionEvent event) throws IOException {
-        open.open(cr, anchorpane, errorMsg, confirmMsg);
+        oat.open(cr, anchorpane, errorMsg, confirmMsg);
         filter();
     }
 
     @FXML
     void save(ActionEvent event) throws InterruptedException {
-        save.save(cr, anchorpane, errorMsg, confirmMsg);
+        sat.save(cr, anchorpane, errorMsg, confirmMsg);
     }
 
     @FXML
     void quickSave(ActionEvent event) throws IOException {
-        File selectedFile = open.getSelectedFile();
-        save.quickSave(cr, selectedFile, confirmMsg, errorMsg);
+        File selectedFile = oat.getSelectedFile();
+        sat.quickSave(cr, selectedFile, confirmMsg, errorMsg);
     }
 
     @FXML
@@ -196,12 +192,12 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void changeStandardFile(ActionEvent event) {
-        f = open.openStandardFile();
+        f = oat.openStandardFile();
         try(InputStream fin = Files.newInputStream(f.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
             ComponentRegister register = (ComponentRegister) oin.readObject();
-            save.saveStartup(register, f.toPath().toString());
-            open.setLbl(lblStandardFile, fLbl);
+            sat.saveStartup(register, f.toPath().toString());
+            oat.setLbl(lblStandardFile, fLbl);
             confirmMsg.setText("Standardfil for sluttbruker endret");
         }catch (ClassNotFoundException | IOException | ClassCastException e){
             errorMsg.setText("Noe er galt med filen");

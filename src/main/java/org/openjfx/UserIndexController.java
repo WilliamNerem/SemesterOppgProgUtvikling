@@ -8,7 +8,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import org.openjfx.Feilhåndtering.CheckInput;
 import org.openjfx.Feilhåndtering.InputException;
-import org.openjfx.Feilhåndtering.InputException;
 
 import java.io.IOException;
 
