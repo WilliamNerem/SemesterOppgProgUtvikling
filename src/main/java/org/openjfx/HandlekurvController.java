@@ -2,7 +2,6 @@ package org.openjfx;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,25 +16,17 @@ import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
 import javafx.util.Callback;
 
 public class HandlekurvController {
-    ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
-    ObservableList<ComponentAndAntall> handlekurvArray = FXCollections.observableArrayList();
-    int numberInHandlevogn;
-    File afile = new File("testSaveTxtUser.txt");
+    private ObservableList<ComponentAndAntall> kjøpshistorikkArray = FXCollections.observableArrayList();
+    private ObservableList<ComponentAndAntall> handlekurvArray = FXCollections.observableArrayList();
+    private int numberInHandlevogn;
+    private File afile = new File("testSaveTxtUser.txt");
 
-    @FXML
-    private Button secondaryButton;
 
     @FXML
     private TableView<ComponentAndAntall> tableviewHandlekurv;
 
     @FXML
-    private Button tilbakeTilUserIndex;
-
-    @FXML
     private TableView<ComponentAndAntall> tableviewPrishistorikk;
-
-    @FXML
-    private Button btnKjop;
 
     @FXML
     private TextField searchHistory;
@@ -60,7 +51,6 @@ public class HandlekurvController {
 
     @FXML
     private TableColumn<ComponentAndAntall, Void> col_slett1;
-
 
     @FXML
     private TableColumn<ComponentAndAntall, String> col_type;
