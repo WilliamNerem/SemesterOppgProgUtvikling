@@ -4,8 +4,7 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import org.openjfx.ComponentRegister;
-import org.openjfx.ThreadAdmin;
+import org.openjfx.Component.ComponentRegister;
 
 import java.io.*;
 import java.nio.file.Files;

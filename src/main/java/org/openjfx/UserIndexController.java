@@ -6,8 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import org.openjfx.Component.CheckArrayOfComponents;
+import org.openjfx.Component.Component;
+import org.openjfx.Component.ComponentAndAntall;
 import org.openjfx.Feilhåndtering.CheckInput;
-import org.openjfx.Feilhåndtering.InputException;
 import org.openjfx.Feilhåndtering.InputException;
 
 import java.io.IOException;

@@ -1,8 +1,6 @@
-package org.openjfx;
+package org.openjfx.Filbehandling;
 
 import javafx.concurrent.Task;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 import java.io.File;
 
@@ -19,7 +17,7 @@ public class ThreadAdmin extends Task<File> {
 
 
     @Override
-    protected File call() throws InterruptedException {
+    protected File call() {
         if (!exited) {
             try {
                 Thread.sleep(3000);

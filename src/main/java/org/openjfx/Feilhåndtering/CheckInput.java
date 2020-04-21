@@ -1,8 +1,8 @@
 package org.openjfx.Feilhåndtering;
 
 import javafx.scene.control.ComboBox;
-import org.openjfx.CalculatePrice;
-import org.openjfx.Component;
+import org.openjfx.Component.CheckArrayOfComponents;
+import org.openjfx.Component.Component;
 import org.openjfx.UserIndexController;
 
 public class CheckInput {
@@ -66,7 +66,7 @@ public class CheckInput {
         else if(cb.getValue().getName().equals("Ingen") && antall.equals(0)) {
             return "";
         }
-        else return CalculatePrice.calcComponent(cb.getValue().getPrice(),antall)+",-";
+        else return CheckArrayOfComponents.calcComponent(cb.getValue().getPrice(),antall)+",-";
     }
 
     public static String checkForTotalPrice(UserIndexController uic) {

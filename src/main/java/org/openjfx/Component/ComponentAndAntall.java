@@ -1,4 +1,4 @@
-package org.openjfx;
+package org.openjfx.Component;
 
 import javafx.beans.property.SimpleIntegerProperty;
 
