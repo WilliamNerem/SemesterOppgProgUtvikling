@@ -35,9 +35,6 @@ public class HandlekurvController {
     private Label lblTotalPrice;
 
     @FXML
-    private Label lblConfirmMsg;
-
-    @FXML
     private TableColumn<ComponentAndAntall, String> col_type1;
 
     @FXML
@@ -73,7 +70,12 @@ public class HandlekurvController {
     @FXML
     void kjop(ActionEvent event) throws IOException {
         if(handlekurvArray.size() > 0){
-        lblConfirmMsg.setText("Kjøp vellykket");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Kjøp vellykket!");
+            alert.setHeaderText("Kjøp vellykket!");
+            alert.setContentText("Ditt kjøp til " + sumPrice(handlekurvArray) + "kr ble vellykket.\n" +
+                    "Gå til kjøpshistorikk for å se tidligere kjøp.");
+            alert.showAndWait();
         }
         kjøpshistorikkArray.clear();
         kjøpshistorikkArray.addAll(handlekurvArray);
