@@ -14,10 +14,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
 import javafx.util.Callback;
-import org.openjfx.Feilhåndtering.NameException;
-import org.openjfx.Feilhåndtering.PriceException;
-import org.openjfx.Feilhåndtering.CheckInput;
-import org.openjfx.Feilhåndtering.TypeException;
+import org.openjfx.Feilhåndtering.*;
 import org.openjfx.Filbehandling.OpenAdminTableview;
 import org.openjfx.Filbehandling.SaveAdminTableview;
 
