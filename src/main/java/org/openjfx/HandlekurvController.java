@@ -35,6 +35,9 @@ public class HandlekurvController {
     private Label lblTotalPrice;
 
     @FXML
+    private Label lblConfirmMsg;
+
+    @FXML
     private TableColumn<ComponentAndAntall, String> col_type1;
 
     @FXML
@@ -69,13 +72,18 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) throws IOException {
+        if(handlekurvArray.size() > 0){
+        lblConfirmMsg.setText("Kjøp vellykket");
+        }
         kjøpshistorikkArray.clear();
         kjøpshistorikkArray.addAll(handlekurvArray);
         OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile);
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         Files.write(afile.toPath(), FormatHandlekurvArray.formatComponents(kjøpshistorikkArray).getBytes());
+
         handlekurvArray.clear();
         numberInHandlevogn = 0;
+        lblTotalPrice.setText("Totalpris: " + 0 + ",-");
         filter();
     }
     @FXML
