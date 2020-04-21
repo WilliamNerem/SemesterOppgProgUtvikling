@@ -10,8 +10,7 @@ import org.openjfx.Feilhåndtering.TypeException;
 import java.util.Optional;
 
 class ParseKjøpshistorikkArray {
-    static ComponentAndAntall parseComponent(String str, TabPane tabPane, Tab tab)
-            throws ComponentFormatException.InvalidComponentFormatException {
+    static ComponentAndAntall parseComponent(String str, TabPane tabPane, Tab tab) {
         String [] strings = str.split(FormatHandlekurvArray.DELIMITTER);
         if(strings.length != 5) {
             return errorInFile(tabPane, tab);
@@ -27,13 +26,19 @@ class ParseKjøpshistorikkArray {
         int number;
         try {
             number = Integer.parseInt(strings[2]);
-        } catch(NumberFormatException e) {
+            if (number > 9 || number < 0){
+                return errorInFile(tabPane, tab);
+            }
+        } catch(Exception e) {
             return errorInFile(tabPane, tab);
         }
         int price;
         try {
             price = Integer.parseInt(strings[3]);
-        } catch(NumberFormatException e) {
+            if (price < 0){
+                return errorInFile(tabPane, tab);
+            }
+        } catch(Exception e) {
             return errorInFile(tabPane, tab);
         }
 
