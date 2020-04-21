@@ -146,8 +146,6 @@ public class HandlekurvController {
             });
         });
 
-        System.out.println(filteredData);
-
        SortedList<ComponentAndAntall> sortedData = new SortedList<>(filteredData);
 
         sortedData.comparatorProperty().bind(tableviewPrishistorikk.comparatorProperty());

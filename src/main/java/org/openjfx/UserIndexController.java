@@ -35,7 +35,6 @@ public class UserIndexController {
         checkArray.setAll(cmbMus,cmbSkjermkort,cmbHarddisk,cmbMotherboard,cmbTastatur,cmbMinne,cmbMonitor,
                 txtAntallSkjermkort,txtAntallHarddisk,txtAntallTastatur,txtAntallMotherboard,txtAntallMonitor,
                 txtAntallMinne,txtAntallMus);
-        System.out.println(checkArray.checkComponentAll);
 
     }
 

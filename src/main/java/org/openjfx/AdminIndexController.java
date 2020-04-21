@@ -261,8 +261,6 @@ public class AdminIndexController implements Initializable {
                 String lowerCaseFilter = newValue.toLowerCase();
                 String category = chBox.getValue();
 
-                System.out.println(component.getType().toLowerCase().contains(lowerCaseFilter));
-
                 switch (category){
                     case "Type":
                         if (component.getType().toLowerCase().startsWith(lowerCaseFilter)) {
@@ -308,8 +306,6 @@ public class AdminIndexController implements Initializable {
                 return false; // Matcher ikke
             });
         });
-
-        System.out.println(filteredData);
 
         SortedList<Component> sortedData = new SortedList<>(filteredData);
 
