@@ -26,7 +26,7 @@ public class UserIndexController {
     public ObservableList<Component> motherboardChoose = FXCollections.observableArrayList();
     public ObservableList<Component> monitorChoose = FXCollections.observableArrayList();
     public ObservableList<ComponentAndAntall> componentsBought = FXCollections.observableArrayList();
-    public Integer int1;
+    public String output;
 
     @FXML
     private void initialize(){
@@ -118,7 +118,7 @@ public class UserIndexController {
 
     @FXML
     void chooseHarddisk(ActionEvent event) {
-            String output = "";
+            output = "";
             try {
                 output = InputException.checkInput(cmbHarddisk, txtAntallHarddisk.getValue());
                 lblWrong.setText("");
@@ -132,7 +132,7 @@ public class UserIndexController {
 
     @FXML
     void chooseMinne(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = InputException.checkInput(cmbMinne, txtAntallMinne.getValue());
             lblWrong.setText("");
@@ -146,7 +146,7 @@ public class UserIndexController {
 
     @FXML
     void chooseMonitor(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = InputException.checkInput(cmbMonitor, txtAntallMonitor.getValue());
             lblWrong.setText("");
@@ -160,7 +160,7 @@ public class UserIndexController {
 
     @FXML
     void chooseMotherboard(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = InputException.checkInput(cmbMotherboard, txtAntallMotherboard.getValue());
             lblWrong.setText("");
@@ -174,7 +174,7 @@ public class UserIndexController {
 
     @FXML
     void chooseMus(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = InputException.checkInput(cmbMus, txtAntallMus.getValue());
             lblWrong.setText("");
@@ -188,7 +188,7 @@ public class UserIndexController {
 
     @FXML
     void chooseSkjermkort(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = InputException.checkInput(cmbSkjermkort, txtAntallSkjermkort.getValue());
             lblWrong.setText("");
@@ -202,7 +202,7 @@ public class UserIndexController {
 
     @FXML
     void chooseTastatur(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue());
             lblWrong.setText("");
