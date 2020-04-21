@@ -169,13 +169,13 @@ public class AdminIndexController implements Initializable {
 
 
     @FXML
-    void open(ActionEvent event) throws IOException {
+    void open(ActionEvent event) {
         oat.open(cr, anchorpane, errorMsg, confirmMsg);
         filter();
     }
 
     @FXML
-    void save(ActionEvent event) throws InterruptedException {
+    void save(ActionEvent event) {
         sat.save(cr, anchorpane, errorMsg, confirmMsg);
     }
 
@@ -198,8 +198,10 @@ public class AdminIndexController implements Initializable {
             ComponentRegister register = (ComponentRegister) oin.readObject();
             sat.saveStartup(register, f.toPath().toString());
             oat.setLbl(lblStandardFile, fLbl);
+            errorMsg.setText("");
             confirmMsg.setText("Standardfil for sluttbruker endret");
         }catch (ClassNotFoundException | IOException | ClassCastException e){
+            confirmMsg.setText("");
             errorMsg.setText("Noe er galt med filen");
         }catch (RuntimeException ignored){
         }
