@@ -23,6 +23,7 @@ import java.util.Spliterator;
 import javafx.util.Callback;
 import org.openjfx.Feilhåndtering.NameException;
 import org.openjfx.Feilhåndtering.PriceException;
+import org.openjfx.Feilhåndtering.CheckInput;
 import org.openjfx.Feilhåndtering.TypeException;
 import org.openjfx.Filbehandling.FormatAdminArray;
 import org.openjfx.Filbehandling.OpenAdminTableview;
@@ -133,9 +134,9 @@ public class AdminIndexController implements Initializable {
         String inName = txtNewComponent.getText();
         int inPrice = 0;
         try{
-            inType = TypeException.checkType(inType);
-            inName = NameException.checkName(inName);
-            inPrice = PriceException.checkPrice(txtNewPrice.getText());
+            inType = CheckInput.checkType(inType);
+            inName = CheckInput.checkName(inName);
+            inPrice = CheckInput.checkPrice(txtNewPrice.getText());
         }catch (PriceException.InvalidPriceException | TypeException.InvalidTypeException | NameException.InvalidNameException e){
             errorMsg.setText(e.getMessage());
             return;
@@ -159,7 +160,7 @@ public class AdminIndexController implements Initializable {
     private void nameEdited(TableColumn.CellEditEvent<Component, String> event) {
         changeError.setText("");
         try{
-            NameException.checkName(event.getNewValue());
+            CheckInput.checkName(event.getNewValue());
             event.getRowValue().setName(event.getNewValue());
             tableviewAdminIndex.refresh();
         }catch (NameException.InvalidNameException e){
@@ -173,7 +174,7 @@ public class AdminIndexController implements Initializable {
         changeError.setText("");
         if(intStrConverter.isConversionSuccessful()) {
             try {
-                PriceException.checkPrice(event.getNewValue());
+                CheckInput.checkPrice(event.getNewValue());
                 event.getRowValue().setPrice(event.getNewValue());
                 tableviewAdminIndex.refresh();
             } catch (PriceException.InvalidPriceException e) {
@@ -188,7 +189,7 @@ public class AdminIndexController implements Initializable {
     private void typeEdited(TableColumn.CellEditEvent<Component, String> event) {
         changeError.setText("");
         try {
-            String newType = TypeException.checkTypeOnchange(event.getNewValue());
+            String newType = CheckInput.checkTypeOnchange(event.getNewValue());
             event.getRowValue().setType(newType);
             tableviewAdminIndex.refresh();
         }catch (TypeException.InvalidTypeException e){

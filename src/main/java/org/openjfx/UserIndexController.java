@@ -4,15 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import org.openjfx.*;
+import org.openjfx.Feilhåndtering.CheckInput;
+import org.openjfx.Feilhåndtering.InputException;
 import org.openjfx.Feilhåndtering.InputException;
 
 import java.io.IOException;
@@ -26,7 +21,6 @@ public class UserIndexController {
     public ObservableList<Component> motherboardChoose = FXCollections.observableArrayList();
     public ObservableList<Component> monitorChoose = FXCollections.observableArrayList();
     public ObservableList<ComponentAndAntall> componentsBought = FXCollections.observableArrayList();
-    public Integer int1;
 
     @FXML
     private void initialize(){
@@ -36,7 +30,6 @@ public class UserIndexController {
                 txtAntallSkjermkort,txtAntallHarddisk,txtAntallTastatur,txtAntallMotherboard,txtAntallMonitor,
                 txtAntallMinne,txtAntallMus);
         System.out.println(checkArray.checkComponentAll);
-
     }
 
     @FXML
@@ -82,12 +75,6 @@ public class UserIndexController {
     private Label lblHarddisk;
 
     @FXML
-    private Button handlevognKnapp;
-
-    @FXML
-    private Button userIndex;
-
-    @FXML
     private Label lblWrong;
 
     @FXML
@@ -121,9 +108,9 @@ public class UserIndexController {
     void chooseHarddisk(ActionEvent event) {
             String output = "";
             try {
-                output = InputException.checkInput(cmbHarddisk, txtAntallHarddisk.getValue());
+                output = CheckInput.checkUI(cmbHarddisk, txtAntallHarddisk.getValue());
                 lblWrong.setText("");
-                lblTotalPrice.setText(InputException.checkForTotalPrice(this));
+                lblTotalPrice.setText(CheckInput.checkForTotalPrice(this));
             } catch (InputException.InvalidInputException e) {
                 lblWrong.setText(e.getMessage());
                 lblHarddisk.setText("");
@@ -135,9 +122,9 @@ public class UserIndexController {
     void chooseMinne(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbMinne, txtAntallMinne.getValue());
+            output = CheckInput.checkUI(cmbMinne, txtAntallMinne.getValue());
             lblWrong.setText("");
-            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
+            lblTotalPrice.setText(CheckInput.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblMinne.setText("");
@@ -149,9 +136,9 @@ public class UserIndexController {
     void chooseMonitor(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbMonitor, txtAntallMonitor.getValue());
+            output = CheckInput.checkUI(cmbMonitor, txtAntallMonitor.getValue());
             lblWrong.setText("");
-            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
+            lblTotalPrice.setText(CheckInput.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblMonitor.setText("");
@@ -163,9 +150,9 @@ public class UserIndexController {
     void chooseMotherboard(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbMotherboard, txtAntallMotherboard.getValue());
+            output = CheckInput.checkUI(cmbMotherboard, txtAntallMotherboard.getValue());
             lblWrong.setText("");
-            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
+            lblTotalPrice.setText(CheckInput.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblMotherboard.setText("");
@@ -177,9 +164,9 @@ public class UserIndexController {
     void chooseMus(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbMus, txtAntallMus.getValue());
+            output = CheckInput.checkUI(cmbMus, txtAntallMus.getValue());
             lblWrong.setText("");
-            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
+            lblTotalPrice.setText(CheckInput.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblMus.setText("");
@@ -191,9 +178,9 @@ public class UserIndexController {
     void chooseSkjermkort(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbSkjermkort, txtAntallSkjermkort.getValue());
+            output = CheckInput.checkUI(cmbSkjermkort, txtAntallSkjermkort.getValue());
             lblWrong.setText("");
-            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
+            lblTotalPrice.setText(CheckInput.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblSkjermkort.setText("");
@@ -205,9 +192,9 @@ public class UserIndexController {
     void chooseTastatur(ActionEvent event) {
         String output = "";
         try {
-            output = InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue());
+            output = CheckInput.checkUI(cmbTastatur, txtAntallTastatur.getValue());
             lblWrong.setText("");
-            lblTotalPrice.setText(InputException.checkForTotalPrice(this));
+            lblTotalPrice.setText(CheckInput.checkForTotalPrice(this));
         } catch (InputException.InvalidInputException e) {
             lblWrong.setText(e.getMessage());
             lblTastatur.setText("");
@@ -233,13 +220,13 @@ public class UserIndexController {
         for (Component c : checkArray.checkComponentAll) {
             if (lblWrong.getText().equals("") && !c.getName().equals("Ingen")) {
                 try {
-                    lblTastatur.setText(InputException.checkInput(cmbTastatur, txtAntallTastatur.getValue()));
-                    lblMinne.setText(InputException.checkInput(cmbMinne, txtAntallMinne.getValue()));
-                    lblSkjermkort.setText(InputException.checkInput(cmbSkjermkort, txtAntallSkjermkort.getValue()));
-                    lblMonitor.setText(InputException.checkInput(cmbMonitor, txtAntallMonitor.getValue()));
-                    lblMotherboard.setText(InputException.checkInput(cmbMotherboard, txtAntallMotherboard.getValue()));
-                    lblHarddisk.setText(InputException.checkInput(cmbHarddisk, txtAntallHarddisk.getValue()));
-                    lblMus.setText(InputException.checkInput(cmbMus, txtAntallMus.getValue()));
+                    lblTastatur.setText(CheckInput.checkUI(cmbTastatur, txtAntallTastatur.getValue()));
+                    lblMinne.setText(CheckInput.checkUI(cmbMinne, txtAntallMinne.getValue()));
+                    lblSkjermkort.setText(CheckInput.checkUI(cmbSkjermkort, txtAntallSkjermkort.getValue()));
+                    lblMonitor.setText(CheckInput.checkUI(cmbMonitor, txtAntallMonitor.getValue()));
+                    lblMotherboard.setText(CheckInput.checkUI(cmbMotherboard, txtAntallMotherboard.getValue()));
+                    lblHarddisk.setText(CheckInput.checkUI(cmbHarddisk, txtAntallHarddisk.getValue()));
+                    lblMus.setText(CheckInput.checkUI(cmbMus, txtAntallMus.getValue()));
                 } catch (InputException.InvalidInputException e) {
                     lblWrong.setText(e.getMessage());
                     return;
@@ -274,12 +261,9 @@ public class UserIndexController {
                 }
             }
         }
-        if (lblWrong.getText().equals(""))  {
-            try {
-                App.switchToHandlekurv(componentsBought);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (lblWrong.getText().equals("")) {
+            App.switchToHandlekurv(componentsBought);
+
         }
     }
 
