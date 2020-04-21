@@ -2,6 +2,7 @@ package org.openjfx;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Window;
 import org.openjfx.Filbehandling.FormatHandlekurvArray;
 import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
 import javafx.util.Callback;
@@ -21,6 +23,11 @@ public class HandlekurvController {
     private int numberInHandlevogn;
     private File afile = new File("testSaveTxtUser.txt");
 
+    @FXML
+    private TabPane tabPane = new TabPane();
+
+    @FXML
+    private Tab tab2;
 
     @FXML
     private TableView<ComponentAndAntall> tableviewHandlekurv;
@@ -69,15 +76,32 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) throws IOException {
+        ButtonType button = new ButtonType("OK");
+        if(handlekurvArray.size() > 0){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,("Ditt kjøp til " + sumPrice(handlekurvArray) +
+                    " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),button);
+            alert.setTitle("Kjøp vellykket!");
+            alert.setHeaderText("Kjøp vellykket!");
+            alert.showAndWait();
+        }
         kjøpshistorikkArray.clear();
         kjøpshistorikkArray.addAll(handlekurvArray);
-        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile);
+        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile, tabPane, tab2);
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         Files.write(afile.toPath(), FormatHandlekurvArray.formatComponents(kjøpshistorikkArray).getBytes());
+
         handlekurvArray.clear();
         numberInHandlevogn = 0;
+        lblTotalPrice.setText("Totalpris: " + 0 + ",-");
         filter();
     }
+
+    @FXML
+    void deleteKjøpshistorikk(ActionEvent event){
+       AlertKjøpshistorikk alert = new AlertKjøpshistorikk();
+       alert.alert(kjøpshistorikkArray, afile, tableviewPrishistorikk);
+    }
+
     @FXML
     private void switchToPrimary() throws IOException {
         handlekurvArray.clear();
@@ -112,7 +136,7 @@ public class HandlekurvController {
 
     @FXML
     private void initialize(){
-        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile);
+        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile, tabPane, tab2);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -145,8 +169,6 @@ public class HandlekurvController {
                 // Does not match.
             });
         });
-
-        System.out.println(filteredData);
 
        SortedList<ComponentAndAntall> sortedData = new SortedList<>(filteredData);
 

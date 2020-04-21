@@ -14,9 +14,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
 import javafx.util.Callback;
-import org.openjfx.Feilhåndtering.NameException;
-import org.openjfx.Feilhåndtering.PriceException;
-import org.openjfx.Feilhåndtering.TypeException;
+import org.openjfx.Feilhåndtering.*;
 import org.openjfx.Filbehandling.OpenAdminTableview;
 import org.openjfx.Filbehandling.SaveAdminTableview;
 
@@ -25,14 +23,13 @@ public class AdminIndexController implements Initializable {
     IntegerStringConverter intStrConverter = new IntegerStringConverter();
     File fLbl = new File("StandardFileLbl.jobj");
     File f = new File("StandardFile.jobj");
+    SaveAdminTableview sat = new SaveAdminTableview();
     OpenAdminTableview oat = new OpenAdminTableview();
-    SaveAdminTableview save = new SaveAdminTableview();
-    OpenAdminTableview open = new OpenAdminTableview();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            open.setLbl(lblStandardFile, fLbl);
+            oat.setLbl(lblStandardFile, fLbl);
         } catch (Exception ignored) {}
 
         try{
@@ -107,9 +104,9 @@ public class AdminIndexController implements Initializable {
         String inName = txtNewComponent.getText();
         int inPrice = 0;
         try{
-            inType = TypeException.checkType(inType);
-            inName = NameException.checkName(inName);
-            inPrice = PriceException.checkPrice(txtNewPrice.getText());
+            inType = CheckInput.checkType(inType);
+            inName = CheckInput.checkName(inName);
+            inPrice = CheckInput.checkPrice(txtNewPrice.getText());
         }catch (PriceException.InvalidPriceException | TypeException.InvalidTypeException | NameException.InvalidNameException e){
             errorMsg.setText(e.getMessage());
             return;
@@ -131,7 +128,7 @@ public class AdminIndexController implements Initializable {
     private void nameEdited(TableColumn.CellEditEvent<Component, String> event) {
         changeError.setText("");
         try{
-            NameException.checkName(event.getNewValue());
+            CheckInput.checkName(event.getNewValue());
             event.getRowValue().setName(event.getNewValue());
             tableviewAdminIndex.refresh();
         }catch (NameException.InvalidNameException e){
@@ -145,7 +142,7 @@ public class AdminIndexController implements Initializable {
         changeError.setText("");
         if(intStrConverter.isConversionSuccessful()) {
             try {
-                PriceException.checkPrice(event.getNewValue());
+                CheckInput.checkPrice(event.getNewValue());
                 event.getRowValue().setPrice(event.getNewValue());
                 tableviewAdminIndex.refresh();
             } catch (PriceException.InvalidPriceException e) {
@@ -160,7 +157,7 @@ public class AdminIndexController implements Initializable {
     private void typeEdited(TableColumn.CellEditEvent<Component, String> event) {
         changeError.setText("");
         try {
-            String newType = TypeException.checkTypeOnchange(event.getNewValue());
+            String newType = CheckInput.checkTypeOnchange(event.getNewValue());
             event.getRowValue().setType(newType);
             tableviewAdminIndex.refresh();
         }catch (TypeException.InvalidTypeException e){
@@ -172,20 +169,20 @@ public class AdminIndexController implements Initializable {
 
 
     @FXML
-    void open(ActionEvent event) throws IOException {
-        open.open(cr, anchorpane, errorMsg, confirmMsg);
+    void open(ActionEvent event) {
+        oat.open(cr, anchorpane, errorMsg, confirmMsg);
         filter();
     }
 
     @FXML
-    void save(ActionEvent event) throws InterruptedException {
-        save.save(cr, anchorpane, errorMsg, confirmMsg);
+    void save(ActionEvent event) {
+        sat.save(cr, anchorpane, errorMsg, confirmMsg);
     }
 
     @FXML
     void quickSave(ActionEvent event) throws IOException {
-        File selectedFile = open.getSelectedFile();
-        save.quickSave(cr, selectedFile, confirmMsg, errorMsg);
+        File selectedFile = oat.getSelectedFile();
+        sat.quickSave(cr, selectedFile, confirmMsg, errorMsg);
     }
 
     @FXML
@@ -195,14 +192,16 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     void changeStandardFile(ActionEvent event) {
-        f = open.openStandardFile();
+        f = oat.openStandardFile();
         try(InputStream fin = Files.newInputStream(f.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
             ComponentRegister register = (ComponentRegister) oin.readObject();
-            save.saveStartup(register, f.toPath().toString());
-            open.setLbl(lblStandardFile, fLbl);
+            sat.saveStartup(register, f.toPath().toString());
+            oat.setLbl(lblStandardFile, fLbl);
+            errorMsg.setText("");
             confirmMsg.setText("Standardfil for sluttbruker endret");
         }catch (ClassNotFoundException | IOException | ClassCastException e){
+            confirmMsg.setText("");
             errorMsg.setText("Noe er galt med filen");
         }catch (RuntimeException ignored){
         }
@@ -261,8 +260,6 @@ public class AdminIndexController implements Initializable {
                 String lowerCaseFilter = newValue.toLowerCase();
                 String category = chBox.getValue();
 
-                System.out.println(component.getType().toLowerCase().contains(lowerCaseFilter));
-
                 switch (category){
                     case "Type":
                         if (component.getType().toLowerCase().startsWith(lowerCaseFilter)) {
@@ -308,8 +305,6 @@ public class AdminIndexController implements Initializable {
                 return false; // Matcher ikke
             });
         });
-
-        System.out.println(filteredData);
 
         SortedList<Component> sortedData = new SortedList<>(filteredData);
 

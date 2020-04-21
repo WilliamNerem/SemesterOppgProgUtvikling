@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import org.openjfx.ComponentRegister;
-import org.openjfx.ThreadAdmin;
 
 import java.io.*;
 import java.nio.file.Files;
