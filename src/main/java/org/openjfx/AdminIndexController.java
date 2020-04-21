@@ -2,8 +2,6 @@ package org.openjfx;
 
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,20 +9,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
-
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Spliterator;
-
 import javafx.util.Callback;
 import org.openjfx.Feilhåndtering.NameException;
 import org.openjfx.Feilhåndtering.PriceException;
 import org.openjfx.Feilhåndtering.TypeException;
-import org.openjfx.Filbehandling.FormatAdminArray;
 import org.openjfx.Filbehandling.OpenAdminTableview;
 import org.openjfx.Filbehandling.SaveAdminTableview;
 
@@ -93,12 +85,6 @@ public class AdminIndexController implements Initializable {
     private ChoiceBox<String> chBox;
 
     @FXML
-    private Button btnAddComponent;
-
-    @FXML
-    private Button logOut;
-
-    @FXML
     private TextField txtSearchComponent;
 
     @FXML
@@ -112,18 +98,6 @@ public class AdminIndexController implements Initializable {
 
     @FXML
     private Label lblStandardFile;
-
-    @FXML
-    private Button btnOpen;
-
-    @FXML
-    private Button btnSave;
-
-    @FXML
-    private MenuItem quick_save;
-
-    @FXML
-    private MenuItem save_as;
 
     @FXML
     void add(ActionEvent event) {
@@ -143,8 +117,6 @@ public class AdminIndexController implements Initializable {
 
         Component newComponent = new Component(inType, inName, inPrice);
         cr.addComponent(newComponent);
-        System.out.println("Type: " + newComponent.getType() + "\nNavn: "
-                + newComponent.getName() + "\nPris: " + newComponent.getPrice());
         errorMsg.setText("");
         confirmMsg.setText("Komponent lagt til");
         resetTextFields();
@@ -200,13 +172,13 @@ public class AdminIndexController implements Initializable {
 
 
     @FXML
-    void open(ActionEvent event) throws InterruptedException, IOException {
+    void open(ActionEvent event) throws IOException {
         open.open(cr, anchorpane, errorMsg, confirmMsg);
         filter();
     }
 
     @FXML
-    void save(ActionEvent event) throws IOException, InterruptedException {
+    void save(ActionEvent event) throws InterruptedException {
         save.save(cr, anchorpane, errorMsg, confirmMsg);
     }
 
@@ -222,7 +194,7 @@ public class AdminIndexController implements Initializable {
     }
 
     @FXML
-    void changeStandardFile(ActionEvent event) throws IOException, ClassNotFoundException {
+    void changeStandardFile(ActionEvent event) {
         f = open.openStandardFile();
         try(InputStream fin = Files.newInputStream(f.toPath());
             ObjectInputStream oin = new ObjectInputStream(fin)) {
@@ -232,7 +204,7 @@ public class AdminIndexController implements Initializable {
             confirmMsg.setText("Standardfil for sluttbruker endret");
         }catch (ClassNotFoundException | IOException | ClassCastException e){
             errorMsg.setText("Noe er galt med filen");
-        }catch (RuntimeException e){
+        }catch (RuntimeException ignored){
         }
     }
 
@@ -281,7 +253,7 @@ public class AdminIndexController implements Initializable {
 
         txtSearchComponent.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(component -> {
-                // If filter text is empty, display all components.
+                // Hvis filter er tom, dislpay alle elementer
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
@@ -294,8 +266,6 @@ public class AdminIndexController implements Initializable {
                 switch (category){
                     case "Type":
                         if (component.getType().toLowerCase().startsWith(lowerCaseFilter)) {
-                            System.out.println("Matcher");
-                            System.out.println(filteredData);
                             return true;
                         }
                         break;
@@ -335,7 +305,7 @@ public class AdminIndexController implements Initializable {
                         }
                         break;
                 }
-                return false; // Does not match.
+                return false; // Matcher ikke
             });
         });
 
