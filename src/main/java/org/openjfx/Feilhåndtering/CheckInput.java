@@ -3,10 +3,6 @@ package org.openjfx.Feilhåndtering;
 import javafx.scene.control.ComboBox;
 import org.openjfx.CalculatePrice;
 import org.openjfx.Component;
-import org.openjfx.Feilhåndtering.InputException;
-import org.openjfx.Feilhåndtering.NameException;
-import org.openjfx.Feilhåndtering.PriceException;
-import org.openjfx.Feilhåndtering.TypeException;
 import org.openjfx.UserIndexController;
 
 public class CheckInput {
