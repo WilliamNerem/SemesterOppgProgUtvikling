@@ -31,8 +31,7 @@
                               <TableColumn fx:id="col_slett1" prefWidth="68.0" text="Slett" />
                           </columns>
                         </TableView>
-                         <Label fx:id="lblTotalPrice" layoutX="485.0" layoutY="508.0" text="Totalpris:" />
-                        <Label fx:id="lblConfirmMsg" layoutX="485.0" layoutY="534.0" textFill="#1bc10f" />
+                         <Label fx:id="lblTotalPrice" layoutX="481.0" layoutY="527.0" text="Totalpris:" />
                      </children>
                   </AnchorPane>
             </content>

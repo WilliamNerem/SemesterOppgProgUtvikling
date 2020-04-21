@@ -69,12 +69,12 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) throws IOException {
+        ButtonType button = new ButtonType("OK");
         if(handlekurvArray.size() > 0){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,("Ditt kjøp til " + sumPrice(handlekurvArray) +
+                    " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),button);
             alert.setTitle("Kjøp vellykket!");
             alert.setHeaderText("Kjøp vellykket!");
-            alert.setContentText("Ditt kjøp til " + sumPrice(handlekurvArray) + "kr ble vellykket.\n" +
-                    "Gå til kjøpshistorikk for å se tidligere kjøp.");
             alert.showAndWait();
         }
         kjøpshistorikkArray.clear();
