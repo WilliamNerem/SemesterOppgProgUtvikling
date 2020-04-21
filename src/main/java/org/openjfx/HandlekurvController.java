@@ -71,7 +71,7 @@ public class HandlekurvController {
     void kjop(ActionEvent event) throws IOException {
         ButtonType button = new ButtonType("OK");
         if(handlekurvArray.size() > 0){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,("Ditt kjøp til " + sumPrice(handlekurvArray) +
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,("Ditt kjøp til " + sumPrice(handlekurvArray) +
                     " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),button);
             alert.setTitle("Kjøp vellykket!");
             alert.setHeaderText("Kjøp vellykket!");

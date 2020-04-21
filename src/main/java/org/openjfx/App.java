@@ -16,8 +16,8 @@ public class App extends Application {
     private static Scene scene;
     private static Stage primaryStage;
     private static AnchorPane mainLayout;
-    private static ObservableList<ComponentAndAntall> array1 = FXCollections.observableArrayList();
-    private static Integer int1;
+    private static ObservableList<ComponentAndAntall> componentList = FXCollections.observableArrayList();
+    private static Integer amount;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -43,8 +43,8 @@ public class App extends Application {
         mainLayout = loader.load();
 
         HandlekurvController hc = loader.getController();
-        array1.addAll(ol);
-        hc.saveHandlekurvArray(array1);
+        componentList.addAll(ol);
+        hc.saveHandlekurvArray(componentList);
 
         scene.getStylesheets().add("Primary.css");
         scene.setRoot(mainLayout);
@@ -59,8 +59,8 @@ public class App extends Application {
         mainLayout = loader.load();
 
         UserIndexController uic = loader.getController();
-        int1 = i;
-        uic.addToHandlekurvNumber(int1);
+        amount = i;
+        uic.addToHandlekurvNumber(amount);
 
         scene.getStylesheets().add("Primary.css");
         scene.setRoot(mainLayout);
