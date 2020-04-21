@@ -2,6 +2,7 @@ package org.openjfx;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Window;
 import org.openjfx.Filbehandling.FormatHandlekurvArray;
 import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
 import javafx.util.Callback;
@@ -88,6 +90,13 @@ public class HandlekurvController {
         lblTotalPrice.setText("Totalpris: " + 0 + ",-");
         filter();
     }
+
+    @FXML
+    void deleteKjøpshistorikk(ActionEvent event){
+       AlertKjøpshistorikk alert = new AlertKjøpshistorikk();
+       alert.alert(kjøpshistorikkArray, afile, tableviewPrishistorikk);
+    }
+
     @FXML
     private void switchToPrimary() throws IOException {
         handlekurvArray.clear();
