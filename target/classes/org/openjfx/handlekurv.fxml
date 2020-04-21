@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HandlekurvController">
    <children>
-      <TabPane prefHeight="598.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="598.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="tab1" text="Handlevogn">
             <content>

@@ -16,7 +16,6 @@ public class AlertKjøpshistorikk {
     public void alert(ObservableList<ComponentAndAntall> kjøpshistorikkArray, File afile, TableView<ComponentAndAntall> tableviewPrishistorikk){
         ButtonType buttonJa = new ButtonType("Ja");
         ButtonType buttonNei = new ButtonType("Nei");
-        if(kjøpshistorikkArray.size() > 0){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION,("Er du sikker på at du vil slette kjøpshistorikk?"), buttonJa, buttonNei);
             alert.setTitle("Slett kjøpshistorikk");
             alert.setHeaderText("Slett kjøpshistorikk");
@@ -39,4 +38,4 @@ public class AlertKjøpshistorikk {
 
         }
     }
-}
+
