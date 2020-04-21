@@ -47,9 +47,16 @@ class ParseKjøpshistorikkArray {
         alert.setContentText("Det er en feil i filen testSaveTxtUser.txt.\n" +
                 "Vennligst trykk 'Slett kjøpshistorikk'-knappen i kjøpshistorikk\nfor å nullstille filen.");
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            tabPane.getSelectionModel().select(tab);
+        try{
+            if (result.get() == ButtonType.OK){
+                tabPane.getSelectionModel().select(tab);
+            }
+        }catch (Exception e){
+            if (!result.isPresent()){
+                tabPane.getSelectionModel().select(tab);
+            }
         }
+
         return null;
     }
 }
