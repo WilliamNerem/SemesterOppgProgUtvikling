@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HandlekurvController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HandlekurvController">
    <children>
       <TabPane prefHeight="598.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -52,7 +52,7 @@
                           </columns>
                         </TableView>
                          <Label fx:id="historylbl" layoutX="335.0" layoutY="15.0" text="Kjøpshistorikk" />
-                        <TextField fx:id="searchHistory" layoutX="508.0" layoutY="46.0" prefHeight="25.0" prefWidth="161.0" promptText="Søk etter navn eller type" />
+                        <TextField fx:id="searchHistory" layoutX="508.0" layoutY="46.0" promptText="Søk etter navn eller type" />
                      </children>
                   </AnchorPane>
             </content>

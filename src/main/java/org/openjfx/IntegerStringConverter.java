@@ -1,4 +1,4 @@
-package org.openjfx.Feilhåndtering;
+package org.openjfx;
 
 import javafx.scene.control.Alert;
 

@@ -1,5 +1,4 @@
 Type;Navn;Antall;Pris;Totalpris
-Minne;HyperX Fury 3200MHz 128GB;2;7999;15998
 Tastatur;Corsair Gaming K70;2;2190;4380
 Motherboard;ASUS ROG ZENITH;2;8819;17638
 Motherboard;ASUS ROG ZENITH;1;8819;8819

@@ -1,10 +1,9 @@
-package org.openjfx.Component;
+package org.openjfx;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import org.openjfx.Filbehandling.OpenAdminTableview;
-import org.openjfx.UserIndexController;
 
 import java.io.File;
 
@@ -18,8 +17,8 @@ public class CheckArrayOfComponents {
     ObservableList <Component> monitor = uic.monitorChoose;
     ObservableList <Component> motherboard = uic.motherboardChoose;
     Component i = new Component("Ingen", "Ingen", 0);
-    public ObservableList<Component> checkComponentAll = FXCollections.observableArrayList();
-    public ObservableList<Integer> antall = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9);
+    ObservableList<Component> checkComponentAll = FXCollections.observableArrayList();
+    ObservableList<Integer> antall = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9);
 
     public void setComponents(){
         checkComponentAll.add(i);
@@ -30,11 +29,6 @@ public class CheckArrayOfComponents {
             oat.openDefault(f, cr);
         }catch (Exception ignored){}
         checkComponentAll.addAll(cr.getComponents());
-    }
-
-    public static String calcComponent (int compPrice, int number) {
-
-        return Integer.toString(compPrice * number ) ;
     }
 
     public void setAll(ComboBox<Component> cmbMus, ComboBox<Component> cmbSkjermkort,

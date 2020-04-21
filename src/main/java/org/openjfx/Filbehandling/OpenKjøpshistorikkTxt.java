@@ -1,7 +1,7 @@
 package org.openjfx.Filbehandling;
 
 import javafx.collections.ObservableList;
-import org.openjfx.Component.ComponentAndAntall;
+import org.openjfx.ComponentAndAntall;
 
 import java.io.BufferedReader;
 import java.io.File;

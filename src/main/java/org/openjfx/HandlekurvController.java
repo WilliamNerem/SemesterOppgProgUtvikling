@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.openjfx.Component.ComponentAndAntall;
 import org.openjfx.Filbehandling.FormatHandlekurvArray;
 import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
 import javafx.util.Callback;
