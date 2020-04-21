@@ -43,7 +43,6 @@ public class OpenAdminTableview {
             register = (ComponentRegister) oin.readObject();
             open();
         } catch (ClassNotFoundException | IOException | ClassCastException e) {
-            e.printStackTrace();
             failed = true;
             anchorpane.setDisable(false);
             errorMsg.setText("Noe er galt med filen");
