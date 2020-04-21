@@ -23,6 +23,11 @@ public class HandlekurvController {
     private int numberInHandlevogn;
     private File afile = new File("testSaveTxtUser.txt");
 
+    @FXML
+    private TabPane tabPane = new TabPane();
+
+    @FXML
+    private Tab tab2;
 
     @FXML
     private TableView<ComponentAndAntall> tableviewHandlekurv;
@@ -81,7 +86,7 @@ public class HandlekurvController {
         }
         kjøpshistorikkArray.clear();
         kjøpshistorikkArray.addAll(handlekurvArray);
-        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile);
+        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile, tabPane, tab2);
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         Files.write(afile.toPath(), FormatHandlekurvArray.formatComponents(kjøpshistorikkArray).getBytes());
 
@@ -131,7 +136,7 @@ public class HandlekurvController {
 
     @FXML
     private void initialize(){
-        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile);
+        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile, tabPane, tab2);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
