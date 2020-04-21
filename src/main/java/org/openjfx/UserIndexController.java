@@ -21,6 +21,7 @@ public class UserIndexController {
     public ObservableList<Component> motherboardChoose = FXCollections.observableArrayList();
     public ObservableList<Component> monitorChoose = FXCollections.observableArrayList();
     public ObservableList<ComponentAndAntall> componentsBought = FXCollections.observableArrayList();
+    public String output;
 
     @FXML
     private void initialize(){
@@ -29,7 +30,7 @@ public class UserIndexController {
         checkArray.setAll(cmbMus,cmbSkjermkort,cmbHarddisk,cmbMotherboard,cmbTastatur,cmbMinne,cmbMonitor,
                 txtAntallSkjermkort,txtAntallHarddisk,txtAntallTastatur,txtAntallMotherboard,txtAntallMonitor,
                 txtAntallMinne,txtAntallMus);
-        System.out.println(checkArray.checkComponentAll);
+
     }
 
     @FXML
@@ -106,7 +107,7 @@ public class UserIndexController {
 
     @FXML
     void chooseHarddisk(ActionEvent event) {
-            String output = "";
+            output = "";
             try {
                 output = CheckInput.checkUI(cmbHarddisk, txtAntallHarddisk.getValue());
                 lblWrong.setText("");
@@ -120,7 +121,7 @@ public class UserIndexController {
 
     @FXML
     void chooseMinne(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = CheckInput.checkUI(cmbMinne, txtAntallMinne.getValue());
             lblWrong.setText("");
@@ -134,7 +135,7 @@ public class UserIndexController {
 
     @FXML
     void chooseMonitor(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = CheckInput.checkUI(cmbMonitor, txtAntallMonitor.getValue());
             lblWrong.setText("");
@@ -148,7 +149,7 @@ public class UserIndexController {
 
     @FXML
     void chooseMotherboard(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = CheckInput.checkUI(cmbMotherboard, txtAntallMotherboard.getValue());
             lblWrong.setText("");
@@ -162,7 +163,7 @@ public class UserIndexController {
 
     @FXML
     void chooseMus(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = CheckInput.checkUI(cmbMus, txtAntallMus.getValue());
             lblWrong.setText("");
@@ -176,7 +177,7 @@ public class UserIndexController {
 
     @FXML
     void chooseSkjermkort(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = CheckInput.checkUI(cmbSkjermkort, txtAntallSkjermkort.getValue());
             lblWrong.setText("");
@@ -190,7 +191,7 @@ public class UserIndexController {
 
     @FXML
     void chooseTastatur(ActionEvent event) {
-        String output = "";
+        output = "";
         try {
             output = CheckInput.checkUI(cmbTastatur, txtAntallTastatur.getValue());
             lblWrong.setText("");
