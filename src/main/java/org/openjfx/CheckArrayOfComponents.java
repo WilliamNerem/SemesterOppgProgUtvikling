@@ -68,6 +68,11 @@ public class CheckArrayOfComponents {
         txtAntallMus.getSelectionModel().selectFirst();
     }
 
+    public static String calcComponent (int compPrice, int number) {
+
+        return Integer.toString(compPrice * number ) ;
+    }
+
     public ObservableList<Component> checkmus(){
         for(Component c : checkComponentAll) {
             if(c.getType().equals("Mus")||c.getType().equals("Ingen")) {
