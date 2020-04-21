@@ -17,7 +17,6 @@ public class IntegerStringConverter extends javafx.util.converter.IntegerStringC
             alert.setHeaderText("Ugyldig data!");
             alert.setContentText("Du må taste inn et gyldig tall!");
             alert.showAndWait();
-
             conversionSuccessful = false;
             return 0;
         }
