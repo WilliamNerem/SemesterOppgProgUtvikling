@@ -8,7 +8,7 @@ public class FormatHandlekurvArray {
     public static String DELIMITTER = ";";
 
     public static String formatComponent(ComponentAndAntall c) {
-        return c.getType() + DELIMITTER +c.getName() + DELIMITTER + c.getNumber() + DELIMITTER + c.getPrice() + DELIMITTER + c.getTotal();
+        return c.getType() + DELIMITTER +c.getName() + DELIMITTER + c.getNumber() + DELIMITTER + c.getPrice() + DELIMITTER + c.getTotal()+DELIMITTER;
     }
 
     public static String formatTitles(){

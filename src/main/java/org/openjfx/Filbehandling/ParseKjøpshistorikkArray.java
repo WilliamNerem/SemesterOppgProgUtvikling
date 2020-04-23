@@ -6,6 +6,7 @@ import org.openjfx.ComponentAndAntall;
 import org.openjfx.Feilhåndtering.CheckInput;
 import org.openjfx.Feilhåndtering.TypeException;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 class ParseKjøpshistorikkArray {
@@ -42,6 +43,16 @@ class ParseKjøpshistorikkArray {
         }
 
         return new ComponentAndAntall(type, name, number, price);
+    }
+
+    static boolean checkString(String str, TabPane tabPane, Tab tab) {
+        String[] strings = str.split(FormatHandlekurvArray.DELIMITTER);
+        String[] stringscheck = {"Type", "Navn", "Antall", "Pris", "Totalpris"};
+        if (!Arrays.equals(strings, stringscheck)){
+            errorInFile(tabPane, tab);
+            return false;
+        }
+        return true;
     }
 
     private static ComponentAndAntall errorInFile(TabPane tabPane, Tab tab) {
