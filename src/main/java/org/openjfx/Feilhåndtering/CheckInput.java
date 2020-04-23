@@ -72,4 +72,12 @@ public class CheckInput {
     public static String checkForTotalPrice(UserIndexController uic) {
         return "Totalpris : "+((uic.cmbMotherboard.getValue().getPrice()*uic.txtAntallMotherboard.getValue())+(uic.cmbHarddisk.getValue().getPrice()*uic.txtAntallHarddisk.getValue())+(uic.cmbSkjermkort.getValue().getPrice()*uic.txtAntallSkjermkort.getValue())+(uic.cmbMus.getValue().getPrice()*uic.txtAntallMus.getValue())+(uic.cmbTastatur.getValue().getPrice()*uic.txtAntallTastatur.getValue())+(uic.cmbMinne.getValue().getPrice()*uic.txtAntallMinne.getValue())+(uic.cmbMonitor.getValue().getPrice()*uic.txtAntallMonitor.getValue()))+",-";
     }
+
+    public static boolean checkAmount(int inAmount) throws AmountException.InvalidAmountException{
+        if(inAmount <= 0 || inAmount > 9){
+            throw new PriceException.InvalidPriceException("Antall må være mellom 0 og 9!");
+        }
+
+        return true;
+    }
 }
