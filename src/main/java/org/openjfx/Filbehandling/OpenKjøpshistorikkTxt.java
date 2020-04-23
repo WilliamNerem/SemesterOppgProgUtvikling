@@ -16,7 +16,6 @@ public class OpenKjøpshistorikkTxt {
         try (BufferedReader reader = Files.newBufferedReader(afile.toPath())) {
             String line;
             boolean checkLine1 = ParseKjøpshistorikkArray.checkString(reader.readLine(), tabPane, tab);
-            reader.readLine();
             while ((line = reader.readLine()) != null) {
                 ComponentAndAntall c = ParseKjøpshistorikkArray.parseComponent(line, tabPane, tab);
                 if(c == null){

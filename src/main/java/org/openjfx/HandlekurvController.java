@@ -174,6 +174,7 @@ public class HandlekurvController {
                 CheckInput.checkAmount(event.getNewValue());
                 event.getRowValue().setNumber(event.getNewValue());
                 tableviewHandlekurv.refresh();
+                lblTotalPrice.setText("Totalpris: " + sumPrice(handlekurvArray) + ",-");
             } catch (PriceException.InvalidPriceException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Feil!");
