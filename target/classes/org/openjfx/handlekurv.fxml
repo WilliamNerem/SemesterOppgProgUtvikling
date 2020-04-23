@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HandlekurvController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.HandlekurvController">
    <children>
       <TabPane fx:id="tabPane" prefHeight="598.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -42,17 +42,17 @@
                      <children>
                         <Button fx:id="secondaryButton" layoutX="14.0" layoutY="530.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
                         <Button fx:id="tilbakeTilUserIndex" layoutX="737.0" layoutY="18.0" mnemonicParsing="false" onAction="#switchToUserIndex" text="Tilbake" />
-                        <TableView fx:id="tableviewPrishistorikk" layoutX="100.0" layoutY="87.0" prefHeight="468.0" prefWidth="558.0">
+                        <TableView fx:id="tableviewPrishistorikk" layoutX="100.0" layoutY="87.0" prefHeight="468.0" prefWidth="563.0">
                           <columns>
                             <TableColumn fx:id="col_type" prefWidth="151.0" text="Type" />
                               <TableColumn fx:id="col_Navn" prefWidth="144.0" text="Navn" />
                             <TableColumn fx:id="col_Antall" prefWidth="60.0" text="Antall" />
                               <TableColumn fx:id="col_Pris" prefWidth="94.66668701171875" text="Pris" />
-                              <TableColumn fx:id="col_Totalt" prefWidth="107.0" text="Totalt" />
+                              <TableColumn fx:id="col_Totalt" prefWidth="112.0" text="Totalt" />
                           </columns>
                         </TableView>
                          <Label fx:id="historylbl" layoutX="335.0" layoutY="15.0" text="Kjøpshistorikk" />
-                        <TextField fx:id="searchHistory" layoutX="508.0" layoutY="46.0" promptText="Søk..." />
+                        <TextField fx:id="searchHistory" layoutX="500.0" layoutY="43.0" prefHeight="25.0" prefWidth="163.0" promptText="Søk etter navn eller type" />
                         <Button layoutX="679.0" layoutY="530.0" mnemonicParsing="false" onAction="#deleteKjøpshistorikk" text="Slett kjøpshistorikk" />
                      </children>
                   </AnchorPane>
