@@ -47,9 +47,6 @@ public class HandlekurvController {
     private Label lblTotalPrice;
 
     @FXML
-    private Label changeError;
-
-    @FXML
     private TableColumn<ComponentAndAntall, String> col_type1;
 
     @FXML
@@ -172,14 +169,17 @@ public class HandlekurvController {
 
     @FXML
     private void amountEdited(TableColumn.CellEditEvent<ComponentAndAntall, Integer> event) {
-        changeError.setText("");
         if(intStrConverter.isConversionSuccessful()) {
             try {
                 CheckInput.checkAmount(event.getNewValue());
                 event.getRowValue().setNumber(event.getNewValue());
                 tableviewHandlekurv.refresh();
             } catch (PriceException.InvalidPriceException e) {
-                changeError.setText(e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Feil!");
+                alert.setHeaderText("Ugyldig data!");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
                 tableviewHandlekurv.refresh();
             }
         }
