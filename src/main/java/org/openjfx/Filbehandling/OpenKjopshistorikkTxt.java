@@ -11,13 +11,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 
-public class OpenKjøpshistorikkTxt {
+public class OpenKjopshistorikkTxt {
     public static void open(ObservableList<ComponentAndAntall> kjøpshistorikkArray, File afile, TabPane tabPane, Tab tab){
         try (BufferedReader reader = Files.newBufferedReader(afile.toPath())) {
             String line;
-            boolean checkLine1 = ParseKjøpshistorikkArray.checkString(reader.readLine(), tabPane, tab);
+            boolean checkLine1 = ParseKjopshistorikkArray.checkString(reader.readLine(), tabPane, tab);
             while ((line = reader.readLine()) != null) {
-                ComponentAndAntall c = ParseKjøpshistorikkArray.parseComponent(line, tabPane, tab);
+                ComponentAndAntall c = ParseKjopshistorikkArray.parseComponent(line, tabPane, tab);
                 if(c == null){
                     kjøpshistorikkArray.clear();
                     break;
