@@ -84,13 +84,25 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) throws IOException {
-        ButtonType button = new ButtonType("OK");
+        ButtonType buttonKjop = new ButtonType("Fortsett å handle");
+        ButtonType buttonOK = new ButtonType("OK");
         if(handlekurvArray.size() > 0){
             Alert alert = new Alert(Alert.AlertType.INFORMATION,("Ditt kjøp til " + sumPrice(handlekurvArray) +
-                    " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),button);
+                    " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),buttonKjop,buttonOK);
             alert.setTitle("Kjøp vellykket!");
             alert.setHeaderText("Kjøp vellykket!");
-            alert.showAndWait();
+            //https://stackoverflow.com/questions/52472046/alerts-in-javafx-do-not-close-when-x-button-is-pressed
+            Window window = alert.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(e -> alert.hide());
+            Optional<ButtonType> result = alert.showAndWait();
+            result.ifPresent(res->{
+                if(res.equals(buttonKjop)) {
+                    try {
+                        App.switchToUserIndex(0);
+                    } catch (IOException ignored) {
+                    }
+                }
+            });
         }
         kjøpshistorikkArray.clear();
         kjøpshistorikkArray.addAll(handlekurvArray);
