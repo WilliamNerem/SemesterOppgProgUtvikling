@@ -18,7 +18,7 @@ import org.openjfx.Feilhåndtering.CheckInput;
 import org.openjfx.Feilhåndtering.IntegerStringConverter;
 import org.openjfx.Feilhåndtering.PriceException;
 import org.openjfx.Filbehandling.FormatHandlekurvArray;
-import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
+import org.openjfx.Filbehandling.OpenKjopshistorikkTxt;
 import javafx.util.Callback;
 
 public class HandlekurvController {
@@ -45,9 +45,6 @@ public class HandlekurvController {
 
     @FXML
     private Label lblTotalPrice;
-
-    @FXML
-    private Label changeError;
 
     @FXML
     private TableColumn<ComponentAndAntall, String> col_type1;
@@ -84,17 +81,29 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) throws IOException {
-        ButtonType button = new ButtonType("OK");
+        ButtonType buttonKjop = new ButtonType("Fortsett å handle");
+        ButtonType buttonOK = new ButtonType("OK");
         if(handlekurvArray.size() > 0){
             Alert alert = new Alert(Alert.AlertType.INFORMATION,("Ditt kjøp til " + sumPrice(handlekurvArray) +
-                    " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),button);
+                    " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),buttonKjop,buttonOK);
             alert.setTitle("Kjøp vellykket!");
             alert.setHeaderText("Kjøp vellykket!");
-            alert.showAndWait();
+            //https://stackoverflow.com/questions/52472046/alerts-in-javafx-do-not-close-when-x-button-is-pressed
+            Window window = alert.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(e -> alert.hide());
+            Optional<ButtonType> result = alert.showAndWait();
+            result.ifPresent(res->{
+                if(res.equals(buttonKjop)) {
+                    try {
+                        App.switchToUserIndex(0);
+                    } catch (IOException ignored) {
+                    }
+                }
+            });
         }
         kjøpshistorikkArray.clear();
         kjøpshistorikkArray.addAll(handlekurvArray);
-        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile, tabPane, tab2);
+        OpenKjopshistorikkTxt.open(kjøpshistorikkArray, afile, tabPane, tab2);
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         Files.write(afile.toPath(), FormatHandlekurvArray.formatComponents(kjøpshistorikkArray).getBytes());
 
@@ -106,7 +115,7 @@ public class HandlekurvController {
 
     @FXML
     void deleteKjøpshistorikk(ActionEvent event){
-       AlertKjøpshistorikk alert = new AlertKjøpshistorikk();
+       AlertKjopshistorikk alert = new AlertKjopshistorikk();
        alert.alert(kjøpshistorikkArray, afile, tableviewPrishistorikk);
     }
 
@@ -144,7 +153,7 @@ public class HandlekurvController {
 
     @FXML
     private void initialize(){
-        OpenKjøpshistorikkTxt.open(kjøpshistorikkArray, afile, tabPane, tab2);
+        OpenKjopshistorikkTxt.open(kjøpshistorikkArray, afile, tabPane, tab2);
         col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
         col_Navn.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -160,14 +169,18 @@ public class HandlekurvController {
 
     @FXML
     private void amountEdited(TableColumn.CellEditEvent<ComponentAndAntall, Integer> event) {
-        changeError.setText("");
         if(intStrConverter.isConversionSuccessful()) {
             try {
                 CheckInput.checkAmount(event.getNewValue());
                 event.getRowValue().setNumber(event.getNewValue());
                 tableviewHandlekurv.refresh();
+                lblTotalPrice.setText("Totalpris: " + sumPrice(handlekurvArray) + ",-");
             } catch (PriceException.InvalidPriceException e) {
-                changeError.setText(e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Feil!");
+                alert.setHeaderText("Ugyldig data!");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
                 tableviewHandlekurv.refresh();
             }
         }

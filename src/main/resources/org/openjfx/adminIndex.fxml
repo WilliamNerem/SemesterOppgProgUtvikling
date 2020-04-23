@@ -93,7 +93,7 @@
           <MenuItem fx:id="save_as" mnemonicParsing="false" onAction="#save" text="Lagre som" />
         </items>
       </MenuButton>
-      <Label fx:id="lblStandardFile" layoutX="14.0" layoutY="58.0" text="Standardfil:" />
-      <Button layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#changeStandardFile" text="Endre" />
+      <Label fx:id="lblStandardFile" layoutX="13.0" layoutY="58.0" text="Komponentfil sluttbruker:" />
+      <Button layoutX="13.0" layoutY="88.0" mnemonicParsing="false" onAction="#changeStandardFile" text="Endre" />
    </children>
 </AnchorPane>
