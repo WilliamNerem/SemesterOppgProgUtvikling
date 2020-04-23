@@ -146,7 +146,11 @@ public class AdminIndexController implements Initializable {
                 event.getRowValue().setPrice(event.getNewValue());
                 tableviewAdminIndex.refresh();
             } catch (PriceException.InvalidPriceException e) {
-                changeError.setText(e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Feil!");
+                alert.setHeaderText("Ugyldig data!");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
                 tableviewAdminIndex.refresh();
             }
         }

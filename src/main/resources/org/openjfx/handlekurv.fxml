@@ -21,14 +21,14 @@
                         <Button fx:id="secondaryButton1" layoutX="14.0" layoutY="530.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Logg ut" />
                          <Label fx:id="lblShoppingcart" layoutX="348.0" layoutY="14.0" text="Handlevogn" />
                         <Button fx:id="btnKjop" layoutX="712.0" layoutY="517.0" mnemonicParsing="false" onAction="#kjop" prefHeight="38.0" prefWidth="79.0" text="Kjøp" />
-                        <TableView fx:id="tableviewHandlekurv" layoutX="99.0" layoutY="87.0" prefHeight="415.0" prefWidth="607.0">
+                        <TableView fx:id="tableviewHandlekurv" editable="true" layoutX="99.0" layoutY="87.0" prefHeight="415.0" prefWidth="607.0">
                           <columns>
-                            <TableColumn fx:id="col_type1" prefWidth="137.0" text="Type" />
-                              <TableColumn fx:id="col_navn1" prefWidth="140.0" text="Navn" />
-                            <TableColumn fx:id="col_antall1" prefWidth="51.0" text="Antall" />
-                              <TableColumn fx:id="col_pris1" prefWidth="94.0" text="Pris" />
-                              <TableColumn fx:id="col_totalt1" prefWidth="117.0" text="Totalt" />
-                              <TableColumn fx:id="col_slett1" prefWidth="68.0" text="Slett" />
+                            <TableColumn fx:id="col_type1" editable="false" prefWidth="137.0" text="Type" />
+                              <TableColumn fx:id="col_navn1" editable="false" prefWidth="140.0" text="Navn" />
+                            <TableColumn fx:id="col_antall1" editable="true" onEditCommit="#amountEdited" prefWidth="51.0" text="Antall" />
+                              <TableColumn fx:id="col_pris1" editable="false" prefWidth="94.0" text="Pris" />
+                              <TableColumn fx:id="col_totalt1" editable="false" prefWidth="117.0" text="Totalt" />
+                              <TableColumn fx:id="col_slett1" editable="false" prefWidth="68.0" text="Slett" />
                           </columns>
                         </TableView>
                          <Label fx:id="lblTotalPrice" layoutX="486.0" layoutY="522.0" text="Totalpris:" />
