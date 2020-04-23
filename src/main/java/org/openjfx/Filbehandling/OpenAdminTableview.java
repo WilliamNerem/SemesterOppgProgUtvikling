@@ -99,6 +99,6 @@ public class OpenAdminTableview {
         InputStream fin = Files.newInputStream(StandardFileLbl.toPath());
         ObjectInputStream oin = new ObjectInputStream(fin);
         Path fileName = Paths.get((String) oin.readObject());
-        standardLbl.setText("Standardfil: " + fileName.getFileName());
+        standardLbl.setText("Komponentfil sluttbruker:\n" + fileName.getFileName());
     }
 }

@@ -9,6 +9,11 @@ public class ComponentAndAntall extends Component {
         this.number = new SimpleIntegerProperty(number);
     }
     public int getNumber() { return number.get(); }
+
+    public void setNumber(int number) {
+        this.number.set(number);
+    }
+
     public int getTotal() {
         int ut = getNumber()*getPrice();
         return ut;}

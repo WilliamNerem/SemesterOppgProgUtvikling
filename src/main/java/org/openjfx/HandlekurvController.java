@@ -12,7 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Window;
+import org.openjfx.Feilhåndtering.CheckInput;
+import org.openjfx.Feilhåndtering.IntegerStringConverter;
+import org.openjfx.Feilhåndtering.PriceException;
 import org.openjfx.Filbehandling.FormatHandlekurvArray;
 import org.openjfx.Filbehandling.OpenKjøpshistorikkTxt;
 import javafx.util.Callback;
@@ -22,6 +26,7 @@ public class HandlekurvController {
     private ObservableList<ComponentAndAntall> handlekurvArray = FXCollections.observableArrayList();
     private int numberInHandlevogn;
     private File afile = new File("testSaveTxtUser.txt");
+    IntegerStringConverter intStrConverter = new IntegerStringConverter();
 
     @FXML
     private TabPane tabPane = new TabPane();
@@ -40,6 +45,9 @@ public class HandlekurvController {
 
     @FXML
     private Label lblTotalPrice;
+
+    @FXML
+    private Label changeError;
 
     @FXML
     private TableColumn<ComponentAndAntall, String> col_type1;
@@ -76,13 +84,25 @@ public class HandlekurvController {
 
     @FXML
     void kjop(ActionEvent event) throws IOException {
-        ButtonType button = new ButtonType("OK");
+        ButtonType buttonKjop = new ButtonType("Fortsett å handle");
+        ButtonType buttonOK = new ButtonType("OK");
         if(handlekurvArray.size() > 0){
             Alert alert = new Alert(Alert.AlertType.INFORMATION,("Ditt kjøp til " + sumPrice(handlekurvArray) +
-                    " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),button);
+                    " kr ble vellykket.\nGå til kjøpshistorikk for å se tidligere kjøp."),buttonKjop,buttonOK);
             alert.setTitle("Kjøp vellykket!");
             alert.setHeaderText("Kjøp vellykket!");
-            alert.showAndWait();
+            //https://stackoverflow.com/questions/52472046/alerts-in-javafx-do-not-close-when-x-button-is-pressed
+            Window window = alert.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(e -> alert.hide());
+            Optional<ButtonType> result = alert.showAndWait();
+            result.ifPresent(res->{
+                if(res.equals(buttonKjop)) {
+                    try {
+                        App.switchToUserIndex(0);
+                    } catch (IOException ignored) {
+                    }
+                }
+            });
         }
         kjøpshistorikkArray.clear();
         kjøpshistorikkArray.addAll(handlekurvArray);
@@ -142,10 +162,28 @@ public class HandlekurvController {
         col_Pris.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_Antall.setCellValueFactory(new PropertyValueFactory<>("number"));
         col_Totalt.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+        col_antall1.setCellFactory(TextFieldTableCell.forTableColumn(intStrConverter));
         tableviewPrishistorikk.setItems(kjøpshistorikkArray);
         addButtonToTable();
 
         filter();
+    }
+
+    @FXML
+    private void amountEdited(TableColumn.CellEditEvent<ComponentAndAntall, Integer> event) {
+        changeError.setText("");
+        if(intStrConverter.isConversionSuccessful()) {
+            try {
+                CheckInput.checkAmount(event.getNewValue());
+                event.getRowValue().setNumber(event.getNewValue());
+                tableviewHandlekurv.refresh();
+            } catch (PriceException.InvalidPriceException e) {
+                changeError.setText(e.getMessage());
+                tableviewHandlekurv.refresh();
+            }
+        }
+        tableviewHandlekurv.refresh();
     }
 
     private void filter(){
