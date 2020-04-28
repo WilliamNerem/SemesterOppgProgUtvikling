@@ -9,7 +9,7 @@ import org.openjfx.Feilhåndtering.TypeException;
 import java.util.Arrays;
 import java.util.Optional;
 
-class ParseKjøpshistorikkArray {
+class ParseKjopshistorikkArray {
     static ComponentAndAntall parseComponent(String str, TabPane tabPane, Tab tab) {
         String [] strings = str.split(FormatHandlekurvArray.DELIMITTER);
         if(strings.length != 5) {

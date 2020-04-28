@@ -1,1 +1,10 @@
 Type;Navn;Antall;Pris;Totalpris
+Motherboard;ASUS ROG ZENITH;2;8819;17638
+Tastatur;Microsoft Wireless 900;3;559;1677
+Harddisk;Seagate Expansion Portable 2TB;1;899;899
+Monitor;BenQ 27 LED SW2700PT;1;8695;8695
+Monitor;Samsung 32'' Curved skjerm C32F39M;2;1995;3990
+Tastatur;Microsoft Wireless 900;1;559;559
+Tastatur;Corsair Gaming K70;1;2190;2190
+Skjermkort;Gigabyte GeForce RTX 2060 OC;3;4599;13797
+Skjermkort;Gigabyte GeForce RTX 2060 OC;1;4599;4599
