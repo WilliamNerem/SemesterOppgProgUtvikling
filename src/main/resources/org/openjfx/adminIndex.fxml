@@ -24,11 +24,7 @@
            <TableColumn fx:id="deleteColumn" editable="false" prefWidth="53.33331298828125" text="Slett" />
         </columns>
       </TableView>
-      <Label layoutX="147.0" layoutY="12.0" text="Legg til eller endre komponenter">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
+      <Label fx:id="adminTitle" layoutX="147.0" layoutY="12.0" text="Legg til eller endre komponenter"></Label>
       <TextField fx:id="txtNewComponent" layoutX="355.0" layoutY="140.0" promptText="Navn" />
       <Label layoutX="216.0" layoutY="142.0" text="Komponent(Navn)">
          <font>
