@@ -28,6 +28,7 @@ public class AdminIndexController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        confirmMsg.setText("Husk å lagre øverst til venstre etter endringer");
         try {
             oat.setLbl(lblStandardFile, fLbl);
         } catch (Exception ignored) {}
